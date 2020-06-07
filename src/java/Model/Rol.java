@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author trece
@@ -14,12 +16,22 @@ public class Rol
     private int id_Rol;
     private String nombre_Rol;
     private int activo_Rol;
+    ArrayList<Integer> permisos;
 
     public Rol() 
     {
         this.id_Rol = 0;
         this.nombre_Rol = "";
         this.activo_Rol = 0;
+        this.permisos = new ArrayList();
+    }
+
+    public ArrayList<Integer> getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(ArrayList<Integer> permisos) {
+        this.permisos = permisos;
     }
 
     
