@@ -11,8 +11,15 @@
  $(function(){
      $('.goEmployee').click(function(){
          
-         $('#contPrincipal').load('View/Usuario.jsp');
          
+        $('#contPrincipal').load('View/Usuario.jsp');
+
+     });
+          $('.goClient').click(function(){
+        
+
+         $('#contPrincipal').load('View/Cliente.jsp');
+
      });
      
  });
@@ -41,7 +48,7 @@
                     Client
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="Cliente.jsp">add</a>
+                    <a class="dropdown-item goClient" href="#">add</a>
                     <a class="dropdown-item" href="#">show Clients</a>
 
                 </div>

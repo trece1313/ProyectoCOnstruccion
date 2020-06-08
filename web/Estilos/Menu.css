@@ -11,8 +11,8 @@
 }
 .contenedorPrincipal{
     width: 100vw;
-    
-    background: #AFD3DE;
+    height: auto;
+    background: #AFD3DE !important;
     
 }
 .menuPrincipal{

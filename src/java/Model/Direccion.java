@@ -11,7 +11,7 @@ package Model;
  */
 public class Direccion 
 {
-    private int id_Descripcion;
+    private int id_Direccion;
     private String pais_Direccion;        
     private String estado_Direccion;
     private String municipio_Direccion;
@@ -23,7 +23,7 @@ public class Direccion
 
     public Direccion() 
     {
-        this.id_Descripcion = 0;
+        this.id_Direccion = 0;
         this.pais_Direccion = "";
         this.estado_Direccion = "";
         this.municipio_Direccion = "";
@@ -35,12 +35,12 @@ public class Direccion
     }
 
     
-    public int getId_Descripcion() {
-        return id_Descripcion;
+    public int getid_Direccion() {
+        return id_Direccion;
     }
 
-    public void setId_Descripcion(int id_Descripcion) {
-        this.id_Descripcion = id_Descripcion;
+    public void setid_Direccion(int id_Direccion) {
+        this.id_Direccion = id_Direccion;
     }
 
     public String getPais_Direccion() {

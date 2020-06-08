@@ -1,0 +1,74 @@
+   
+
+    .addUser{
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .contUser{
+        display: block;
+        width: 92%;
+        height: 37%;
+        background: #879C9C;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 7px;
+         box-shadow: -2px 15px 20px 8px #888888;
+        
+    }
+    .contPersona{
+        display: none;
+        width: 92%;
+        height: 37%;
+        background: #879C9C;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 7px 7px 27px 27px;
+         box-shadow: -2px 15px 20px 8px #888888;
+    }
+    .contPermisos{
+        display: none;
+        width: 92%;
+        height: auto;
+        background: #879C9C;
+        margin-left: auto;
+        margin-right: auto;
+         border-radius: 7px 7px 27px 27px;
+         box-shadow: -2px 15px 20px 8px #888888;
+    }
+    .div-addUser{
+        display: none;
+        width: 245px;;
+        height: auto;
+        
+        margin-left: auto;
+        margin-right: auto; 
+    }
+    button{
+        
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h4,h3{
+         font-family: 'Anton', sans-serif;
+         text-align: center;
+    }
+    .BoxText{
+         box-shadow: -2px 5px 5px 4px #7790A2;
+          text-align: center;
+    }
+    .BoxText:hover{
+         box-shadow: -3px 3px 10px 3px black;
+        
+         
+    }
+    .loaders{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../Imagenes/cargandoImagen.gif') 50% 30% no-repeat rgb(249,249,249);
+    opacity: .8;
+    }

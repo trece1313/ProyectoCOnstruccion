@@ -2,6 +2,7 @@ $(function(){
     
     $('.menuPrincipal').load('View/Menu.jsp');
     
+    
 });
 
 
