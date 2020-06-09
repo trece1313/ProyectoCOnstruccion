@@ -22,6 +22,7 @@ public class Persona
     private String sexo_Persona;
     private String telefono_Persona;
     private String correo_Persona;
+    Direccion direccionPersona;
 
     public Persona() 
     {
@@ -36,7 +37,17 @@ public class Persona
         this.sexo_Persona = "";
         this.telefono_Persona = "";
         this.correo_Persona = "";
+        this.direccionPersona = new Direccion();
     }
+
+    public Direccion getDireccionPersona() {
+        return direccionPersona;
+    }
+
+    public void setDireccionPersona(Direccion direccionPersona) {
+        this.direccionPersona = direccionPersona;
+    }
+
 
     public int getId_Primary() {
         return id_Primary;

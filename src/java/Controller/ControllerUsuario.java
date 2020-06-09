@@ -121,9 +121,20 @@ public class ControllerUsuario implements UsuarioDAO
         } catch (SQLException ex) {
             System.out.println("Err add User " + ex.getMessage());
             Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        return false;
+  
         }
-
+        finally
+        {
+            try {
+                con.close();
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                  System.out.println("Err conexiones cerradas " + ex.getMessage());
+                Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+return false;
     }
     	private void esperarXsegundos() {
 		try {
@@ -132,6 +143,81 @@ public class ControllerUsuario implements UsuarioDAO
 			Thread.currentThread().interrupt();
 		}
 	}
+
+    @Override
+    public Usuario accesarUser(String u, String p) {
+         Usuario usr=new Usuario();
+        try {
+           
+            String sqlAccesoUsuario = "SELECT \n" +
+                    "u.id_Usuario,u.userName, u.passwordUsuario,u.activo_Usuario,\n" +
+                    "r.id_Rol,r.nombre_Rol,r.activo_Rol,\n" +
+                    "p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
+                    "dir.id_Direccion ,dir.pais_Direccion ,dir.estado_Direccion,dir.municipio_Direccion\n" +
+                    "FROM Usuario u \n" +
+                    "INNER JOIN Persona p\n" +
+                    "ON u.id_PersonaFK =p.id_Persona\n" +
+                    "INNER JOIN Direccion dir\n" +
+                    "ON dir.id_Direccion = p.id_DireccionPersonaFK \n" +
+                    "INNER JOIN Rol r\n" +
+                    "ON r.id_Rol = u.id_RolUsuarioFK \n" +
+                    "WHERE u.userName = ? && U.passwordUsuario = ? && u.activo_Usuario = 1 , && r.activo_Rol = 1";
+            
+            con=conDB.conexionDB();
+            ps=con.prepareStatement(sqlAccesoUsuario);
+            ps.setString(1, u);
+            ps.setString(2, p);
+            rs=ps.executeQuery();
+            esperarXsegundos();
+            
+            if(rs != null && rs.next())
+            {
+                usr.setId(rs.getInt("id_Usuario"));
+                usr.setUserName(rs.getString("userName"));
+                usr.setUserName(rs.getString("passwordUsuario"));
+                usr.setUserName(rs.getString("activo_Usuario"));
+                
+                usr.getRolUsuario().setId_Rol(rs.getInt("id_Rol"));
+                usr.getRolUsuario().setNombre_Rol(rs.getString("nombre_Rol"));
+                usr.getRolUsuario().setActivo_Rol(rs.getInt("activo_Rol"));
+                
+                usr.getPersonaUsuario().setId_Primary(rs.getInt("id_Persona"));
+                usr.getPersonaUsuario().setNombre_Persona(rs.getString("nombre_Persona"));
+                usr.getPersonaUsuario().setPaterno_Persona(rs.getString("apellidoPeterno_Persona"));
+                usr.getPersonaUsuario().setMaterno_Persona(rs.getString("apellidoMaterno_Persona"));
+         
+                
+                usr.getPersonaUsuario().getDireccionPersona().setid_Direccion(rs.getInt("id_Direccion"));
+                usr.getPersonaUsuario().getDireccionPersona().setPais_Direccion(rs.getString("pais_Direccion"));
+                usr.getPersonaUsuario().getDireccionPersona().setEstado_Direccion(rs.getString("estado_Direccion"));
+                usr.getPersonaUsuario().getDireccionPersona().setMunicipio_Direccion(rs.getString("municipio_Direccion"));
+                                
+                ps = con.prepareStatement("SELECT id_MenuFK FROM Permiso WHERE id_RolFK = ?");
+                ps.setInt(1, usr.getRolUsuario().getId_Rol());
+                rs=ps.executeQuery();
+                while(rs != null && rs.next())
+                {
+                    usr.getRolUsuario().getPermisos().add(rs.getInt("id_MenuFK"));
+                }
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("No esta bien mi consultra " + ex.getMessage());
+            Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+             try {
+                 rs.close();
+                 ps.close();
+                 con.close();
+             } catch (SQLException ex) {
+                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+     return usr;   
+    }
     
 
     

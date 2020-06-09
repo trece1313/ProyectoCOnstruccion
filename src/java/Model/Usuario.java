@@ -15,9 +15,29 @@ public class Usuario
     private String userName;      
     private String passUsuario;
     private int activo;
-    Persona perUsuario = new Persona();
-    Rol rolUsuario = new Rol();
+    Persona personaUsuario;
+    Rol rolUsuario;
 
+    public Usuario() 
+    {
+        this.id = 0;
+        this.userName = "";
+        this.passUsuario = "";
+        this.activo = 0;
+        this.personaUsuario = new Persona();
+    }
+
+    
+    
+    
+    public Persona getPersonaUsuario() {
+        return personaUsuario;
+    }
+
+    public void setPersonaUsuario(Persona personaUsuario) {
+        this.personaUsuario = personaUsuario;
+    }
+    
     public int getId() {
         return id;
     }
@@ -48,14 +68,6 @@ public class Usuario
 
     public void setActivo(int activo) {
         this.activo = activo;
-    }
-
-    public Persona getPerUsuario() {
-        return perUsuario;
-    }
-
-    public void setPerUsuario(Persona perUsuario) {
-        this.perUsuario = perUsuario;
     }
 
     public Rol getRolUsuario() {

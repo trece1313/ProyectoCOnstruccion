@@ -17,4 +17,6 @@ import Model.Usuario;
 public interface UsuarioDAO 
 {
     public boolean addUser(Direccion dir,Persona per,Usuario usr,Rol r);
+    public Usuario accesarUser(String u, String p);
+    
 }
