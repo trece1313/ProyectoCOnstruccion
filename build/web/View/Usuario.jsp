@@ -17,24 +17,25 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 <link href="Estilos/User.css" rel="stylesheet" type="text/css"/>
 
 
+
 <div class="loaders" id="loadImg">
     
 </div> 
 <div class="addUser">
     
     <form id="formaddUser">
-        
+        <fieldset>  
         
         <div class="contUser" id="contDirection">
 
-            <h3>Datos de su Direccion</h3>
+            <legend> <h3>Datos de su Direccion</h3></legend>
             <%-- ___________________________________________________________________________________________________ --%>        
             <div class="row"> <%-- Start row Direction --%>
 
                 <div class="col-sm-4"> <%-- Start col Direction --%>
                     <div class="form-group"> <%-- Start group Direction --%>
                         <select class="form-control col-md-12 mx-auto BoxText" id="pais" name="Pais" >
-                            <option>Seleccione Pais</option>
+                            <option value="default">Seleccione Pais</option>
                             <option selected>Mexico</option>
                         </select>
                     </div> <%-- end group Direction --%>
@@ -43,7 +44,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                 <div class="col-sm-4"> <%-- Start col Direction --%>
                     <div class="form-group"> <%-- Start group Direction --%>
                         <select class="form-control col-md-12 BoxText" id="estado" name="Estado">
-                            <option>Seleccione Estado</option>
+                            <option value="estado">Seleccione Estado</option>
                             <%                                        String municipios[] = {"Ciudad de México", "Aguascalientes", "Baja California", "Baja California Sur",
                                     "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Durango", "Estado de México",
                                     "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit",
@@ -62,7 +63,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
                 <div class="col-sm-4"> <%-- Start col Direction --%>
                     <div class="form-group"> <%-- Start group Direction --%>
-                        <input type="text" class="form-control col-sm-12 BoxText" id="" name="Municipio" placeholder="Ingrese su Municipio"/>
+                        <input type="text" required="" class="form-control col-sm-12 BoxText" id="municipio" name="Municipio" placeholder="Ingrese su Municipio"/>
                     </div> <%-- end group Direction --%>
                 </div> <%-- end col Direction --%>
 
@@ -75,19 +76,19 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
                 <div class="col-4"> <%-- Start col Direction --%>
                     <div class="form-group"> <%-- Start group Direction --%>
-                        <input type="text" class="form-control col-sm-12 BoxText" id="" name="Calle" placeholder="Ingrese su Calle"/>
+                        <input type="text" class="form-control col-sm-12 BoxText" id="calle" name="Calle" placeholder="Ingrese su Calle"/>
                     </div> <%-- end group Direction --%>
                 </div> <%-- end col Direction --%>
 
                 <div class="col-4"> <%-- Start col Direction --%>
                     <div class="form-group"> <%-- Start group Direction --%>
-                        <input type="text" class="form-control col-sm-12 BoxText" id="" name="Colonia" placeholder="Ingrese su Colonia"/>
+                        <input type="text" class="form-control col-sm-12 BoxText" id="colonia" name="Colonia" placeholder="Ingrese su Colonia"/>
                     </div> <%-- end group Direction --%>
                 </div> <%-- end col Direction --%>
 
                 <div class="col-4"> <%-- Start col Direction --%>
                     <div class="form-group"> <%-- Start group Direction --%>
-                        <input type="text" class="form-control col-sm-12 BoxText" id="" name="CodigoPostal" placeholder="Ingrese su Codigo Postal"/>
+                        <input type="text" class="form-control col-sm-12 BoxText" id="postal" name="CodigoPostal" placeholder="Ingrese su Codigo Postal"/>
                     </div> <%-- end group Direction --%>
                 </div> <%-- end col Direction --%>
 
@@ -99,13 +100,13 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
                 <div class="col-4"> <%-- Start col Direction --%>
                     <div class="form-group"> <%-- Start group Direction --%>
-                        <input type="text" class="form-control col-sm-12 BoxText" id="" name="NumeroExterior" placeholder="Ingrese su Numero Exterior"/>
+                        <input type="text" class="form-control col-sm-12 BoxText" id="exterior" name="NumeroExterior" placeholder="Ingrese su Numero Exterior"/>
                     </div> <%-- end group Direction --%>
                 </div> <%-- end col Direction --%>
 
                 <div class="col-4"> <%-- Start col Direction --%>
                     <div class="form-group"> <%-- Start group Direction --%>
-                        <input type="text" class="form-control col-sm-12 BoxText" id="" name="NumeroInterior" placeholder="Ingrese su Numero Interior"/>
+                    <input type="text" class="form-control col-sm-12 BoxText" id="interior" name="NumeroInterior" placeholder="Ingrese su Numero Interior"/>
                     </div> <%-- end group Direction --%>
                 </div> <%-- end col Direction --%>
 
@@ -132,19 +133,19 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
             <div class="col-sm-4"> <%-- Start col Person --%>
                 <div class="form-group"> <%-- Start group Person --%>
-                    <input type="text" class="form-control col-sm-12 BoxText" id="" name="Nombre" placeholder="Ingrese su Nombre"/>
+                    <input type="text" required="" minlength="5" class="form-control col-sm-12 BoxText" id="nombre" name="Nombre" placeholder="Ingrese su Nombre"/>
                 </div> <%-- end group Person --%>
             </div> <%-- end col Person --%>
 
             <div class="col-sm-4"> <%-- Start col Person --%>
                 <div class="form-group"> <%-- Start group Person --%>
-                    <input type="text" class="form-control col-sm-12 BoxText" id="" name="Paterno" placeholder="Ingrese su Paterno"/>
+                    <input type="text" required="" minlength="5" class="form-control col-sm-12 BoxText" id="paterno" name="Paterno" placeholder="Ingrese su Paterno"/>
                 </div> <%-- end group Person --%>
             </div> <%-- end col Person --%>
 
             <div class="col-sm-4"> <%-- Start col Person --%>
                 <div class="form-group"> <%-- Start group Person --%>
-                    <input type="text" class="form-control col-sm-12 BoxText" id="" name="Materno" placeholder="Ingrese su Materno"/>
+                    <input type="text" required="" minlength="5" class="form-control col-sm-12 BoxText" id="materno" name="Materno" placeholder="Ingrese su Materno"/>
                 </div> <%-- end group Person --%>
             </div> <%-- end col Person --%>
 
@@ -153,12 +154,12 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
 <%-- ___________________________________________________________________________________________________ --%>
 
-        <div class="row"> <%-- Start row Direction --%>
+        <div class="row"> <%-- Start row Person --%>
 
-            <div class="col-4"> <%-- Start col Direction --%>
+            <div class="col-4"> <%-- Start col Person --%>
                 <div class="form-group"> <%-- Start group Person --%>
-                    <select type="text" class="form-control col-sm-12 BoxText" id="" name="Sexo">
-                        <option>Seleccione Sexo</option>
+                    <select type="text" class="form-control col-sm-12 BoxText" required="" id="sexo" name="Sexo">
+                        <option value="sex">Seleccione Sexo</option>
                         <%
                             String sexo[] = {"Hombre", "Mujer", "Otro"};
                             for (String sex : sexo) {
@@ -174,13 +175,13 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
             <div class="col-4"> <%-- Start col Person --%>
                 <div class="form-group"> <%-- Start group Person --%>
-                    <input type="text" class="form-control col-sm-12 BoxText" id="" name="Telefono" placeholder="Ingrese su telefono"/>
+                    <input type="text" minlength="10" maxlength="10" class="form-control col-sm-12 BoxText" id="telefono" name="Telefono" placeholder="Ingrese su telefono"/>
                 </div> <%-- end group Person --%>
             </div> <%-- end col Person --%>
 
             <div class="col-4"> <%-- Start col Person --%>
                 <div class="form-group"> <%-- Start group Person --%>
-                    <input type="date" class="form-control col-sm-12 BoxText" id="" name="FechaNacimiento"/>
+                    <input type="date" required="" class="form-control col-sm-12 BoxText" id="fechaNacimiento" name="FechaNacimiento"/>
                 </div> <%-- end group Person --%>
             </div> <%-- end col Person --%>
 
@@ -192,7 +193,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
             <div class="col-4"> <%-- Start col Person --%>
                 <div class="form-group"> <%-- Start group Person --%>
-                    <input type="text" class="form-control col-sm-12 BoxText" id="" name="Correo" placeholder="Ingrese su Correo Electronico"/>
+                    <input type="text" minlength="10" class="form-control col-sm-12 BoxText" id="correo" name="Correo" placeholder="Ingrese su Correo Electronico"/>
                 </div> <%-- end group Person --%>
             </div> <%-- end col Person --%>
 
@@ -261,7 +262,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
             
     
 </div>
-
+        </fieldset>
 </form>    
 
             <div class="div-addUser" id="divadd-User">
@@ -279,10 +280,14 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
 </div>
 
-
+            
     <script src="Javascript/addUser.js" type="text/javascript"></script>
+    <script src="Javascript/ValidaterUser.js" type="text/javascript"></script>
+    <script>
+        
 
-
+        
+    </script>
 
 
 

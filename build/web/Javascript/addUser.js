@@ -1,4 +1,5 @@
 
+
     var divDireccion = document.getElementById('contDirection');
     var divPerson = document.getElementById('containerPerson');
     var divPermit = document.getElementById('contPermit');
@@ -14,25 +15,60 @@
     let btnPrevPermit = document.getElementById('btn-ReturnUser');
 
     loadDiv.style.display = 'none';
+    
+     
 
 
     btnNextDirection.addEventListener('click',hidecontainerDirectio);
     
     btnNextPerson.addEventListener('click',NextPermit);
+    
     btnPrevPerson.addEventListener('click',returnDirectio);
     
     btnPrevPermit.addEventListener('click',returnPerson);
 
 
-function  hidecontainerDirectio() {
-    loadDiv.style.display = 'block';
-    setTimeout(function ()
-    {
-        loadDiv.style.display = 'none';
-        divDireccion.style.display = 'none';
-        divPerson.style.display = 'block';
 
-    }, 3000);
+   
+
+
+
+function  hidecontainerDirectio() {
+    let pais = document.getElementById('pais');
+    let estado = document.getElementById('estado');
+    let municipio = document.getElementById('municipio');
+    let calle = document.getElementById('calle');
+    let colonia = document.getElementById('colonia');
+    let postal = document.getElementById('postal');
+    let exterior = document.getElementById('exterior');
+    let interio = document.getElementById('interior');
+
+
+    if (pais.value == 'Seleccione Pais' || estado.value == 'Seleccione Estado' ||
+            municipio.value == '' || calle.value == '' || colonia.value == '' ||
+            postal.value == '' || exterior.value == '' || interio.value == '')
+    {
+
+
+        return false;
+        this.disabled = true;
+
+
+    } else if (pais.value != 'Seleccione Pais' && estado.value != 'Seleccione Estado' &&
+            municipio.value != '' && calle.value != '' && colonia.value != '' &&
+            postal.value != '' && exterior.value != '' && interio.value != '')
+    {
+
+
+        loadDiv.style.display = 'block';
+        setTimeout(function ()
+        {
+            loadDiv.style.display = 'none';
+            divDireccion.style.display = 'none';
+            divPerson.style.display = 'block';
+
+        }, 3000);
+    }
 }
 
 function  returnDirectio() {
@@ -46,7 +82,27 @@ function  returnDirectio() {
     }, 3000);
 }
 function  NextPermit() {
-    loadDiv.style.display = 'block';
+    let nombre = document.getElementById('nombre');
+    let paterno = document.getElementById('paterno');
+    let materno = document.getElementById('materno');
+    let sexo = document.getElementById('sexo');
+    let telefono = document.getElementById('telefono');
+    let fechaNacimiento = document.getElementById('fechaNacimiento');
+    let correo = document.getElementById('correo');
+    
+    
+    if(nombre.value == "" || paterno.value == "" || materno.value == "" || sexo.value == "Seleccione Sexo" ||
+       telefono.value == "" || fechaNacimiento.value == "" ||correo.value == "" )
+    {
+        return false;
+        
+        
+    }
+    else if(nombre.value != "" && paterno.value != "" && materno.value != "" && 
+            sexo.value != "Seleccione Sexo" &&
+       telefono.value != "" && fechaNacimiento.value != "" && correo.value != "")
+    {
+            loadDiv.style.display = 'block';
     setTimeout(function ()
     {
         loadDiv.style.display = 'none';
@@ -55,6 +111,11 @@ function  NextPermit() {
         divaddUser.style.display = 'block';
 
     }, 3000);
+        
+    }
+ 
+    
+
 }
 
 function returnPerson() {
@@ -97,8 +158,6 @@ function addUser()
 let btnNextPermit = document.getElementById('btn-AddUser');
 
 */
-
-
 
 
 
