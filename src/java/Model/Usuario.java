@@ -24,6 +24,7 @@ public class Usuario
         this.userName = "";
         this.passUsuario = "";
         this.activo = 0;
+        this.rolUsuario = new Rol();
         this.personaUsuario = new Persona();
     }
 

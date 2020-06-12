@@ -5,7 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+if(session.getAttribute("us") != null){
+%>
 <script>
  
  $(function(){
@@ -95,3 +97,8 @@
         </ul>
     </div>
 </nav>
+
+
+<%
+    }
+%>

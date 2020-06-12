@@ -35,6 +35,7 @@ public class ControllerUsuario implements UsuarioDAO
     {
         
         try {
+            
             con=conDB.conexionDB();
             
             String sqlDireccion = "INSERT INTO Direccion"
@@ -148,34 +149,37 @@ return false;
     public Usuario accesarUser(String u, String p) {
          Usuario usr=new Usuario();
         try {
+            conDB = new ConectaDB();
            
-            String sqlAccesoUsuario = "SELECT \n" +
-                    "u.id_Usuario,u.userName, u.passwordUsuario,u.activo_Usuario,\n" +
-                    "r.id_Rol,r.nombre_Rol,r.activo_Rol,\n" +
-                    "p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
-                    "dir.id_Direccion ,dir.pais_Direccion ,dir.estado_Direccion,dir.municipio_Direccion\n" +
-                    "FROM Usuario u \n" +
-                    "INNER JOIN Persona p\n" +
-                    "ON u.id_PersonaFK =p.id_Persona\n" +
-                    "INNER JOIN Direccion dir\n" +
-                    "ON dir.id_Direccion = p.id_DireccionPersonaFK \n" +
-                    "INNER JOIN Rol r\n" +
-                    "ON r.id_Rol = u.id_RolUsuarioFK \n" +
-                    "WHERE u.userName = ? && U.passwordUsuario = ? && u.activo_Usuario = 1 , && r.activo_Rol = 1";
+            String sqlAccesoUsuario = "SELECT  \n" +
+"                    u.id_Usuario,u.userName, u.passwordUsuario,u.activo_Usuario, \n" +
+"                    r.id_Rol,r.nombre_Rol,r.activo_Rol, \n" +
+"                    p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona, \n" +
+"                    dir.id_Direccion ,dir.pais_Direccion ,dir.estado_Direccion,dir.municipio_Direccion \n" +
+"                    FROM Usuario u  \n" +
+"                    INNER JOIN Persona p \n" +
+"                    ON u.id_PersonaFK =p.id_Persona \n" +
+"                    INNER JOIN Direccion dir \n" +
+"                    ON dir.id_Direccion = p.id_DireccionPersonaFK  \n" +
+"                    INNER JOIN Rol r \n" +
+"                    ON r.id_Rol = u.id_RolUsuarioFK  \n" +
+"                    WHERE u.userName = ? && u.passwordUsuario = ? \n" +
+"                    && u.activo_Usuario = 1 && r.activo_Rol = 1";
             
-            con=conDB.conexionDB();
+            
+            con = conDB.conexionDB();
             ps=con.prepareStatement(sqlAccesoUsuario);
             ps.setString(1, u);
             ps.setString(2, p);
             rs=ps.executeQuery();
-            esperarXsegundos();
+//            esperarXsegundos();
             
             if(rs != null && rs.next())
             {
                 usr.setId(rs.getInt("id_Usuario"));
                 usr.setUserName(rs.getString("userName"));
-                usr.setUserName(rs.getString("passwordUsuario"));
-                usr.setUserName(rs.getString("activo_Usuario"));
+                usr.setPassUsuario(rs.getString("passwordUsuario"));
+                usr.setActivo(rs.getInt("activo_Usuario"));
                 
                 usr.getRolUsuario().setId_Rol(rs.getInt("id_Rol"));
                 usr.getRolUsuario().setNombre_Rol(rs.getString("nombre_Rol"));
@@ -205,20 +209,55 @@ return false;
         } catch (SQLException ex) {
             System.out.println("No esta bien mi consultra " + ex.getMessage());
             Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
+        }        finally
         {
-             try {
-                 rs.close();
-                 ps.close();
-                 con.close();
-             } catch (SQLException ex) {
-                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
-             }
+            try {
+                con.close();
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                  System.out.println("Err conexiones cerradas " + ex.getMessage());
+                Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
      return usr;   
     }
     
-
+    public static void main(String[] args) {
+        
+        ControllerUsuario cu=new ControllerUsuario();
+        
+        Usuario us=cu.accesarUser("trece", "123");
+         
+        
+        if(us.getId() != 0){
+            
+            
+            System.out.println(us.getUserName());
+            System.out.println(us.getPassUsuario());
+            System.out.println(us.getActivo());
+            
+            System.out.println(us.getRolUsuario().getId_Rol());
+            System.out.println(us.getRolUsuario().getNombre_Rol());
+            System.out.println(us.getRolUsuario().getActivo_Rol());
+            
+            System.out.println(us.getPersonaUsuario().getId_Primary());
+            System.out.println(us.getPersonaUsuario().getNombre_Persona());
+            System.out.println(us.getPersonaUsuario().getPaterno_Persona());
+            System.out.println(us.getPersonaUsuario().getMaterno_Persona());
+            
+            System.out.println(us.getPersonaUsuario().getDireccionPersona().getid_Direccion());
+            System.out.println(us.getPersonaUsuario().getDireccionPersona().getPais_Direccion());
+            System.out.println(us.getPersonaUsuario().getDireccionPersona().getEstado_Direccion());
+            System.out.println(us.getPersonaUsuario().getDireccionPersona().getMunicipio_Direccion());
+            
+            
+        }else{
+            System.out.println("no ");
+        }
+        
+        
+    }
     
 }

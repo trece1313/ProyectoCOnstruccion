@@ -34,6 +34,8 @@ public class ConectaDB
         }
         return con;
     }
-
+//    public static void main(String[] args) {
+//        System.out.println(new ConectaDB().conexionDB());
+//    }
     
 }

@@ -13,7 +13,7 @@
 ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
 %>
-
+<meta charset="utf-8">
 <link href="Estilos/User.css" rel="stylesheet" type="text/css"/>
 
 
@@ -193,7 +193,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
             <div class="col-4"> <%-- Start col Person --%>
                 <div class="form-group"> <%-- Start group Person --%>
-                    <input type="text" minlength="10" class="form-control col-sm-12 BoxText" id="correo" name="Correo" placeholder="Ingrese su Correo Electronico"/>
+                    <input type="email" minlength="10" class="form-control col-sm-12 BoxText" id="correo" name="Correo" placeholder="Ingrese su Correo Electronico"/>
                 </div> <%-- end group Person --%>
             </div> <%-- end col Person --%>
 
@@ -236,7 +236,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
         </div> <%-- end row Direction --%>
 <%-- ___________________________________________________________________________________________________ --%>     
 
-                                    <%                            for (Menu me : recMenu) {
+ <% for (Menu me : recMenu) {
             %>
             <div class="row">     
         <div class="col-sm-12">
@@ -270,7 +270,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                 <div class="row">
 
                     <div class="col-sm-12">
-                        <button type="button" class="btn btn-success" id="btn-AddUser">Agregar Usuario</button>
+                        <button type="button" class="btn btn-success" id="btn-AddUsers">Agregar Usuario</button>
                         <button type="button" class="btn btn-success" id="btn-ReturnUser">Regresar</button>
                     </div>
 
@@ -283,8 +283,34 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
             
     <script src="Javascript/addUser.js" type="text/javascript"></script>
     <script src="Javascript/ValidaterUser.js" type="text/javascript"></script>
+    
     <script>
+    $(function(){
+      
+     $('#btn-AddUsers').click(addUser);
         
+    });  
+    
+    function addUser()
+{
+ 
+                $.ajax({
+                type: 'post',
+                url: 'addUser',
+                data: {accion: "add_User",},
+                success: function () {
+                    
+                },
+    error : function(xhr, status) {
+        alert('Disculpe, existió un problema');
+    },
+
+    // código a ejecutar sin importar si la petición falló o no
+    complete : function(xhr, status) {
+        alert('Petición realizada');
+    }
+            });
+}
 
         
     </script>

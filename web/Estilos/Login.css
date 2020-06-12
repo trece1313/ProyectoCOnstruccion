@@ -57,6 +57,14 @@ background: rgb(203, 201, 200) !important;
     right:2%;
     text-align: center;
 }
+.addMensaje{
+     border-radius: 15px;
+    width: 25vw;
+    height: 7vh; 
+        font-family: 'Anton', sans-serif;
+    
+    
+}
 input[type='text'],[type='password']{
     text-align: center;
     font-family: 'Anton', sans-serif;

@@ -33,6 +33,13 @@ $(function () {
             Interio: {required: true, maxlength: 20, minlength: 5}
         }
     });
+    
+    
+    
+    
+    
+    
+    
 
 
 });

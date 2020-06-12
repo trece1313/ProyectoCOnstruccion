@@ -11,8 +11,9 @@
     let btnNextPerson = document.getElementById('btnNextPerson');
     let btnPrevPerson = document.getElementById('btnReturnPerson');
     
-    
     let btnPrevPermit = document.getElementById('btn-ReturnUser');
+    
+    
 
     loadDiv.style.display = 'none';
     
@@ -26,6 +27,8 @@
     btnPrevPerson.addEventListener('click',returnDirectio);
     
     btnPrevPermit.addEventListener('click',returnPerson);
+    
+    
 
 
 
@@ -130,26 +133,8 @@ function returnPerson() {
     }, 3000);
 }
 
-function addUser()
-{
-    
-                $.ajax({
-                type: 'post',
-                url: 'admin/modificarol.jsp',
-                data: {accion: "add_User", },
-                success: function () {
-                    
-                },
-    error : function(xhr, status) {
-        alert('Disculpe, existió un problema');
-    },
 
-    // código a ejecutar sin importar si la petición falló o no
-    complete : function(xhr, status) {
-        alert('Petición realizada');
-    }
-            });
-}
+
 
 /*
 
