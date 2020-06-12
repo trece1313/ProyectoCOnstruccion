@@ -28,7 +28,16 @@ function accederSistema(){
 //    return false;
 //    
 
-    $.ajax({
+    if($('#user').val() == "" || $('#pass').val() == "")
+    {
+        
+        return false;
+        
+    }
+    else if($('#user').val() != "" && $('#pass').val() != "")
+    {
+        console.log('no Entro');
+            $.ajax({
         type: 'POST',
         url: '../UsuariosDatos',
         data: {action:"accederUser",user:$('#user').val() , pass:$('#pass').val() },
@@ -52,5 +61,8 @@ function accederSistema(){
             console.log('Petición realizada');
         }
     });
+    }
+
+
     
 }
