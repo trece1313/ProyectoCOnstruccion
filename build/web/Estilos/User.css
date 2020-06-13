@@ -9,12 +9,10 @@
         display: block;
         width: 92%;
         height: 37%;
-        background: #879C9C;
+ 
         margin-left: auto;
         margin-right: auto;
-        border-radius: 7px;
-         box-shadow: -2px 15px 20px 8px #888888;
-        
+
     }
     .contPersona{
         display: none;
@@ -29,6 +27,15 @@
     .contPermisos{
         display: none;
         width: 92%;
+        height: auto;
+        background: #879C9C;
+        margin-left: auto;
+        margin-right: auto;
+         border-radius: 7px 7px 27px 27px;
+         box-shadow: -2px 15px 20px 8px #888888;
+    }
+    .divUsuario{
+        width: 45%;
         height: auto;
         background: #879C9C;
         margin-left: auto;

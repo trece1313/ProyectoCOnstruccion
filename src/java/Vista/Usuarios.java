@@ -6,9 +6,13 @@
 package Vista;
 
 import Controller.ControllerUsuario;
+import Model.Direccion;
+import Model.Persona;
+import Model.Rol;
 import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 public class Usuarios extends HttpServlet {
 ControllerUsuario accUser=null;
 Usuario user=null;
+Direccion dir=null;
+Persona per=null;
+Rol rol=null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -86,7 +93,7 @@ Usuario user=null;
                 
             if(user.getId()!= 0 )
             {
-                System.out.println("entro");
+                
                 request.getSession().setAttribute("us",user);
             }
             else
@@ -96,6 +103,58 @@ Usuario user=null;
             }
 
         }
+        if(request.getSession().getAttribute("us") != null && 
+          ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(6) )
+        {
+            if(request.getParameter("action").equals("addUsers"))
+            {
+                user =new Usuario();
+                dir = new Direccion();
+                per = new Persona();
+                rol = new Rol();
+                
+                user.setUserName(request.getParameter(""));
+                user.setPassUsuario(request.getParameter(""));
+                user.setActivo(Integer.parseInt(request.getParameter("")));
+                
+                per.setNombre_Persona(request.getParameter("Nombre"));
+                per.setPaterno_Persona(request.getParameter("Paterno"));
+                per.setMaterno_Persona(request.getParameter("Materno"));
+                per.setFechaNacimiento_Persona(request.getParameter(""));
+                per.setSexo_Persona(request.getParameter("Sexo"));
+                per.setTelefono_Persona(request.getParameter("Telefono"));
+                per.setCorreo_Persona(request.getParameter("FechaNacimiento"));
+                
+                 dir.setPais_Direccion(request.getParameter("Pais"));
+                 dir.setEstado_Direccion(request.getParameter("Estado"));
+                 dir.setMunicipio_Direccion(request.getParameter("Municipio"));
+                 dir.setCalle_Direccion(request.getParameter("Calle"));
+                 dir.setColonia_Direccion(request.getParameter("Colonia"));
+                 dir.setCodigoPostal_Direccion(request.getParameter("CodigoPostal"));
+                 dir.setNumeroExterior_Direccion(request.getParameter("NumeroExterior"));
+                 dir.setNumeroInterior_Direccion(request.getParameter("NumeroInterior"));
+                
+                 rol.setNombre_Rol(request.getParameter("Rol"));
+                
+                Enumeration enumeration = request.getParameterNames();
+                while (enumeration.hasMoreElements()) {
+                    String nombreparametro = (String) enumeration.nextElement();
+                    if (nombreparametro.contains("menu")) {
+                        rol.getPermisos().add(Integer.parseInt(request.getParameter(nombreparametro)));
+                    }
+                }
+                if (new AdminControl().CreaRol(rol)) {
+                    request.getSession().setAttribute("Mensaje", "El rol se creo exitosamente");
+                }
+            }
+            else
+            {
+                System.out.println("no entro");
+            }
+            
+        }
+        
+        
     }
 
     /**

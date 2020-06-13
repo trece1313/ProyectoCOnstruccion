@@ -9,7 +9,9 @@
 .centContent{
     width: 100vw;
     height: 100vh;
-background: rgb(203, 201, 200) !important;
+  background: #373b44; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #373b44, #4286f4); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #373b44, #4286f4);
     position: relative;
     left: auto;
     right: auto;
@@ -17,15 +19,21 @@ background: rgb(203, 201, 200) !important;
 .divHeader{
     width: 100vw;
     height: 15vh;
-    background: hotpink;
     position: absolute;
     top: 0;
+    background: #355C7D;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 .contHeader{
     width: 50%;
     height: 60%;
-    background: white;
     margin: auto;
+    background: #3E5151;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #DECBA4, #3E5151);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #DECBA4, #3E5151); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+border-radius: 7px;
 }
 .contHeader header h1{
     font-family: 'Anton', sans-serif;
@@ -51,11 +59,15 @@ background: rgb(203, 201, 200) !important;
     border-radius: 15px;
     width: 25vw;
     height: 75vh;
-    background: #206B83;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     position: absolute;
     top: 20%;
     right:2%;
     text-align: center;
+    color: white;
 }
 .addMensaje{
      border-radius: 15px;

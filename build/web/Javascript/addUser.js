@@ -61,14 +61,19 @@ function  hidecontainerDirectio() {
             municipio.value != '' && calle.value != '' && colonia.value != '' &&
             postal.value != '' && exterior.value != '' && interio.value != '')
     {
-
-
+        
+        
         loadDiv.style.display = 'block';
+        divDireccion.classList.add('animate__animated', 'animate__bounceOutLeft');
         setTimeout(function ()
         {
+            
             loadDiv.style.display = 'none';
+            
             divDireccion.style.display = 'none';
             divPerson.style.display = 'block';
+            
+            divPerson.classList.add('animate__animated', 'animate__bounceInLeft');
 
         }, 3000);
     }
@@ -76,6 +81,7 @@ function  hidecontainerDirectio() {
 
 function  returnDirectio() {
     loadDiv.style.display = 'block';
+     divDireccion.classList.add('animate__animated', 'animate__bounceOutLeft');
     setTimeout(function ()
     {
         loadDiv.style.display = 'none';
@@ -106,12 +112,15 @@ function  NextPermit() {
        telefono.value != "" && fechaNacimiento.value != "" && correo.value != "")
     {
             loadDiv.style.display = 'block';
+            divPerson.classList.add('animate__animated', 'animate__bounceOutLeft');
+            
     setTimeout(function ()
     {
         loadDiv.style.display = 'none';
         divPerson.style.display = 'none';
         divPermit.style.display = 'block';
         divaddUser.style.display = 'block';
+        divaddUser.classList.add('animate__animated', 'animate__bounceInLeft');
 
     }, 3000);
         

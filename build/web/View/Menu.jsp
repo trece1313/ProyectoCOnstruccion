@@ -4,6 +4,7 @@
     Author     : trece
 --%>
 
+<%@page import="Model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 if(session.getAttribute("us") != null){
@@ -11,18 +12,14 @@ if(session.getAttribute("us") != null){
 <script>
  
  $(function(){
-     $('.goEmployee').click(function(){
+     $('.goUser').click(function(){
          
          
         $('#contPrincipal').load('View/Usuario.jsp');
-
-     });
-          $('.goClient').click(function(){
         
 
-         $('#contPrincipal').load('View/Cliente.jsp');
-
      });
+
      
  });
     
@@ -35,6 +32,8 @@ if(session.getAttribute("us") != null){
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
+
+         <% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(1)) {  %> 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Employee
@@ -45,16 +44,9 @@ if(session.getAttribute("us") != null){
 
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Cliente.jsp" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Client
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item goClient" href="#">add</a>
-                    <a class="dropdown-item" href="#">show Clients</a>
+             <% }  %>
 
-                </div>
-            </li>
+             <% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(2)) {  %>             
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Proveedor
@@ -65,6 +57,8 @@ if(session.getAttribute("us") != null){
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
+            <% }  %>
+<% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(3)) {  %>              
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Proveedor
@@ -75,17 +69,40 @@ if(session.getAttribute("us") != null){
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
+                <% }  %>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Proveedores
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">add</a>
+                        <a class="dropdown-item" href="#">Show</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Proveedores
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">add</a>
+                        <a class="dropdown-item" href="#">Show</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            <% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(6)) {  %> 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Proveedores
+                    User
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">add</a>
-                    <a class="dropdown-item" href="#">Show</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item goUser" href="#">add</a>
+                    <a class="dropdown-item" href="#">show Employee</a>
+
                 </div>
             </li>
-
+             <% }  %>
 
             <li class="nav-item dropdown">
                 <a class="btn-success" id="diste" onclick="signOut();" style="padding: 10px 15px; position: relative; top: 10px; left: 25px;">
