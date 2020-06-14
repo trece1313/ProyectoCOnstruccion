@@ -1,18 +1,26 @@
 
 
-    var divDireccion = document.getElementById('contDirection');
-    var divPerson = document.getElementById('containerPerson');
+
     var divPermit = document.getElementById('contPermit');
     var loadDiv = document.getElementById('loadImg');
     var divaddUser = document.getElementById('divadd-User');
+    var divShowUser = document.getElementById('divUsuari');
     
-    let btnNextDirection = document.getElementById('btnSigDireccion');
+    var divDireccion = document.getElementById('contDirection');
+
+    var divPerson = document.getElementById('containerPerson');
     
-    let btnNextPerson = document.getElementById('btnNextPerson');
-    let btnPrevPerson = document.getElementById('btnReturnPerson');
+    var btnDirection = document.getElementById('btnSigDireccion');
+
+    var btnPerson = document.getElementById('btnNextPerson');
+    var btnPrevPerson = document.getElementById('btnReturnPerson');
+    
+    let btnRol = document.getElementById('btnNextRol');
+    let btnPrevRol = document.getElementById('btnReturnRol');
     
     let btnPrevPermit = document.getElementById('btn-ReturnUser');
     
+
     
 
     loadDiv.style.display = 'none';
@@ -20,15 +28,16 @@
      
 
 
-    btnNextDirection.addEventListener('click',hidecontainerDirectio);
+    btnDirection.addEventListener('click',hidecontainerDirectio);
     
-    btnNextPerson.addEventListener('click',NextPermit);
+    btnPerson.addEventListener('click',NextPermit);
     
     btnPrevPerson.addEventListener('click',returnDirectio);
     
     btnPrevPermit.addEventListener('click',returnPerson);
     
-    
+    btnRol.addEventListener('click',nextUsers);
+    btnPrevRol.addEventListener('click',prevRol);
 
 
 
@@ -37,6 +46,8 @@
 
 
 function  hidecontainerDirectio() {
+
+    
     let pais = document.getElementById('pais');
     let estado = document.getElementById('estado');
     let municipio = document.getElementById('municipio');
@@ -64,29 +75,46 @@ function  hidecontainerDirectio() {
         
         
         loadDiv.style.display = 'block';
-        divDireccion.classList.add('animate__animated', 'animate__bounceOutLeft');
+        divDireccion.classList.add('animate__bounceOutLeft');
         setTimeout(function ()
         {
             
             loadDiv.style.display = 'none';
             
             divDireccion.style.display = 'none';
+            
+            
+            divPerson.classList.add('animate__animated','animate__bounceInLeft');
             divPerson.style.display = 'block';
             
-            divPerson.classList.add('animate__animated', 'animate__bounceInLeft');
 
         }, 3000);
+
     }
 }
 
-function  returnDirectio() {
+function returnDirectio() {
+    
+
+    
     loadDiv.style.display = 'block';
-     divDireccion.classList.add('animate__animated', 'animate__bounceOutLeft');
+            divPerson.classList.remove("animate__bounceInLeft");
+        divDireccion.classList.remove("animate__bounceOutLeft");
+    
+     
+     
+     
     setTimeout(function ()
     {
+        
         loadDiv.style.display = 'none';
-        divDireccion.style.display = 'block';
+        
         divPerson.style.display = 'none';
+        
+      ;
+        
+        divDireccion.classList.add('animate__bounceInLeft');
+          divDireccion.style.display = 'block';
 
     }, 3000);
 }
@@ -98,6 +126,11 @@ function  NextPermit() {
     let telefono = document.getElementById('telefono');
     let fechaNacimiento = document.getElementById('fechaNacimiento');
     let correo = document.getElementById('correo');
+    
+
+    
+        divPermit.classList.remove("animate__bounceInLeft");
+        divPermit.classList.remove("animate__bounceOutLeft");
     
     
     if(nombre.value == "" || paterno.value == "" || materno.value == "" || sexo.value == "Seleccione Sexo" ||
@@ -119,8 +152,10 @@ function  NextPermit() {
         loadDiv.style.display = 'none';
         divPerson.style.display = 'none';
         divPermit.style.display = 'block';
-        divaddUser.style.display = 'block';
-        divaddUser.classList.add('animate__animated', 'animate__bounceInLeft');
+        
+        divPermit.classList.add('animate__animated', 'animate__bounceInLeft');
+
+
 
     }, 3000);
         
@@ -130,18 +165,102 @@ function  NextPermit() {
 
 }
 
-function returnPerson() {
+function returnPerson() 
+{
+
+        divPermit.classList.remove("animate__bounceInLeft");
+        divPermit.classList.remove("animate__bounceOutLeft");
+        divShowUser.classList.remove("animate__bounceInLeft");   
+        divaddUser.classList.remove("animate__bounceInLeft");
+        
+
+        
     loadDiv.style.display = 'block';
+            divShowUser.classList.add('animate__bounceOutLeft');
+        
+        divaddUser.classList.add('animate__bounceOutLeft');
+        
+        divPermit.classList.add('animate__bounceInLeft');
     setTimeout(function ()
     {
-        loadDiv.style.display = 'none';
-        divPerson.style.display = 'block';
-        divPermit.style.display = 'none';
+ 
+
+        
+        divShowUser.style.display = 'none';
         divaddUser.style.display = 'none';
+        
+        divPermit.classList.add("animate__bounceInLeft");
+        divPermit.style.display = 'block';
+       
+      
+        
+        loadDiv.style.display = 'none';
+
 
     }, 3000);
 }
 
+function nextUsers()
+{
+    let rol = document.getElementById('rol');
+    if(rol.value == '')
+    {
+        return false;
+    }
+    else if(rol.value != '')
+    {
+        loadDiv.style.display = 'block';
+        divPermit.classList.add('animate__bounceOutLeft');
+    divShowUser.classList.remove("animate__bounceOutLeft");
+    divaddUser.classList.remove("animate__bounceOutLeft");
+        setTimeout(function ()
+        {
+            
+             divPermit.style.display = 'none';
+            divaddUser.style.display = 'block';
+            
+            divShowUser.style.display = 'block';
+            
+            divShowUser.classList.add( 'animate__animated','animate__bounceInLeft');
+            divaddUser.classList.add('animate__animated','animate__bounceInLeft');
+            loadDiv.style.display = 'none';
+            
+
+  
+
+        }, 3000);
+    
+        
+    }
+        
+}
+function prevRol()
+{
+        divPerson.classList.remove("animate__bounceInLeft");
+        divPerson.classList.remove("animate__bounceOutLeft");
+        
+        
+     loadDiv.style.display = 'block';
+
+        
+     divPermit.classList.add('animate__bounceOutLeft');
+     
+     
+    setTimeout(function ()
+    {
+        
+        loadDiv.style.display = 'none';
+        
+        divPermit.style.display = 'none';
+        
+    
+        
+        divPerson.classList.add('animate__bounceInLeft');
+          divPerson.style.display = 'block';
+
+    }, 3000);
+    
+}
 
 
 

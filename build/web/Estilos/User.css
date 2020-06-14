@@ -35,17 +35,18 @@
          box-shadow: -2px 15px 20px 8px #888888;
     }
     .divUsuario{
+        display: none;
         width: 45%;
-        height: auto;
-        background: #879C9C;
+        height: 35vh;
+        
         margin-left: auto;
         margin-right: auto;
-         border-radius: 7px 7px 27px 27px;
-         box-shadow: -2px 15px 20px 8px #888888;
+        margin-top: 5%;
+
     }
     .div-addUser{
         display: none;
-        width: 245px;;
+        width: 19%;;
         height: auto;
         
         margin-left: auto;

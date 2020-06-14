@@ -229,7 +229,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
                     <div class="col-12"> <%-- Start col Direction --%>
                         <div class="form-group"> <%-- Start group Direction --%>
-                            <input type="text" value="NUevo Rol" class="form-control col-sm-4 mx-auto BoxText" id="" name="Rol" placeholder="Ingrese Rol "/>
+                            <input type="text" value="NUevo Rol" class="form-control col-sm-4 mx-auto BoxText" id="rol" name="Rol" placeholder="Ingrese Rol "/>
                         </div> <%-- end group Direction --%>
                     </div> <%-- end col Direction --%>
 
@@ -259,27 +259,27 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                 <%
                     }
                 %>
-                                    <div class="row">
-                        
-                        <div class="col-sm-6">
-                            <div class="form-group"> <%-- Start group Person --%>
-                                <button type="button" id="btnNextPerson" class=" mx-auto form-control col-sm-6 btn-info cajasTexto">
-                                    <span class="glyphicon glyphicon-arrow-right"> Siguiente</span>
-                                </button>
+                <div class="row">
 
-                            </div> <%-- end group Person --%>
-                        </div>
-                        
-                                            <div class="col-6"> <%-- Start col Person --%>
+                    <div class="col-sm-6">
                         <div class="form-group"> <%-- Start group Person --%>
-                            <button type="button" id="btnReturnPerson" class="mx-auto form-control col-sm-4 btn-info cajasTexto">
-                                <span class="glyphicon glyphicon-arrow-right"> Regresar</span>
+                            <button type="button" id="btnNextRol" class=" mx-auto form-control col-sm-6 btn-info cajasTexto">
+                                <span class="glyphicon glyphicon-arrow-right"> Siguiente Rol</span>
+                            </button>
+
+                        </div> <%-- end group Person --%>
+                    </div>
+
+                    <div class="col-6"> <%-- Start col Person --%>
+                        <div class="form-group"> <%-- Start group Person --%>
+                            <button type="button" id="btnReturnRol" class="mx-auto form-control col-sm-4 btn-info cajasTexto">
+                                <span class="glyphicon glyphicon-arrow-right"> Regresar Rol</span>
                             </button>
 
                         </div> <%-- end group Person --%>
                     </div> <%-- end col Person --%>
-                        
-                    </div> 
+
+                </div> 
 
             </div>
                 
