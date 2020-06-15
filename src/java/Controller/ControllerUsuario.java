@@ -81,7 +81,7 @@ public class ControllerUsuario implements UsuarioDAO
             ps.setString(7, per.getCorreo_Persona());
             ps.setInt(8, dir.getid_Direccion());
             ps.executeUpdate();
-            esperarXsegundos();
+           esperarXsegundos();
             
             ps = con.prepareStatement("select last_insert_id() as ultimaPerson");
             rs = ps.executeQuery();
@@ -92,7 +92,7 @@ public class ControllerUsuario implements UsuarioDAO
             ps=con.prepareStatement(sqlRol);
             ps.setString(1, r.getNombre_Rol());
             ps.executeUpdate();
-            esperarXsegundos();
+           esperarXsegundos();
             
             ps=con.prepareStatement("select last_insert_id() as ultimoRol");
             rs=ps.executeQuery();
@@ -109,12 +109,12 @@ public class ControllerUsuario implements UsuarioDAO
             ps.setInt(5, per.getId_Primary());
             ps.executeUpdate();
             esperarXsegundos();
-            
+
             for (int i = 0; i < r.getPermisos().size(); i++) {
                 
                 ps = con.prepareStatement("insert into Permiso(id_MenuFK,id_RolFK) values(?,?)");
-                ps.setInt(1, r.getId_Rol());
-                ps.setInt(2, r.getPermisos().get(i));
+                ps.setInt(1, r.getPermisos().get(i));
+                ps.setInt(2, r.getId_Rol());
                 ps.executeUpdate();
 
             }
@@ -141,7 +141,7 @@ return false;
     }
     	private void esperarXsegundos() {
 		try {
-			Thread.sleep( 3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}

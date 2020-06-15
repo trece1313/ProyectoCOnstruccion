@@ -4,18 +4,24 @@
     Author     : trece
 --%>
 
+<%@page import="Model.Usuario"%>
 <%@page import="Controller.ControllerMenu"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Menu"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+   if(request.getSession().getAttribute("us") != null && 
+          ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(6) )
+        {
 
+%>
+<%
 ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
 %>
 <meta charset="utf-8">
 <link href="Estilos/User.css" rel="stylesheet" type="text/css"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 
 <div class="loaders" id="loadImg">
@@ -244,7 +250,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                 %>
                         <label class="col-6 col-sm-4">
 
-                            <input class="form-check-input" type="checkbox" id="gridCheck1" name="menu<%=(me.getId_Menu())%>" value="<%=(me.getId_Menu())%>">
+                            <input class="form-check-input" type="checkbox" id="gridCheck1" name="menu" value="<%=(me.getId_Menu())%>">
                             
                                 <%=(me.getNombre_Menu())%>
                             </label>
@@ -327,10 +333,33 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                 </div>
 
             </div>
+                    
+                    <div class="mensajeUsuario" id="addMensaje">
+                       
+                        <div>
+                           
+
+                        <%
+                            if (session.getAttribute("MensajeUsuario") != null) {
+                        %>
+                        <h3><%= session.getAttribute("MensajeUsuario").toString()%> </h3>
+                        <%
+                                session.removeAttribute("MensajeUsuario");
+                            }else{
+                        %> 
+                        <h3>No entro</h3>
+                        <%
+                           }
+                        %>
+                        <button class="btn btn-info btnCloseMesage" > cerrar</button>
+                        </div>
+                    </div>
 
 </div>
 
-            
+        <%
+            }
+        %>    
     <script src="Javascript/addUser.js" type="text/javascript"></script>
     <script src="Javascript/ValidaterUser.js" type="text/javascript"></script>
     
@@ -338,19 +367,48 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
     $(function(){
       
      $('#btn-AddUsers').click(addUser);
+     $(".btnCloseMesage").click(hideMessage);
         
     });  
     
+    
+    function hideMessage(){
+        
+        
+               $('.mensajeUsuario').css({'display':'none'});
+              $('.mensajeUsuario').empty();
+        
+    }
+    
     function addUser()
 {
-    console.log($('#formaddUser').serialize());
-
- 
+    var loadDiv = document.getElementById('loadImg');
+        
+        loadDiv.style.display = "block";
+        $('.divUsuario').css({'display':'none'});
+        $('.div-addUser').css({'display':'none'});
+        setTimeout(function ()
+          {
+              
                 $.ajax({
                 type: 'POST',
                 url: 'UsuariosDatos',
                 data: $('#formaddUser').serialize(),
                 success: function () {
+                    
+               $('.mensajeUsuario').css({'display':'block'});
+               // $('.mensajeUsuario div').css({'display':'block'});
+                
+                loadDiv.style.display = 'none';
+                
+        setTimeout(function ()
+          {
+              
+              $('.mensajeUsuario').css({'display':'none'});
+              $('.mensajeUsuario').empty();
+              $('.contenedorPagPricipal').empty();
+          }, 2000);
+                    
                     
                 },
     error : function(xhr, status) {
@@ -359,9 +417,14 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
 
     // código a ejecutar sin importar si la petición falló o no
     complete : function(xhr, status) {
-        alert('Petición realizada');
+        console.log('Petición realizada');
     }
             });
+              
+          }, 4000);
+    
+
+ 
 }
 
         

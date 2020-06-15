@@ -160,15 +160,17 @@ EncryptionPassword encryption =null;
                 
                  rol.setNombre_Rol(request.getParameter("Rol"));
                 
-                Enumeration enumeration = request.getParameterNames();
-                while (enumeration.hasMoreElements()) {
-                    String nombreparametro = (String) enumeration.nextElement();
-                    if (nombreparametro.contains("menu")) {
-                        rol.getPermisos().add(Integer.parseInt(request.getParameter(nombreparametro)));
-                    }
-                }
+                         String a[]=request.getParameterValues("menu");
+                        for (String string : a) {
+                            rol.getPermisos().add(Integer.parseInt(string));
+                        }
+
                 if (accUser.addUser(dir, per, user, rol)) {
-                    request.getSession().setAttribute("Mensaje", "El Usuario se creo exitosamente");
+                    request.getSession().setAttribute("MensajeUsuario", "El Usuario se creo exitosamente");
+              
+                }else
+                {
+                request.getSession().setAttribute("MensajeUsuario", "no se creo exitosamente");
                 }
                         
                         

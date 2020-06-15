@@ -88,7 +88,7 @@ function  hidecontainerDirectio() {
             divPerson.style.display = 'block';
             
 
-        }, 3000);
+        }, 1200);
 
     }
 }
@@ -116,7 +116,7 @@ function returnDirectio() {
         divDireccion.classList.add('animate__bounceInLeft');
           divDireccion.style.display = 'block';
 
-    }, 3000);
+    }, 1200);
 }
 function  NextPermit() {
     let nombre = document.getElementById('nombre');
@@ -157,7 +157,7 @@ function  NextPermit() {
 
 
 
-    }, 3000);
+    }, 1200);
         
     }
  
@@ -197,7 +197,7 @@ function returnPerson()
         loadDiv.style.display = 'none';
 
 
-    }, 3000);
+    }, 1200);
 }
 
 function nextUsers()
@@ -228,7 +228,7 @@ function nextUsers()
 
   
 
-        }, 3000);
+        }, 1200);
     
         
     }
@@ -258,7 +258,7 @@ function prevRol()
         divPerson.classList.add('animate__bounceInLeft');
           divPerson.style.display = 'block';
 
-    }, 3000);
+    }, 1200);
     
 }
 
