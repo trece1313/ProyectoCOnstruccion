@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,7 +36,7 @@ public class ControllerUsuario implements UsuarioDAO
     {
         
         try {
-            
+            conDB = new ConectaDB();
             con=conDB.conexionDB();
             
             String sqlDireccion = "INSERT INTO Direccion"
@@ -103,8 +104,9 @@ public class ControllerUsuario implements UsuarioDAO
             ps=con.prepareStatement(sqlUsuario);
             ps.setString(1, usr.getUserName());
             ps.setString(2, usr.getPassUsuario());
-            ps.setInt(3, r.getId_Rol());
-            ps.setInt(4, per.getId_Primary());
+            ps.setInt(3, usr.getActivo());
+            ps.setInt(4, r.getId_Rol());
+            ps.setInt(5, per.getId_Primary());
             ps.executeUpdate();
             esperarXsegundos();
             
@@ -224,40 +226,46 @@ return false;
      return usr;   
     }
     
-    public static void main(String[] args) {
-        
-        ControllerUsuario cu=new ControllerUsuario();
-        
-        Usuario us=cu.accesarUser("trece", "123");
-         
-        
-        if(us.getId() != 0){
-            
-            
-            System.out.println(us.getUserName());
-            System.out.println(us.getPassUsuario());
-            System.out.println(us.getActivo());
-            
-            System.out.println(us.getRolUsuario().getId_Rol());
-            System.out.println(us.getRolUsuario().getNombre_Rol());
-            System.out.println(us.getRolUsuario().getActivo_Rol());
-            
-            System.out.println(us.getPersonaUsuario().getId_Primary());
-            System.out.println(us.getPersonaUsuario().getNombre_Persona());
-            System.out.println(us.getPersonaUsuario().getPaterno_Persona());
-            System.out.println(us.getPersonaUsuario().getMaterno_Persona());
-            
-            System.out.println(us.getPersonaUsuario().getDireccionPersona().getid_Direccion());
-            System.out.println(us.getPersonaUsuario().getDireccionPersona().getPais_Direccion());
-            System.out.println(us.getPersonaUsuario().getDireccionPersona().getEstado_Direccion());
-            System.out.println(us.getPersonaUsuario().getDireccionPersona().getMunicipio_Direccion());
-            
-            
-        }else{
-            System.out.println("no ");
-        }
-        
-        
-    }
-    
+//    public static void main(String[] args) {
+//        
+//        ControllerUsuario cu=new ControllerUsuario();
+//        Direccion dir=new Direccion();
+//        Persona per=new Persona();
+//        Rol rol=new Rol();
+//        Usuario user = new Usuario();
+//        
+//                user.setUserName("UserName");
+//                user.setPassUsuario("123");
+//                user.setActivo(1);
+//                
+//                per.setNombre_Persona("Nombre");
+//                per.setPaterno_Persona("Paterno");
+//                per.setMaterno_Persona("Materno");
+//                per.setFechaNacimiento_Persona("2020-10-10");
+//                per.setSexo_Persona("Sexo");
+//                per.setTelefono_Persona("Telefono");
+//                per.setCorreo_Persona("FechaNacimiento");
+//                
+//                 dir.setPais_Direccion("Pais");
+//                 dir.setEstado_Direccion("Estado");
+//                 dir.setMunicipio_Direccion("Municipio");
+//                 dir.setCalle_Direccion("Calle");
+//                 dir.setColonia_Direccion("Colonia");
+//                 dir.setCodigoPostal_Direccion("CodigoPostal");
+//                 dir.setNumeroExterior_Direccion("NumeroExterior");
+//                 dir.setNumeroInterior_Direccion("NumeroInterior");
+//                
+//                 rol.setNombre_Rol("Rol");
+//                
+//                 for (int i = 0; i < rol.getPermisos().size(); i++) {
+//                       rol.getPermisos().add(1);
+//        }
+//                 
+//                   
+//                   System.out.println(cu.addUser(dir, per, user, rol)?"si":"no");
+//                        
+//                
+//        
+//    }
+//    
 }

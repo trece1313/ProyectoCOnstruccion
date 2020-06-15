@@ -7,12 +7,21 @@ package Vista;
 
 import Controller.ControllerUsuario;
 import Model.Direccion;
+import Model.EncryptionPassword;
 import Model.Persona;
 import Model.Rol;
 import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +39,7 @@ Usuario user=null;
 Direccion dir=null;
 Persona per=null;
 Rol rol=null;
+EncryptionPassword encryption =null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -83,11 +93,12 @@ Rol rol=null;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             PrintWriter o=response.getWriter();
+            accUser = new ControllerUsuario();
         if(request.getParameter("action") != null && 
            request.getParameter("action").equals("accederUser") && 
            !request.getParameter("user").equals("") && !request.getParameter("pass").equals(""))
         {
-            accUser = new ControllerUsuario();
+            
             
             user = accUser.accesarUser(request.getParameter("user"),request.getParameter("pass"));
                 
@@ -108,22 +119,35 @@ Rol rol=null;
         {
             if(request.getParameter("action").equals("addUsers"))
             {
+                accUser = new ControllerUsuario();
                 user =new Usuario();
                 dir = new Direccion();
                 per = new Persona();
                 rol = new Rol();
                 
-                user.setUserName(request.getParameter(""));
-                user.setPassUsuario(request.getParameter(""));
-                user.setActivo(Integer.parseInt(request.getParameter("")));
+                String pass = request.getParameter("PassUser");
+                String confPass = request.getParameter("PassUserConf");
+             if(!pass.equals("") && !confPass.equals(""))
+             {
+                if(pass.equals(confPass))
+                {
+                    try {
+                        encryption = new EncryptionPassword();
+                        final String secret = "Secret";
+                    String passEncryption = encryption.encriptar(pass, secret);
+                       
+                    
+                user.setUserName(request.getParameter("UserName"));
+                user.setPassUsuario(passEncryption);
+                user.setActivo(1);
                 
                 per.setNombre_Persona(request.getParameter("Nombre"));
                 per.setPaterno_Persona(request.getParameter("Paterno"));
                 per.setMaterno_Persona(request.getParameter("Materno"));
-                per.setFechaNacimiento_Persona(request.getParameter(""));
+                per.setFechaNacimiento_Persona(request.getParameter("FechaNacimiento"));
                 per.setSexo_Persona(request.getParameter("Sexo"));
                 per.setTelefono_Persona(request.getParameter("Telefono"));
-                per.setCorreo_Persona(request.getParameter("FechaNacimiento"));
+                per.setCorreo_Persona(request.getParameter("Correo"));
                 
                  dir.setPais_Direccion(request.getParameter("Pais"));
                  dir.setEstado_Direccion(request.getParameter("Estado"));
@@ -143,9 +167,43 @@ Rol rol=null;
                         rol.getPermisos().add(Integer.parseInt(request.getParameter(nombreparametro)));
                     }
                 }
-                if (new AdminControl().CreaRol(rol)) {
-                    request.getSession().setAttribute("Mensaje", "El rol se creo exitosamente");
+                if (accUser.addUser(dir, per, user, rol)) {
+                    request.getSession().setAttribute("Mensaje", "El Usuario se creo exitosamente");
                 }
+                        
+                        
+                    } catch (UnsupportedEncodingException ex) {
+                        System.out.println("Err 1 "+ ex.getMessage());
+                        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NoSuchAlgorithmException ex) {
+                        System.out.println("Err 2 "+ ex.getMessage());
+                        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InvalidKeyException ex) {
+                        System.out.println("Err 3 "+ ex.getMessage());
+                        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NoSuchPaddingException ex) {
+                        System.out.println("Err 4 "+ ex.getMessage());
+                        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalBlockSizeException ex) {
+                        System.out.println("Err 5 "+ ex.getMessage());
+                        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (BadPaddingException ex) {
+                        System.out.println("Err 6 "+ ex.getMessage());
+                        Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else
+                {
+                    request.getSession().setAttribute("Mensaje", "Las Contrasenas no coinciden");
+                }
+             }
+             else
+             {
+             
+             }
+                
+                
+     
             }
             else
             {

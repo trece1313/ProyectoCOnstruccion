@@ -236,29 +236,28 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                 </div> <%-- end row Direction --%>
                 <%-- ___________________________________________________________________________________________________ --%>     
 
-                <% for (Menu me : recMenu) {
-                %>
+       
                 <div class="row">     
-                    <div class="col-sm-12">
+                  
 
-
-                        <div class="form-check">
+         <% for (Menu me : recMenu) {
+                %>
+                        <label class="col-6 col-sm-4">
 
                             <input class="form-check-input" type="checkbox" id="gridCheck1" name="menu<%=(me.getId_Menu())%>" value="<%=(me.getId_Menu())%>">
-                            <label class="form-check-label BoxText" for="gridCheck1">
+                            
                                 <%=(me.getNombre_Menu())%>
                             </label>
 
-                        </div>
+                        </label>
                         <%-- ___________________________________________________________________________________________________ --%>  
-
-                    </div>
+          <%
+                    }
+                %>
 
 
                 </div>
-                <%
-                    }
-                %>
+      
                 <div class="row">
 
                     <div class="col-sm-6">
@@ -298,7 +297,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <input type="password" class="form-control col-sm-6 mx-auto BoxText" name="UserName" id="userName" placeholder="Ingrese Password" value="123"/>
+                                <input type="password" class="form-control col-sm-6 mx-auto BoxText" name="PassUser" id="PassUser" placeholder="Ingrese Password" value="123"/>
                             </div>
                         </div>
                     </div>
@@ -306,7 +305,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <input type="password" class="form-control col-sm-6 mx-auto BoxText" name="UserName" id="userName" placeholder="Repita su Password" value="123"/>
+                                <input type="password" class="form-control col-sm-6 mx-auto BoxText" name="PassUserConf" id="passUserConf" placeholder="Repita su Password" value="123"/>
                             </div>
                         </div>
                     </div>
