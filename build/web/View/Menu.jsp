@@ -13,13 +13,21 @@ if(session.getAttribute("us") != null){
  
  $(function(){
      $('.goUser').click(function(){
-         
-         
+
         $('#contPrincipal').load('View/Usuario.jsp');
         
-
+        $(".navbar-collapse").removeClass('show');
      });
 
+     $('.btnShowHideNav').click(navConstruction);
+     
+     
+     function navConstruction()
+     {
+         
+         $('#contPrincipal').empty();
+         
+     }
      
  });
     
@@ -27,7 +35,7 @@ if(session.getAttribute("us") != null){
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="Login.jsp">Bienvenidos</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler btnShowHideNav" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">

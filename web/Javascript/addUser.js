@@ -15,10 +15,10 @@
     var btnPerson = document.getElementById('btnNextPerson');
     var btnPrevPerson = document.getElementById('btnReturnPerson');
     
-    let btnRol = document.getElementById('btnNextRol');
-    let btnPrevRol = document.getElementById('btnReturnRol');
+    var btnRol = document.getElementById('btnNextRol');
+    var btnPrevRol = document.getElementById('btnReturnRol');
     
-    let btnPrevPermit = document.getElementById('btn-ReturnUser');
+    var btnPrevPermit = document.getElementById('btn-ReturnUser');
     
 
     
