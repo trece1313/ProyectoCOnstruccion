@@ -6,6 +6,13 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+if(session.getAttribute("us") == null)
+{
+    response.sendRedirect("View/Login.jsp");
+}
+%>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -56,3 +63,5 @@
     
   </body>
 </html>
+
+
