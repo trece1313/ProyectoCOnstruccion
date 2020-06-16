@@ -255,7 +255,7 @@ ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
                                 <%=(me.getNombre_Menu())%>
                             </label>
 
-                        </label>
+               
                         <%-- ___________________________________________________________________________________________________ --%>  
           <%
                     }

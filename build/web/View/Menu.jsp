@@ -21,15 +21,42 @@ if(session.getAttribute("us") != null){
 
      $('.btnShowHideNav').click(navConstruction);
      
+     $('.goObra').click(goObra);
+    // $().click();
+    // $().click();
+    // $().click();
+    // $().click();
+    // $().click();
+    // $().click();
+    // $().click();
+    // $().click();
+    // $().click();
+
      
-     function navConstruction()
+ });
+ 
+ 
+   function goObra()
+   {
+       $('#contPrincipal').load('./View/Obra.jsp');
+       $(".navbar-collapse").removeClass('show');
+   }
+   // function (){}
+   // function (){}
+   // function (){}
+   // function (){}
+   // function (){}// function (){}
+   // function (){}
+   // function (){}
+   // function (){}
+   
+ 
+      function navConstruction()
      {
          
          $('#contPrincipal').empty();
          
      }
-     
- });
     
 </script>
 
@@ -107,6 +134,31 @@ if(session.getAttribute("us") != null){
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item goUser" href="#">add</a>
                     <a class="dropdown-item" href="#">show Employee</a>
+
+                </div>
+            </li>
+             <% }  %>
+             
+             <% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(9)) {  %> 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Obra
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item goObra" href="#">add</a>
+                    <a class="dropdown-item" href="#">show Obra</a>
+
+                </div>
+            </li>
+             <% }  %>
+             <% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(10)) {  %> 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Service
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item goService" href="#">add</a>
+                    <a class="dropdown-item" href="#">show Service</a>
 
                 </div>
             </li>
