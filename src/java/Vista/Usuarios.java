@@ -11,6 +11,8 @@ import Model.EncryptionPassword;
 import Model.Persona;
 import Model.Rol;
 import Model.Usuario;
+import ModelDAO.CRUD;
+import ModelDAO.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -34,11 +36,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Usuarios", urlPatterns = {"/UsuariosDatos"})
 public class Usuarios extends HttpServlet {
-ControllerUsuario accUser=null;
+UsuarioDAO accUser=null;
 Usuario user=null;
 Direccion dir=null;
 Persona per=null;
 Rol rol=null;
+CRUD usuDAO = null;
 EncryptionPassword encryption =null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -141,31 +144,31 @@ EncryptionPassword encryption =null;
                 user.setPassUsuario(passEncryption);
                 user.setActivo(1);
                 
-                per.setNombre_Persona(request.getParameter("Nombre"));
-                per.setPaterno_Persona(request.getParameter("Paterno"));
-                per.setMaterno_Persona(request.getParameter("Materno"));
-                per.setFechaNacimiento_Persona(request.getParameter("FechaNacimiento"));
-                per.setSexo_Persona(request.getParameter("Sexo"));
-                per.setTelefono_Persona(request.getParameter("Telefono"));
-                per.setCorreo_Persona(request.getParameter("Correo"));
+                user.getPersonaUsuario().setNombre_Persona(request.getParameter("Nombre"));
+                user.getPersonaUsuario().setPaterno_Persona(request.getParameter("Paterno"));
+                user.getPersonaUsuario().setMaterno_Persona(request.getParameter("Materno"));
+                user.getPersonaUsuario().setFechaNacimiento_Persona(request.getParameter("FechaNacimiento"));
+                user.getPersonaUsuario().setSexo_Persona(request.getParameter("Sexo"));
+                user.getPersonaUsuario().setTelefono_Persona(request.getParameter("Telefono"));
+                user.getPersonaUsuario().setCorreo_Persona(request.getParameter("Correo"));
                 
-                 dir.setPais_Direccion(request.getParameter("Pais"));
-                 dir.setEstado_Direccion(request.getParameter("Estado"));
-                 dir.setMunicipio_Direccion(request.getParameter("Municipio"));
-                 dir.setCalle_Direccion(request.getParameter("Calle"));
-                 dir.setColonia_Direccion(request.getParameter("Colonia"));
-                 dir.setCodigoPostal_Direccion(request.getParameter("CodigoPostal"));
-                 dir.setNumeroExterior_Direccion(request.getParameter("NumeroExterior"));
-                 dir.setNumeroInterior_Direccion(request.getParameter("NumeroInterior"));
+                 user.getPersonaUsuario().getDireccionPersona().setPais_Direccion(request.getParameter("Pais"));
+                 user.getPersonaUsuario().getDireccionPersona().setEstado_Direccion(request.getParameter("Estado"));
+                 user.getPersonaUsuario().getDireccionPersona().setMunicipio_Direccion(request.getParameter("Municipio"));
+                 user.getPersonaUsuario().getDireccionPersona().setCalle_Direccion(request.getParameter("Calle"));
+                 user.getPersonaUsuario().getDireccionPersona().setColonia_Direccion(request.getParameter("Colonia"));
+                 user.getPersonaUsuario().getDireccionPersona().setCodigoPostal_Direccion(request.getParameter("CodigoPostal"));
+                 user.getPersonaUsuario().getDireccionPersona().setNumeroExterior_Direccion(request.getParameter("NumeroExterior"));
+                 user.getPersonaUsuario().getDireccionPersona().setNumeroInterior_Direccion(request.getParameter("NumeroInterior"));
                 
-                 rol.setNombre_Rol(request.getParameter("Rol"));
+                 user.getRolUsuario().setNombre_Rol(request.getParameter("Rol"));
                 
                          String a[]=request.getParameterValues("menu");
                         for (String string : a) {
-                            rol.getPermisos().add(Integer.parseInt(string));
+                            user.getRolUsuario().getPermisos().add(Integer.parseInt(string));
                         }
 
-                if (accUser.addUser(dir, per, user, rol)) {
+                if (accUser.add(user)) {
                     request.getSession().setAttribute("MensajeUsuario", "El Usuario se creo exitosamente");
               
                 }else

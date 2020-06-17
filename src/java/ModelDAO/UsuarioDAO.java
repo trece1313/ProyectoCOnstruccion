@@ -5,18 +5,17 @@
  */
 package ModelDAO;
 
-import Model.Direccion;
-import Model.Persona;
-import Model.Rol;
+
+
 import Model.Usuario;
 
 /**
  *
  * @author trece
  */
-public interface UsuarioDAO 
+public interface UsuarioDAO extends CRUD<Usuario>
 {
-    public boolean addUser(Direccion dir,Persona per,Usuario usr,Rol r);
+ 
     public Usuario accesarUser(String u, String p);
     
 }

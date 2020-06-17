@@ -6,13 +6,14 @@
 package ModelDAO;
 
 import Model.Cliente;
-import java.util.ArrayList;
+
+
 
 /**
  *
  * @author trece
  */
-public interface ClienteDAO {
+public interface ClienteDAO extends CRUD<Cliente>{
     
-    public ArrayList<Cliente>showDataCliente(String f);
+    
 }

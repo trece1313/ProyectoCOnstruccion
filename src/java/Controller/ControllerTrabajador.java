@@ -30,7 +30,7 @@ public class ControllerTrabajador implements TrabajadorDAO
     Trabajador tra=null;
     
     @Override
-    public ArrayList<Trabajador> allWorkers() {
+    public ArrayList<Trabajador> showAll() {
         ArrayList<Trabajador>saveWorkers = new ArrayList<>();
         try {
             conDB = new ConectaDB();
@@ -59,6 +59,26 @@ public class ControllerTrabajador implements TrabajadorDAO
             Logger.getLogger(ControllerTrabajador.class.getName()).log(Level.SEVERE, null, ex);
         }
     return saveWorkers;    
+    }
+
+    @Override
+    public ArrayList showDataCliente(String f) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean add(Object t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Object t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Object t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

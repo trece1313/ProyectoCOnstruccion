@@ -7,6 +7,8 @@ package Vista;
 
 import Controller.ControllerCliente;
 import Model.Usuario;
+import ModelDAO.CRUD;
+import ModelDAO.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Cliente", urlPatterns = {"/DataClient"})
 public class Cliente extends HttpServlet {
-ControllerCliente conClient = null;
-Cliente cli = null;
+
+CRUD cliDAO = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -87,12 +89,8 @@ Cliente cli = null;
           if (request.getParameter("action").equals("consultaCliente") && request.getParameter("filter") ==null ) 
           {
          
-                    conClient = new ControllerCliente();
-                    cli = new Cliente();
-                    
-                    ArrayList lisClient = conClient.showDataCliente("");
-                    
-                    
+                    cliDAO = new ControllerCliente();                    
+                    ArrayList lisClient = cliDAO.showDataCliente("");
                     request.getSession().setAttribute("listClient", lisClient);
           }
      }

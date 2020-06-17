@@ -16,7 +16,7 @@
         { %>
 
 <%
-ArrayList<Trabajador> trabajador = new Controller.ControllerTrabajador().allWorkers();
+ArrayList<Trabajador> trabajador = new Controller.ControllerTrabajador().showAll();
 %>
 <%
 ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ? 

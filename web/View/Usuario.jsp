@@ -16,7 +16,7 @@
 
 %>
 <%
-ArrayList<Menu>recMenu = new ControllerMenu().showMenu();
+ArrayList<Menu>recMenu = new ControllerMenu().showAll();
 
 %>
 <meta charset="utf-8">

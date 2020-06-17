@@ -6,14 +6,15 @@
 package ModelDAO;
 
 import Model.Menu;
-import java.util.ArrayList;
+
+
 
 /**
  *
  * @author trece
  */
-public interface MenuDAO 
+public interface MenuDAO extends CRUD <Menu>
 {
-    public ArrayList<Menu>showMenu();
+    
     
 }

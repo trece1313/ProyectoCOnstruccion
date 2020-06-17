@@ -5,12 +5,12 @@
  */
 package ModelDAO;
 
-import java.util.ArrayList;
+
 
 /**
  *
  * @author trece
  */
-public interface TrabajadorDAO {
-    public ArrayList<Model.Trabajador>allWorkers();
+public interface TrabajadorDAO extends CRUD{
+    
 }

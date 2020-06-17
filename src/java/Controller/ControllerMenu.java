@@ -24,7 +24,7 @@ public class ControllerMenu implements MenuDAO{
     Connection con = null;
 
     @Override
-    public ArrayList<Menu> showMenu() {
+    public ArrayList<Menu> showAll() {
               ArrayList<Menu>saveMenu = new ArrayList<>();
         try 
         {
@@ -65,13 +65,33 @@ public class ControllerMenu implements MenuDAO{
     public static void main(String[] args) {
         ArrayList<Menu>s;
         
-        s=new ControllerMenu().showMenu();
+        s=new ControllerMenu().showAll();
         
         for (Menu me : s) {
             System.out.println(me.getId_Menu());
             System.out.println(me.getNombre_Menu());
             System.out.println(me.getActivo_Menu());
         }
+    }
+
+    @Override
+    public ArrayList<Menu> showDataCliente(String f) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean add(Menu t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Menu t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Menu t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

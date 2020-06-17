@@ -1,7 +1,7 @@
 
 
 
-
+callData();
   var hideWindowsClient = document.getElementById('idUserAtiend');
         hideWindowsClient.style.display = 'none';
  var idSelectedOptionClient = document.getElementById('idSelectedOptionClient');  
@@ -36,6 +36,8 @@
       dividExistClientDB.style.display = 'none';
       
        $("#idtableClientObra").css({"display":"block"});
+       alert('DisteCalBack');
+       
       
       
       
@@ -70,6 +72,9 @@
         $('#nameClientObra').val($(this).parents("tr").find("td").eq(0).html());
         $('#lastNameClienteObra').val($(this).parents("tr").find("td").eq(1).html());
         $('#PaisClienObra').val($(this).parents("tr").find("td").eq(2).html());
+        
+        console.log($('#PaisClienObra').val($(this).parents("tr").find("td").eq(2).html()));
+
         
          });
          
