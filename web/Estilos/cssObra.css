@@ -18,7 +18,11 @@
     
 }
 #idInicioObra{
-    display: none;
+    display: block;
+    width: 100%;
+    
+  
+ 
     
 }
 #idAnticipoObra{
@@ -110,6 +114,9 @@ border-radius: 7px;
     }
     #idTableClienteObraContenido table{
         color: white;
+    }
+    #idExistCliente{
+        display: none;
     }
 
 

@@ -32,11 +32,11 @@ callData();
   }
   function hideWindowsAsked()
   {
-      
+      callData();
       dividExistClientDB.style.display = 'none';
       
        $("#idtableClientObra").css({"display":"block"});
-       alert('DisteCalBack');
+       
        
       
       
@@ -62,6 +62,7 @@ callData();
     callData();
       $('.addClientObra').click(function(){
           
+          $('#btnPrevClienteObrasx').prop('disabled',true);
           $("#idtableClientObra").css({"display":"none"});
           hideWindowsClient.style.display = 'block';
           
@@ -73,7 +74,7 @@ callData();
         $('#lastNameClienteObra').val($(this).parents("tr").find("td").eq(1).html());
         $('#PaisClienObra').val($(this).parents("tr").find("td").eq(2).html());
         
-        console.log($('#PaisClienObra').val($(this).parents("tr").find("td").eq(2).html()));
+        
 
         
          });
@@ -91,17 +92,26 @@ callData();
          
          $('#btnNextDts').click(function(){
              
+             if(!$("input[name='menu']").is(":checked"))return false;
              $('#idInicioObra').css({'display':"block"});
              
          });
          
          
          
-         $('#btnNextDtsCot').click(function(){
-             $('#idAnticipoObra').css({'display':"block"});
-             
-         });
 
+
+$('input[type="radio"]').change(function(){
+
+$(this).is(":checked")?  $('#idExistCliente').show(): $('#idExistCliente').hide();
+
+
+});
+
+$('#btnPrevDts').click(function(){
+    $('#idUserAtiend').hide();
+     $('#btnPrevClienteObrasx').prop('disabled',false);
+});
                                 
       
      

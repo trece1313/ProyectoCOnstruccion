@@ -4,6 +4,8 @@
     Author     : trece
 --%>
 
+<%@page import="ModelDAO.MenuDAO"%>
+<%@page import="ModelDAO.CRUD"%>
 <%@page import="Model.Usuario"%>
 <%@page import="Controller.ControllerMenu"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,7 +18,8 @@
 
 %>
 <%
-ArrayList<Menu>recMenu = new ControllerMenu().showAll();
+    CRUD showMenu = new ControllerMenu();
+ArrayList<Menu>recMenu = showMenu.showAll() ;
 
 %>
 <meta charset="utf-8">

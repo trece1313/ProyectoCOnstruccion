@@ -17,6 +17,7 @@
 
 <%
 ArrayList<Trabajador> trabajador = new Controller.ControllerTrabajador().showAll();
+session.setAttribute("trabajadorAdd", trabajador);
 %>
 <%
 ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ? 
@@ -44,11 +45,12 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                     <div class="row">     
 
 
-                        <% for (Trabajador tra : trabajador) {
+                        <% for (int i = 0; i < trabajador.size(); i++) {
+                           Trabajador tra = trabajador.get(i);
                         %>
                         <label class="col-4 col-sm-4">
 
-                            <input class="form-check-input" type="radio" id="gridCheck1" name="menu" value=""/>
+                            <input class="form-check-input" type="radio" id="idRadioTrabajador" name="radioTrabajador" value="<%= i %>"/>
 
                             <%=(tra.getPerTrabajador().getNombre_Persona()) + " " + (tra.getPerTrabajador().getPaterno_Persona())%>
                         </label>
@@ -84,6 +86,7 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                                 </div>
                             </div>                    
                         </div>
+                        
                     </div>
                     
                                    <div class="divClientAlreadyExists" id="idClientAlreadyExists">
@@ -182,19 +185,19 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
             <div class="divInicioObra" id="idInicioObra">
                 <fieldset>
 
-                    <legend>Inicio de Obra</legend>
-                    <h3>Datos de quien lo atiende</h3>
+                    <legend>Inicio de Obras</legend>
+                    <h3>Anticipo</h3>
                     <div class="row">
 
                         <div class="col-4">
-                            <div class="form-group mx-auto">
+                            <div class="form-group">
                                 <label for="fechaInicio">Fecha Inicio de Obra</label>
                                 <input type="text" class="form-control textBox" value="2020-10-10" placeholder="" name="" id=""/>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="fechaInicio" class="">Fecha FIn de Obra</label>
+                                <label for="fechaInicio" class="">Fecha Fin de Obra</label>
                                 <input type="text" class="form-control textBox" value="2020-10-10" placeholder="" name="" id=""/>
                             </div>
                         </div>    
