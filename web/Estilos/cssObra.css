@@ -18,7 +18,7 @@
     
 }
 #idInicioObra{
-    display: block;
+    display: none;
     width: 100%;
     
   
@@ -105,15 +105,23 @@ border-radius: 7px;
         top: 15%; 
         left: 10%;
         width: 80%; 
-        background: #0F2027;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        height: 80%;
+        background: #0F2027 !important;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027)!important;  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         border-radius: 7px;
-          box-shadow: 3px -1px 8px 4px #3B5A73;
+       box-shadow: 3px -1px 8px 4px #3B5A73;
+                 overflow: scroll;
+                 overflow-x: hidden
         
     }
-    #idTableClienteObraContenido table{
+    #idTableClienteObraContenido table tbody td{
+ 
         color: white;
+        background: #0F2027 !important;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027)!important;  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     }
     #idExistCliente{
         display: none;

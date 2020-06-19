@@ -7,6 +7,7 @@ package ModelDAO;
 
 
 
+
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,8 @@ public interface CRUD <T>
     public boolean add(T t);
     public boolean update(T t);
     public boolean delete(T t);
+    
+    public T adds(T t);
       
       
     

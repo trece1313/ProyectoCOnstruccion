@@ -5,10 +5,12 @@
  */
 package Vista;
 
+
 import Controller.ControllerCliente;
 import Model.Usuario;
 import ModelDAO.CRUD;
-import ModelDAO.ClienteDAO;
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Cliente extends HttpServlet {
 
 CRUD cliDAO = null;
+Model.Cliente cli = null;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -78,14 +82,13 @@ CRUD cliDAO = null;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        PrintWriter o = response.getWriter();
  if(request.getSession().getAttribute("us") != null && 
     ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(9))
  {
      if (request.getParameter("action") != null) 
      {
-         System.out.println(request.getParameter("filter"));
-         System.out.println(request.getParameter("action"));
+  
           if (request.getParameter("action").equals("consultaCliente") && request.getParameter("filter") ==null ) 
           {
          
@@ -93,6 +96,50 @@ CRUD cliDAO = null;
                     ArrayList lisClient = cliDAO.showDataCliente("");
                     request.getSession().setAttribute("listClient", lisClient);
           }
+     }
+     if(request.getParameter("action").equals("addClientObra"))
+     {
+         cliDAO = new ControllerCliente();
+         
+         
+         cli = new Model.Cliente();
+        
+        
+         
+        cli.getPersonaCliente().getDireccionPersona().setPais_Direccion(request.getParameter("CountryClientObra"));
+        cli.getPersonaCliente().getDireccionPersona().setEstado_Direccion(request.getParameter("CityClientObra"));
+        cli.getPersonaCliente().getDireccionPersona().setMunicipio_Direccion(request.getParameter("MunicipalityClientObra"));
+        cli.getPersonaCliente().getDireccionPersona().setCalle_Direccion(request.getParameter("StreetClientObra"));
+        cli.getPersonaCliente().getDireccionPersona().setColonia_Direccion(request.getParameter("ColonyClientObra"));
+        cli.getPersonaCliente().getDireccionPersona().setCodigoPostal_Direccion(request.getParameter("CodeClientObra"));
+        cli.getPersonaCliente().getDireccionPersona().setNumeroExterior_Direccion(request.getParameter("ExteriorClientObra"));
+        cli.getPersonaCliente().getDireccionPersona().setNumeroInterior_Direccion(request.getParameter("InteriorClientObra"));
+
+        cli.getPersonaCliente().setNombre_Persona(request.getParameter("NamePersonObra"));
+        cli.getPersonaCliente().setPaterno_Persona(request.getParameter("LastNamePersonObra"));
+        cli.getPersonaCliente().setMaterno_Persona(request.getParameter("LastNameMPersonObra"));
+        cli.getPersonaCliente().setFechaNacimiento_Persona(request.getParameter("BirthdatePersonObra"));
+        cli.getPersonaCliente().setSexo_Persona(request.getParameter("SexPersonObra"));
+        cli.getPersonaCliente().setTelefono_Persona(request.getParameter("PhonePersonObra"));
+        cli.getPersonaCliente().setCorreo_Persona(request.getParameter("EmailPersonObra"));
+        cli.getPersonaCliente().getDireccionPersona().getid_Direccion();
+
+        cli.getPersonaCliente().getId_Primary();
+        
+        
+        
+        
+        Model.Cliente cl=(Model.Cliente) cliDAO.adds(cli);
+        if( cl.getId_Cliente() != 0 ){
+            
+                  
+                 Gson gs = new Gson();
+                 
+                 o.print(gs.toJson(cl));
+                 
+            
+        }
+         
      }
  }
         

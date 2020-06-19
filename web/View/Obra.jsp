@@ -22,8 +22,10 @@ session.setAttribute("trabajadorAdd", trabajador);
 <%
 ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ? 
 (ArrayList<Cliente>) session.getAttribute("listClient") : new ArrayList();
-
 %>
+
+
+
 
 <link href="./Estilos/cssObra.css" rel="stylesheet" type="text/css"/>
 <style>
@@ -92,18 +94,18 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                                    <div class="divClientAlreadyExists" id="idClientAlreadyExists">
 
                         <div class="row">
-                            <input type="hidden" class="form-control  mx-auto col-12" disabled="" name="idClientObra" id="">
+                            <input type="hidden" class="form-control  mx-auto col-12"  disabled="" name="idClientObra" id="">
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="nameClientObra" class="col-8">Nombre del Cliente
-                                        <input type="text" class="form-control  mx-auto col-12" disabled="" name="" id="nameClientObra">
+                                        <input type="text" class="form-control  mx-auto col-12"   disabled="" name="" id="nameClientObra">
                                     </label>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-group mx-auto">
                                     <label for="lastNameClienteObra" class="col-12">Apellidos Cliente
-                                        <input type="text" class="form-control col-12" disabled="" name="" id="lastNameClienteObra">
+                                        <input type="text" class="form-control col-12" disabled=""  name="" id="lastNameClienteObra">
                                     </label>
                                 </div>
                             </div>
@@ -139,25 +141,16 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                     <div class="row">
   
 
-                        <div class="divShowClient" id="idShowClient">
-
-                            <% for (Trabajador tra : trabajador) {
-                            %>
-                            <label class="col-4 col-sm-4">
-                                
-                                <input class="form-check-input" type="radio" id="gridCheck1" name="menu" value=""/>
-
-                                <%=(tra.getPerTrabajador().getNombre_Persona()) + " " + (tra.getPerTrabajador().getPaterno_Persona())%>
-                            </label>
-
-
-                            <%-- ___________________________________________________________________________________________________ --%>  
-                            <%
-                                }
-                            %>
-
+                        <div class="divShowClient col-4" id="idShowClient">
+                            <div class="form-group">
+                                <input type="text" class="form-control col-12" value="<%= ((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getNombre_Persona() %>" disabled=""/>
+                            </div>
                         </div>
-
+                        <div class="col-4" id="">
+                            <div class="form-group">
+                                <input type="text" class="form-control col-12" value="<%= ((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getPaterno_Persona() + " " +((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getMaterno_Persona() %>" disabled=""/>
+                            </div>
+                        </div>
 
                     </div>
                             <div class="row">
@@ -209,24 +202,24 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                         </div>  
                     </div>
                     
-                                         <div class="row">
-                                
-                                <div class="col-6">
-                                    <div class="form-group mx-auto">
-                                        <label for="" class="col-6"></label>
-                                        <button type="button" class="form-control col-6 btn btn-warning s" id="btnNextDtsCot">Next</button>
+                    <div class="row">
 
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group mx-auto">
-                                        <label for="" class="col-6"></label>
-                                        <button type="button" class="form-control col-6 btn btn-warning s" id="btnPrevDtsCot">Prev</button>
+                        <div class="col-6">
+                            <div class="form-group mx-auto">
+                                <label for="" class="col-6"></label>
+                                <button type="button" class="form-control col-6 btn btn-warning s" id="btnNextDtsCot">Next</button>
 
-                                    </div>
-                                </div>
-                                
                             </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group mx-auto">
+                                <label for="" class="col-6"></label>
+                                <button type="button" class="form-control col-6 btn btn-warning s" id="btnPrevDtsCot">Prev</button>
+
+                            </div>
+                        </div>
+
+                    </div>
 
 
                 </fieldset>
@@ -239,19 +232,26 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                     <h3>Pago Anticipo</h3>
                     <div class="row">
 
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="form-group mx-auto">
                                 <label for="fechaInicio">Fecha Inicio de Obra</label>
                                 <input type="text" class="form-control textBox col-6" value="2020-10-10" placeholder="" name="" id=""/>
                             </div>
                         </div>
-                                <div class="col-6">
+                                <div class="col-3">
                                     <div class="form-group mx-auto">
                                         <label for="" class="col-6"></label>
                                         <button type="button" class="form-control col-6 btn btn-warning s" id="Finish">Finish</button>
 
                                     </div>
                                 </div>
+                        <div class="col-3">
+                            <div class="form-group mx-auto">
+                                <label for="" class="col-6"></label>
+                                <button type="button" class="form-control col-6 btn btn-warning s" id="prevFinish">Prev</button>
+
+                            </div>
+                        </div>
 
                     </div>  
                 </fieldset>
@@ -289,12 +289,12 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
             <button class="btn btn-warning" id="btnCLosedWindowsClient"> Cerrar</button>
         </div>
         <header><h2>Registrar Cliente</h2></header>
-        <form id="">
+        <form id="formClientObra">
             <fieldset>
                 <legend>Direccion Cliente</legend>
 
 
-                <input type="hidden" name="action" value="addUsers"/>
+                <input type="hidden" name="action" value="addClientObra"/>
                 <div class="contUser animate__animated animate__bounce" id="contDirection">
                     <%-- ___________________________________________________________________________________________________ --%>        
                     <div class="row"> <%-- Start row Direction --%>
@@ -365,26 +365,19 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                     <%-- ___________________________________________________________________________________________________ --%>
                     <div class="row"> <%-- Start row Direction --%>
 
-                        <div class="col-4"> <%-- Start col Direction --%>
+                        <div class="col-6"> <%-- Start col Direction --%>
                             <div class="form-group"> <%-- Start group Direction --%>
-                                <input type="text" value="512" class="form-control col-sm-12 BoxText" id="exterior" name="ExteriorClientObra" placeholder="Ingrese su Numero Exterior"/>
+                                <input type="text" value="512" class="form-control col-8 BoxText" id="exterior" name="ExteriorClientObra" placeholder="Ingrese su Numero Exterior"/>
                             </div> <%-- end group Direction --%>
                         </div> <%-- end col Direction --%>
 
-                        <div class="col-4"> <%-- Start col Direction --%>
+                        <div class="col-6"> <%-- Start col Direction --%>
                             <div class="form-group"> <%-- Start group Direction --%>
-                                <input type="text" value="513" class="form-control col-sm-12 BoxText" id="interior" name="InteriorClientObra" placeholder="Ingrese su Numero Interior"/>
+                                <input type="text" value="513" class="form-control col-8 BoxText" id="interior" name="InteriorClientObra" placeholder="Ingrese su Numero Interior"/>
                             </div> <%-- end group Direction --%>
                         </div> <%-- end col Direction --%>
 
-                        <div class="col-4"> <%-- Start col Direction --%>
-                            <div class="form-group"> <%-- Start group Direction --%>
-                                <button  type="button" id="btnSigDireccion" class="form-control col-sm-4 btn-info BoxText">
-                                    <span class="glyphicon glyphicon-arrow-right"> Siguiente</span>
-                                </button>
 
-                            </div> <%-- end group Direction --%>
-                        </div> <%-- end col Direction --%>
 
                     </div> <%-- end row Direction --%>
                     <%-- ___________________________________________________________________________________________________ --%>        
@@ -403,19 +396,19 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
 
                         <div class="col-sm-4"> <%-- Start col Person --%>
                             <div class="form-group"> <%-- Start group Person --%>
-                                <input type="text" required="" value="Abel" minlength="5" class="form-control col-sm-12 BoxText" id="nombre" name="NamePersonObra" placeholder="Ingrese su Nombre"/>
+                                <input type="text" required="" value="Abel" minlength="5" class="form-control col-sm-12 BoxText" id="nombreClientObra" name="NamePersonObra" placeholder="Ingrese su Nombre"/>
                             </div> <%-- end group Person --%>
                         </div> <%-- end col Person --%>
 
                         <div class="col-sm-4"> <%-- Start col Person --%>
                             <div class="form-group"> <%-- Start group Person --%>
-                                <input type="text" required="" value="Tiburcio" minlength="5" class="form-control col-sm-12 BoxText" id="paterno" name="LastNamePersonObra" placeholder="Ingrese su Paterno"/>
+                                <input type="text" required="" value="Tiburcio" minlength="5" class="form-control col-sm-12 BoxText" id="paternoClientObra" name="LastNamePersonObra" placeholder="Ingrese su Paterno"/>
                             </div> <%-- end group Person --%>
                         </div> <%-- end col Person --%>
 
                         <div class="col-sm-4"> <%-- Start col Person --%>
                             <div class="form-group"> <%-- Start group Person --%>
-                                <input type="text" required="" value="Felipe" minlength="5" class="form-control col-sm-12 BoxText" id="materno" name="LastNameMPersonObra" placeholder="Ingrese su Materno"/>
+                                <input type="text" required="" value="Felipe" minlength="5" class="form-control col-sm-12 BoxText" id="maternoClientObra" name="LastNameMPersonObra" placeholder="Ingrese su Materno"/>
                             </div> <%-- end group Person --%>
                         </div> <%-- end col Person --%>
 
@@ -461,29 +454,22 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                     <%-- ___________________________________________________________________________________________________ --%>
                     <div class="row"> <%-- Start row Person --%>
 
-                        <div class="col-4"> <%-- Start col Person --%>
+                        <div class="col-6"> <%-- Start col Person --%>
                             <div class="form-group"> <%-- Start group Person --%>
-                                <input type="email" minlength="10" value="abel@gmail.com" class="form-control col-sm-12 BoxText" id="correo" name="EmailPersonObra" placeholder="Ingrese su Correo Electronico"/>
+                                <input type="email" minlength="10" value="abel@gmail.com" class="form-control col-10 BoxText" id="correo" name="EmailPersonObra" placeholder="Ingrese su Correo Electronico"/>
                             </div> <%-- end group Person --%>
                         </div> <%-- end col Person --%>
 
-                        <div class="col-4"> <%-- Start col Person --%>
+                        <div class="col-6"> <%-- Start col Person --%>
                             <div class="form-group"> <%-- Start group Person --%>
-                                <button type="button" id="btnNextPerson" class="form-control col-sm-4 btn-info cajasTexto">
+                                <button type="submit" id="btnNextPersons" class="form-control col-8 btn-info cajasTexto">
                                     <span class="glyphicon glyphicon-arrow-right"> Siguiente</span>
                                 </button>
 
                             </div> <%-- end group Person --%>
                         </div> <%-- end col Person --%>
 
-                        <div class="col-4"> <%-- Start col Person --%>
-                            <div class="form-group"> <%-- Start group Person --%>
-                                <button type="button" id="btnReturnPerson" class="form-control col-sm-4 btn-info cajasTexto">
-                                    <span class="glyphicon glyphicon-arrow-right"> Regresar</span>
-                                </button>
 
-                            </div> <%-- end group Person --%>
-                        </div> <%-- end col Person --%>
 
                     </div> <%-- end row Person --%>
                     <%-- ___________________________________________________________________________________________________ --%>        
@@ -536,9 +522,12 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
            
                                     
                                     
-                                    
-<script src="./Javascript/Obra.js" type="text/javascript"></script>
 
+
+<script src="./Javascript/Obra.js" type="text/javascript"></script>
+<script src="./Javascript/jQueryValidator.js" type="text/javascript"></script>
+<script src="./Javascript/jquery.validate.js" type="text/javascript"></script>
 <%
     }
 %>
+

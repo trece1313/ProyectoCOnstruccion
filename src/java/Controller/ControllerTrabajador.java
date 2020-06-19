@@ -36,10 +36,10 @@ public class ControllerTrabajador implements TrabajadorDAO
             conDB = new ConectaDB();
             con = conDB.conexionDB();
             
-            String sqlWorkers = "SELECT p.id_Persona,p.nombre_Persona,"
-                    + "p.apellidoPeterno_Persona,p.apellidoMaterno_Persona "
-                    + "FROM Trabajador t INNER JOIN Persona p "
-                    + "ON p.id_Persona=t.id_Trabajador ";
+            String sqlWorkers = "SELECT p.id_Persona,p.nombre_Persona,\n" +
+"                    p.apellidoPeterno_Persona,p.apellidoMaterno_Persona \n" +
+"                    FROM Trabajador t INNER JOIN Persona p \n" +
+"                    ON p.id_Persona=t.id_PersonaTabajador";
             ps=con.prepareStatement(sqlWorkers);
             rs=ps.executeQuery();
             
@@ -78,6 +78,11 @@ public class ControllerTrabajador implements TrabajadorDAO
 
     @Override
     public boolean delete(Object t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object adds(Object t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
