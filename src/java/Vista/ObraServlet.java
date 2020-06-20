@@ -92,16 +92,12 @@ Obra attObra = null;
         
         if(request.getParameter("action").equals("addObra"))
         {
-         
-            
-            Trabajador trab = ((ArrayList<Trabajador>)request.getSession().getAttribute("trabajadorAdd")).get(Integer.parseInt(request.getParameter("idTrabajadorObra")));
+             Trabajador trab = ((ArrayList<Trabajador>)request.getSession().getAttribute("trabajadorAdd")).get(Integer.parseInt(request.getParameter("idTrabajadorObra")));
+            if(Boolean.parseBoolean(request.getParameter("bandObra")))
+            {
+                  
             
             Model.Cliente cle = ((ArrayList<Model.Cliente>)request.getSession().getAttribute("listClient")).get(Integer.parseInt(request.getParameter("idClienteObra")));
-            
-       
-            
-                    
-           
             System.out.println("vveamos ahora si " + trab.getId_Trabajador());
            
             
@@ -129,6 +125,35 @@ Obra attObra = null;
             {
                 
             }
+            }else
+            {
+           attObra = new Obra();
+            
+            attObra.getTrabObra().setId_Trabajador(trab.getId_Trabajador());
+            
+            attObra.getClienteObra().setId_Cliente(Integer.parseInt(request.getParameter("idClienteObra")));
+            
+            attObra.getUsrObra().setId(((Usuario)request.getSession().getAttribute("us")).getId());
+            
+            attObra.setFechaInicio_Obra(request.getParameter("fechaInicioObra"));
+            
+            attObra.setFechaFin_Obra(request.getParameter("fechaFinObra"));
+            
+            attObra.setTotal_Obra(0);
+           
+            attObra.setPagoInicioObra(Double.parseDouble(request.getParameter("pagoInicioObraAnticipo")));
+            
+            attObra.setPagoFinalObra(Integer.parseInt(request.getParameter("pagoInicioObraAnticipo")));
+            
+            attObra.setFechaCotizacionObra(request.getParameter("fechaCotObra"));
+                        if(obraAdd.add(attObra))
+            {
+                
+            }
+               
+            }
+            
+         
            
             
            

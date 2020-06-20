@@ -1,6 +1,8 @@
 
 
     callData();
+    var banderaAddObra = false;
+    
   var hideWindowsClient = document.getElementById('idUserAtiend');
         hideWindowsClient.style.display = 'none';
  var idSelectedOptionClient = document.getElementById('idSelectedOptionClient');  
@@ -68,6 +70,7 @@ $('#idTableClienteObraContenido table').DataTable();
     callData();
       $('.addClientObra').click(function(){
           
+          banderaAddObra = true;
           $('#btnPrevClienteObrasx').prop('disabled',true);
           $("#idtableClientObra").css({"display":"none"});
           hideWindowsClient.style.display = 'block';
@@ -186,6 +189,7 @@ $('#btnPrevDtsCot').click(function(){
                     processData: false,     
                     success: function(res) {
                         var par = JSON.parse(res);
+                        banderaAddObra = false;
                       console.log(par.id_Cliente);
                       
          $('#idClientObr').val(par.id_Cliente);
@@ -216,7 +220,8 @@ $('#btnPrevDtsCot').click(function(){
         },           
 
                 submitHandler: function (form) {
-addObra();
+                    
+                    addObra();
             }
     });
      
@@ -226,11 +231,14 @@ addObra();
 function addObra()
 {
     
-    console.log($('#idRadioTrabajador:checked').val());
     
-    let objAddObra = 
+    if(banderaAddObra)
+    {
+        
+            let objAddObra = 
             {
                action : "addObra",
+               bandObra:banderaAddObra,
                idTrabajadorObra: $('#idRadioTrabajador:checked').val(),
                idClienteObra : $('#idClientObr').val(),
                fechaInicioObra : $('#fechaInicio').val(),
@@ -249,6 +257,37 @@ function addObra()
                 alert('Paso');
             }
         });
+        
+    }
+    else if(!banderaAddObra)
+    {
+
+         let objAddObra = 
+            {
+               action : "addObra",
+               bandObra:banderaAddObra,
+               idTrabajadorObra: $('#idRadioTrabajador:checked').val(),
+               idClienteObra : $('#idClientObr').val(),
+               fechaInicioObra : $('#fechaInicio').val(),
+               fechaFinObra : $('#dateEnd').val(),
+               fechaCotObra: $('#dateCot').val(),
+               
+               pagoInicioObraAnticipo : $('#anticipObra').val()
+
+            };
+    
+            $.ajax({
+            type: 'post',
+            url: 'DataObra',
+            data: objAddObra,
+            success: function () {
+                alert('Paso');
+            }
+        });
+    }
+    
+    
+
 }
 
 
