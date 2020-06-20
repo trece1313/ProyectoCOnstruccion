@@ -12,22 +12,73 @@ package Model;
 public class Obra 
 {
     private int id_Obra;
+    private double total_Obra;
     private String fechaInicio_Obra;
     private String fechaFin_Obra;
-    private double pagosAPagarObra;
+    private double pagoInicioObra;
+    private double pagoFinalObra;
+    private String fechaCotizacionObra;
     Estatus estatObra;
     Trabajador trabObra;
     DetalleServicioPresupuesto detSerPreObra;
+    Usuario usrObra;
+    Cliente clienteObra;
 
     public Obra() 
     {
         this.id_Obra = 0;
         this.fechaInicio_Obra = "";
         this.fechaFin_Obra = "";
-        this.pagosAPagarObra = 0;
+        this.pagoInicioObra = 0;
+        this.total_Obra = 0;
+        pagoFinalObra = 0;
+        this.fechaCotizacionObra = "";
         this.estatObra = new Estatus();
         this.trabObra = new Trabajador();
         this.detSerPreObra = new DetalleServicioPresupuesto();
+        usrObra = new Usuario();
+        clienteObra = new Cliente();
+        
+    }
+
+    public String getFechaCotizacionObra() {
+        return fechaCotizacionObra;
+    }
+
+    public void setFechaCotizacionObra(String fechaCotizacionObra) {
+        this.fechaCotizacionObra = fechaCotizacionObra;
+    }
+
+    public double getPagoFinalObra() {
+        return pagoFinalObra;
+    }
+
+    public void setPagoFinalObra(double pagoFinalObra) {
+        this.pagoFinalObra = pagoFinalObra;
+    }
+
+    public double getTotal_Obra() {
+        return total_Obra;
+    }
+
+    public void setTotal_Obra(double total_Obra) {
+        this.total_Obra = total_Obra;
+    }
+
+    public Usuario getUsrObra() {
+        return usrObra;
+    }
+
+    public void setUsrObra(Usuario usrObra) {
+        this.usrObra = usrObra;
+    }
+
+    public Cliente getClienteObra() {
+        return clienteObra;
+    }
+
+    public void setClienteObra(Cliente clienteObra) {
+        this.clienteObra = clienteObra;
     }
 
     
@@ -56,12 +107,12 @@ public class Obra
         this.fechaFin_Obra = fechaFin_Obra;
     }
 
-    public double getPagosAPagarObra() {
-        return pagosAPagarObra;
+    public double getPagoInicioObra() {
+        return pagoInicioObra;
     }
 
-    public void setPagosAPagarObra(double pagosAPagarObra) {
-        this.pagosAPagarObra = pagosAPagarObra;
+    public void setPagoInicioObra(double pagosInicioObra) {
+        this.pagoInicioObra = pagosInicioObra;
     }
 
     public Estatus getEstatObra() {

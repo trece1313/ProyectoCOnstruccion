@@ -44,9 +44,9 @@
   }
   function showDivClient()
   {
-      console.log('Entro');
+      
       divClient.style.display = 'block';
-      divFooterObra.style.display = 'none';
+      
       divObra.style.display = 'none';
                                            $('#nameClientObra').val("");
                         $('#lastNameClienteObra').val("");
@@ -76,6 +76,8 @@ $('#idTableClienteObraContenido table').DataTable();
           idClientAlreadyExists.style.display = 'block';
           
           
+          
+        $('#idClientObr').val($(this).val());
         $('#nameClientObra').val($(this).parents("tr").find("td").eq(0).html());
         $('#lastNameClienteObra').val($(this).parents("tr").find("td").eq(1).html());
         $('#PaisClienObra').val($(this).parents("tr").find("td").eq(2).html());
@@ -156,7 +158,8 @@ $('#btnPrevDtsCot').click(function(){
    $.validator.addMethod("selectSexo", function(value, element, arg){
   return arg !== value;
  }, "Seleccione su Sexo");
- 
+       // ==========================================================================
+      // Form add Client Obra
     $('#formClientObra').validate({
         rules: {
             CountryClientObra: {valueNotEquals: "default"},
@@ -174,7 +177,7 @@ $('#btnPrevDtsCot').click(function(){
             BirthdatePersonObra: {required : true}
         },            
                 submitHandler: function (form) {
-       
+   
                 $.ajax({
                     type: 'post',
                     url: 'DataClient',             
@@ -183,7 +186,9 @@ $('#btnPrevDtsCot').click(function(){
                     processData: false,     
                     success: function(res) {
                         var par = JSON.parse(res);
-                    
+                      console.log(par.id_Cliente);
+                      
+         $('#idClientObr').val(par.id_Cliente);
         $('#nameClientObra').val(par.personaCliente.nombre_Persona);
         $('#lastNameClienteObra').val(par.personaCliente.paterno_Persona);
         $('#PaisClienObra').val(par.personaCliente.paterno_Persona);
@@ -198,10 +203,56 @@ $('#btnPrevDtsCot').click(function(){
             }
     });
       
+      // ==========================================================================
+      // Form add Obra
+          $('#formAddObra').validate({
+        rules: {
+            
+            DateStartObra:{required: true}, 
+           DateEndObra:{required: true}, 
+           DateCotObra:{required: true}
+           
+
+        },           
+
+                submitHandler: function (form) {
+addObra();
+            }
+    });
      
 });
 
 
+function addObra()
+{
+    
+    console.log($('#idRadioTrabajador:checked').val());
+    
+    let objAddObra = 
+            {
+               action : "addObra",
+               idTrabajadorObra: $('#idRadioTrabajador:checked').val(),
+               idClienteObra : $('#idClientObr').val(),
+               fechaInicioObra : $('#fechaInicio').val(),
+               fechaFinObra : $('#dateEnd').val(),
+               fechaCotObra: $('#dateCot').val(),
+               
+               pagoInicioObraAnticipo : $('#anticipObra').val()
+
+            };
+    
+            $.ajax({
+            type: 'post',
+            url: 'DataObra',
+            data: objAddObra,
+            success: function () {
+                alert('Paso');
+            }
+        });
+}
+
+
+// function by show all Clients avaible
 function callData()
 {
     
@@ -213,6 +264,41 @@ function callData()
                 
             }
         });
+}
+
+function filterFloat(evt,input){
+    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+    var key = window.Event ? evt.which : evt.keyCode;    
+    var chark = String.fromCharCode(key);
+    var tempValue = input.value+chark;
+    if(key >= 48 && key <= 57){
+        if(filter(tempValue)=== false){
+            return false;
+        }else{       
+            return true;
+        }
+    }else{
+          if(key == 8 || key == 13 || key == 0) {     
+              return true;              
+          }else if(key == 46){
+                if(filter(tempValue)=== false){
+                    return false;
+                }else{       
+                    return true;
+                }
+          }else{
+              return false;
+          }
+    }
+}
+function filter(__val__){
+    var preg = /^([0-9]+\.?[0-9]{0,2})$/; 
+    if(preg.test(__val__) === true){
+        return true;
+    }else{
+       return false;
+    }
+    
 }
 
   

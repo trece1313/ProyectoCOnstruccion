@@ -37,7 +37,7 @@
     }
 
     #divFooter{
-        display: none;
+        display: block;
     }
     header{
         text-align: center;

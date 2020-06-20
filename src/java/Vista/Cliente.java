@@ -84,7 +84,7 @@ Model.Cliente cli = null;
             throws ServletException, IOException {
         PrintWriter o = response.getWriter();
  if(request.getSession().getAttribute("us") != null && 
-    ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(9))
+    ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(11))
  {
      if (request.getParameter("action") != null) 
      {

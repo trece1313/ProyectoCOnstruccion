@@ -5,6 +5,8 @@
  */
 package ModelDAO;
 
+import Model.Obra;
+
 
 
 
@@ -12,7 +14,7 @@ package ModelDAO;
  *
  * @author trece
  */
-public interface ObraDAO 
+public interface ObraDAO extends CRUD <Obra>
 {
     
     

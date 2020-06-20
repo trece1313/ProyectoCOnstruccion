@@ -19,6 +19,7 @@
 ArrayList<Trabajador> trabajador = new Controller.ControllerTrabajador().showAll();
 session.setAttribute("trabajadorAdd", trabajador);
 %>
+
 <%
 ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ? 
 (ArrayList<Cliente>) session.getAttribute("listClient") : new ArrayList();
@@ -37,7 +38,7 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
     <header><h2>Registrar Obra</h2></header>
 
     <div class="divBody">
-        <form id="" class="">
+        <form id="formAddObra" class="">
 
             <div class="divTrabajadorObra" id="idTrabajadorObra">
                 <fieldset>
@@ -54,7 +55,7 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
 
                             <input class="form-check-input" type="radio" id="idRadioTrabajador" name="radioTrabajador" value="<%= i %>"/>
 
-                            <%=(tra.getPerTrabajador().getNombre_Persona()) + " " + (tra.getPerTrabajador().getPaterno_Persona())%>
+                            <%=(tra.getId_Trabajador()) + " " + (tra.getPerTrabajador().getPaterno_Persona())%>
                         </label>
 
 
@@ -94,11 +95,11 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                                    <div class="divClientAlreadyExists" id="idClientAlreadyExists">
 
                         <div class="row">
-                            <input type="hidden" class="form-control  mx-auto col-12"  disabled="" name="idClientObra" id="">
+                            <input type="hidden" class="form-control  mx-auto col-12"  disabled="" name="idClientObra" id="idClientObr">
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="nameClientObra" class="col-8">Nombre del Cliente
-                                        <input type="text" class="form-control  mx-auto col-12"   disabled="" name="" id="nameClientObra">
+                                        <input type="text" class="form-control  mx-auto col-12"   disabled="" name="Si" id="nameClientObra">
                                     </label>
                                 </div>
                             </div>
@@ -112,7 +113,7 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                             <div class="col-3">
                                 <div class="form-group mx-auto">
                                     <label for="lastNameClienteObra" class="col-12">Pais y Estado
-                                        <input type="text" class="form-control col-12" disabled="" name="" id="PaisClienObra">
+                                        <input type="text" class="form-control col-12" disabled="" name="CpuntryClientObra" id="PaisClienObra">
                                     </label>
                                 </div>
                             </div>
@@ -185,19 +186,19 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="fechaInicio">Fecha Inicio de Obra</label>
-                                <input type="text" class="form-control textBox" value="2020-10-10" placeholder="" name="" id=""/>
+                                <input type="date" class="form-control textBox" value="2020-10-10" placeholder="" name="DateStartObra" id="fechaInicio"/>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="fechaInicio" class="">Fecha Fin de Obra</label>
-                                <input type="text" class="form-control textBox" value="2020-10-10" placeholder="" name="" id=""/>
+                                <label for="dateEnd" class="">Fecha Fin de Obra</label>
+                                <input type="date" class="form-control textBox" value="2020-10-10" placeholder="" name="DateEndObra" id="dateEnd"/>
                             </div>
                         </div>    
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="fechaInicio">Fecha Cotizacion de Obra</label>
-                                <input type="text" class="form-control textBox" value="2020-10-10" placeholder="" name="" id=""/>
+                                <label for="dateCot">Fecha Cotizacion de Obra</label>
+                                <input type="date" class="form-control textBox" value="2020-10-10" placeholder="" name="DateCotObra" id="dateCot"/>
                             </div>
                         </div>  
                     </div>
@@ -234,14 +235,14 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
 
                         <div class="col-3">
                             <div class="form-group mx-auto">
-                                <label for="fechaInicio">Fecha Inicio de Obra</label>
-                                <input type="text" class="form-control textBox col-6" value="2020-10-10" placeholder="" name="" id=""/>
+                                <label for="anticipObra">Anticipo Obra</label>
+                                <input type="text" class="form-control textBox col-6" value="0" placeholder="" name="AnticipObra" id="anticipObra" onkeypress="return filterFloat(event,this);" />
                             </div>
                         </div>
                                 <div class="col-3">
                                     <div class="form-group mx-auto">
                                         <label for="" class="col-6"></label>
-                                        <button type="button" class="form-control col-6 btn btn-warning s" id="Finish">Finish</button>
+                                        <button type="submit" class="form-control col-6 btn btn-warning s" id="Finish">Finish</button>
 
                                     </div>
                                 </div>
@@ -263,25 +264,26 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
 
 </div>
 
-<div class="divFooters" id="divFooter">
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label></label>
-                <button class="btn btn-success form-control" id="">Alta de Obras</button> 
+       <%--     <div class="divFooters" id="divFooter">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label></label>
+                            <button class="btn btn-success form-control" id="">Alta de Obras</button> 
+
+                        </div>
+                    </div>    
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label></label>
+                            <button class="btn btn-success form-control" id=""> Regresar</button> 
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
-        </div>    
-        <div class="col-6">
-            <div class="form-group">
-                <label></label>
-                <button class="btn btn-success form-control" id=""> Regresar</button> 
-
-            </div>
-        </div>
-    </div>
-
-</div>
+       --%>
 
 <div class="divCliente" id="divClient">
     <div class="divContenido">

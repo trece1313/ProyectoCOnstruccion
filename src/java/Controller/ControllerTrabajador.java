@@ -37,9 +37,10 @@ public class ControllerTrabajador implements TrabajadorDAO
             con = conDB.conexionDB();
             
             String sqlWorkers = "SELECT p.id_Persona,p.nombre_Persona,\n" +
-"                    p.apellidoPeterno_Persona,p.apellidoMaterno_Persona \n" +
-"                    FROM Trabajador t INNER JOIN Persona p \n" +
-"                    ON p.id_Persona=t.id_PersonaTabajador";
+                                "p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
+                                "t.id_Trabajador \n" +
+                                "FROM Trabajador t INNER JOIN Persona p\n" +
+                                "ON p.id_Persona=t.id_PersonaTabajador";
             ps=con.prepareStatement(sqlWorkers);
             rs=ps.executeQuery();
             
@@ -50,6 +51,7 @@ public class ControllerTrabajador implements TrabajadorDAO
                 tra.getPerTrabajador().setNombre_Persona(rs.getString(2));
                 tra.getPerTrabajador().setPaterno_Persona(rs.getString(3));
                 tra.getPerTrabajador().setMaterno_Persona(rs.getString(4));
+                tra.setId_Trabajador(rs.getInt(5));
                 saveWorkers.add(tra);
             }
             
