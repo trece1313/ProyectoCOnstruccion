@@ -89,10 +89,25 @@ Servicio servicioAtt = null;
             servicioAtt = new Servicio();
             servicioAtt.setNombre_Servicio(request.getParameter("nameService"));
             servicioAtt.setDescipcion_Servicio(request.getParameter("DescriptionService"));
-            servicioAtt.setPrecioPorMetro(Integer.parseInt(request.getParameter("PrecioService")));
+            servicioAtt.setPrecioPorMetro(Double.parseDouble(request.getParameter("PrecioService")));
             if(CrudMethod.add(servicioAtt))
             {
                 request.getSession().setAttribute("MensajeServicio", "El servicio se agrego corectamente");
+            }
+        }
+                if(request.getParameter("action").equals("updateService"))
+        {
+            
+            Servicio serUpdate = (Servicio)request.getSession().getAttribute("UpdateService");
+            
+            
+            serUpdate.setNombre_Servicio(request.getParameter("nameService"));
+            serUpdate.setDescipcion_Servicio(request.getParameter("DescriptionService"));
+            serUpdate.setPrecioPorMetro(Double.parseDouble(request.getParameter("PrecioService")));
+            if(CrudMethod.update(serUpdate))
+            {
+                
+                request.getSession().setAttribute("MensajeServicioUpdate", "El servicio se Actualizo corectamente");
             }
         }
     }

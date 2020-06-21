@@ -49,6 +49,9 @@ $('#idTableClienteObraContenido table').DataTable();
     }); 
     
     $(".btnCloseMesage").click(hideMessage);
+    
+
+    
    
 });
 

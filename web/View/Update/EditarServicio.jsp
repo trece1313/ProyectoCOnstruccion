@@ -20,12 +20,62 @@ if(request.getSession().getAttribute("us") != null &&
 
         
         int indice = Integer.parseInt(request.getParameter("idServiceUpdate"));
-        System.out.println("siii "+ indice);
+        
         Servicio serEdit = ((ArrayList<Servicio>) session.getAttribute("ListUpdateServ")).get(indice);
         session.setAttribute("UpdateService", serEdit);
 
 %>
 
+<style>
+    
+    .loaders{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    background: url('Imagenes/cargandoImagen.gif') 50% 30% no-repeat rgb(249,249,249);
+    opacity: .8;
+    }
+            .mensajeUsuario{
+        width: 100%; 
+        height: 100%;
+        position: fixed; 
+        z-index: 9999;
+        opacity: .8;
+        left: 0; 
+        top: 0px;
+        display: none;
+        
+        background: #BE93C5;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }    
+    .mensajeUsuario div{
+        color: black;
+        font-family: 'Anton', sans-serif;
+        text-align: center;
+        position: absolute; 
+        top: 25%; 
+        left: 25%;
+        width: 50%; 
+        height: 50%;
+    }
+    .mensajeUsuario div button{
+        color: black;
+    }
+        .mensajeUsuario div button:hover{
+        
+            background-color: black;
+            color: white;
+        
+    }
+    
+</style>
+  <div class="loaders" id="loadImg"></div>
      <div class="">
 
         <div class="card mx-auto" style="width: 50rem;">
@@ -35,7 +85,7 @@ if(request.getSession().getAttribute("us") != null &&
             <div class="card-body">
                 <h5 class="card-title">Descripciones Espectaculares</h5>
 
-                <form id="formAddService">
+                <form id="formUpdateService">
                     <input type="hidden" name="action" value="updateService">
                     <fieldset>
                         <legend>Servicio Disponible</legend>
@@ -65,7 +115,7 @@ if(request.getSession().getAttribute("us") != null &&
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="">Update Service</button>
+                                    <button type="submit" class="btn btn-info form-control col-6 diz" style="margin-left: 25%;" id="">Update Service</button>
                                 </div>
                             </div>
                         </div>
@@ -78,9 +128,82 @@ if(request.getSession().getAttribute("us") != null &&
 
     </div>
 
+                                        <div class="mensajeUsuario" id="addMensaje">
+
+                                            <div>
+
+
+                                                <%
+                                                    if (session.getAttribute("MensajeServicioUpdate") != null) {
+                                                %>
+                                                <h3><%= session.getAttribute("MensajeServicioUpdate").toString()%> </h3>
+                                                <%
+                                                    session.removeAttribute("MensajeServicioUpdate");
+                                                } else if(session.getAttribute("MensajeServicioUpdate") == null){
+                                                %> 
+                                                <h3> <%= session.getAttribute("MensajeServicioUpdate").toString()%>  No entro</h3>
+                                                <%
+                                                    }
+                                                %>
+                                                <button class="btn btn-info btnCloseMesage" > cerrar</button>
+                                            </div>
+                                        </div>
+
 
 <%
     }
 %>
+<script src="./Javascript/jquery.validate.js" type="text/javascript"></script>
+<script src="./Javascript/jQueryValidator.js" type="text/javascript"></script>
 
+<script>
+    
+    $(function(){
+           $('#formUpdateService').validate({
+        rules: {
+           nameService:{required: true, maxlength: 20, minlength: 3}, 
+           DescriptionService:{required: true, maxlength: 200, minlength: 5},
+           PrecioService:{required: true, maxlength: 10, minlength: 1}
+            
+        },            
+        submitHandler: function (form) {
+           
+  
+  //alert($(form).serialize());
+    //       return false;
+  $('.loaders').css({'display': 'block'});
+            setTimeout(function ()
+            {
+                $.ajax({
+                    type: 'post',
+                    url: 'DataServicio',
+                    data: $(form).serialize(),
+                    success: function () {
+                       $('.mensajeUsuario').css({'display': 'block'});
+                         $('.loaders').css({'display': 'none'});
+                        setTimeout(function ()
+                        {
+                         
+                            $('.mensajeUsuario').css({'display': 'block'});
+                               
+                         
+                           location.reload();
+                        }, 2000);
+                        
+
+                    }
+                });
+                
+                
+
+                
+            }, 3000);
+
+        }
+    }); 
+    
+    
+    });
+    
+</script>
 
