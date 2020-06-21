@@ -55,7 +55,7 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
 
                             <input class="form-check-input" type="radio" id="idRadioTrabajador" name="radioTrabajador" value="<%= i %>"/>
 
-                            <%=(tra.getId_Trabajador()) + " " + (tra.getPerTrabajador().getPaterno_Persona())%>
+                            <%=(tra.getPerTrabajador().getNombre_Persona()) + " " + (tra.getPerTrabajador().getPaterno_Persona())%>
                         </label>
 
 
@@ -487,14 +487,14 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
               
                     <div class="tableClientObra" id="idtableClientObra">
                         <div class="divTableClienteObraContenido" id="idTableClienteObraContenido">
-                        <table border="1" class="table">
+                            <table border="1" class="table" id="tbl">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Apellidos</th>
                                     <th>Pais</th>
                                     
-                                    <th>agregar</th>
+                                    <th>Agregar</th>
                                 </tr>
                             </thead>
                             <tbody>

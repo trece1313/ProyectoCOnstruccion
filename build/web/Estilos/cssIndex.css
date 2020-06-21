@@ -1,0 +1,34 @@
+#cerrarS{
+  margin-right: 40%;
+}
+#idtableClientObra{
+        width: 100%; 
+        height: 100%;
+        position: fixed; 
+        z-index: 9999;
+        opacity: .8;
+        left: 0; 
+        top: 0px;
+        display: block;
+        background: #BE93C5;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
+    #idTableClienteObraContenido{
+        font-family: 'Anton', sans-serif;
+        text-align: center;
+        position: relative; 
+        top: 15%; 
+        left: 5%;
+        width: 90%; 
+        height: 80%;
+        background: #0F2027 !important;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027)!important;  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        border-radius: 7px;
+       box-shadow: 3px -1px 8px 4px #3B5A73;
+                 overflow: scroll;
+                 overflow-x: hidden
+        
+    }

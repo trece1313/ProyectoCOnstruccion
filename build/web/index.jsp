@@ -23,9 +23,9 @@ if(session.getAttribute("us") == null)
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link href="Estilos/animate.css" rel="stylesheet" type="text/css"/>
     <!-- Bootstrap CSS -->
+    <link href="Estilos/cssIndex.css" rel="stylesheet" type="text/css"/>
  
-   
-    
+
    
     <link href="Estilos/Menu.css" rel="stylesheet" type="text/css"/>
     <title>Index</title>
@@ -59,7 +59,34 @@ if(session.getAttribute("us") == null)
     <script src="Javascript/jquery.validate.js" type="text/javascript"></script>
     <script src="Javascript/Menu.js" type="text/javascript"></script>
 
+    <script>
 
+        
+
+function hidiDivServices(){
+    //Function by hide the div Target Services
+    document.getElementById('idtableClientObra').style.display = 'none';
+}
+function sendUpdateService(e)
+{   
+
+    
+                    $.ajax({
+                    type: 'post',
+                    url: 'View/Update/EditarServicio.jsp',             
+                    data: {"idServiceUpdate": e.value},
+     
+                    success: function(res) {
+                      $(".contenedorPagPricipal").html(res);  
+                    }
+                });
+
+
+}
+
+      
+
+    </script>
     
     
   </body>

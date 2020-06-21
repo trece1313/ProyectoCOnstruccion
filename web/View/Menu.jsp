@@ -21,7 +21,19 @@ if(session.getAttribute("us") != null){
 
      $('.btnShowHideNav').click(navConstruction);
      
-     $('.goObra').click(goObra);
+     $('.goObra').click(function(){
+         goOpenView('./View/Obra.jsp');
+     });
+     
+    $('.goService').click(function(){
+         goOpenView('./View/Servicio.jsp');
+     });
+         $('.goShowAll').click(function(){
+         goOpenView('./View/Servicio.jsp #idtableClientObra');
+         
+     });
+     
+     
     // $().click();
     // $().click();
     // $().click();
@@ -36,9 +48,10 @@ if(session.getAttribute("us") != null){
  });
  
  
-   function goObra()
+   function goOpenView(nameView)
    {
-       $('#contPrincipal').load('./View/Obra.jsp');
+       $('#contPrincipal').load(nameView);
+       
        $(".navbar-collapse").removeClass('show');
    }
    // function (){}
@@ -158,7 +171,7 @@ if(session.getAttribute("us") != null){
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item goService" href="#">add</a>
-                    <a class="dropdown-item" href="#">show Service</a>
+                    <a class="dropdown-item goShowAll" href="#">show Service</a>
 
                 </div>
             </li>

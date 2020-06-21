@@ -1,0 +1,100 @@
+*{
+    padding: 0;
+    margin: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+    .divServices{
+        width: 95%;
+        height: auto;
+        margin: auto;
+        display: block;
+    }
+    .loaders{
+    display: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../Imagenes/cargandoImagen.gif') 50% 30% no-repeat rgb(249,249,249);
+    opacity: .8;
+    }
+    
+        .mensajeUsuario{
+        width: 100%; 
+        height: 100%;
+        position: fixed; 
+        z-index: 9999;
+        opacity: .8;
+        left: 0; 
+        top: 0px;
+        display: none;
+        
+        background: #BE93C5;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }    
+    .mensajeUsuario div{
+        color: black;
+        font-family: 'Anton', sans-serif;
+        text-align: center;
+        position: absolute; 
+        top: 25%; 
+        left: 25%;
+        width: 50%; 
+        height: 50%;
+    }
+    .mensajeUsuario div button{
+        color: black;
+    }
+        .mensajeUsuario div button:hover{
+        
+            background-color: black;
+            color: white;
+        
+    }
+    
+/*    #idtableClientObra{
+        width: 100%; 
+        height: 100%;
+        position: fixed; 
+        z-index: 9999;
+        opacity: .8;
+        left: 0; 
+        top: 0px;
+        display: none;
+        background: #BE93C5;   fallback for old browsers 
+        background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);   Chrome 10-25, Safari 5.1-6 
+        background: linear-gradient(to right, #7BC6CC, #BE93C5);  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+
+    }
+    #idTableClienteObraContenido{
+        font-family: 'Anton', sans-serif;
+        text-align: center;
+        position: relative; 
+        top: 15%; 
+        left: 5%;
+        width: 90%; 
+        height: 80%;
+        background: #0F2027 !important;   fallback for old browsers 
+        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027)!important;   Chrome 10-25, Safari 5.1-6 
+        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027) !important;  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+        border-radius: 7px;
+       box-shadow: 3px -1px 8px 4px #3B5A73;
+                 overflow: scroll;
+                 overflow-x: hidden
+        
+    }*/
+    #idTableClienteObraContenido table tbody td{
+ 
+        color: white;
+        background: #0F2027 !important;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027)!important;  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
+    

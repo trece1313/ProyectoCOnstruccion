@@ -69,22 +69,22 @@ public class ControllerTrabajador implements TrabajadorDAO
     }
 
     @Override
-    public boolean add(Object t) {
+    public boolean add(Trabajador t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean update(Object t) {
+    public boolean update(Trabajador t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean delete(Object t) {
+    public boolean delete(Trabajador t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object adds(Object t) {
+    public Trabajador adds(Trabajador t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

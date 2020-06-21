@@ -5,14 +5,15 @@
  */
 package ModelDAO;
 
-import Model.Trabajador;
-
-
+import Model.Servicio;
 
 /**
  *
  * @author trece
  */
-public interface TrabajadorDAO extends CRUD<Trabajador>{
+
+
+public interface ServicioDAO extends CRUD<Servicio>
+{
     
 }

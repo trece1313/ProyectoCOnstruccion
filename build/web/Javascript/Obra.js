@@ -68,8 +68,11 @@ $('#idTableClienteObraContenido table').DataTable();
         
 
     callData();
+
+    
       $('.addClientObra').click(function(){
-          
+     
+          return false;
           banderaAddObra = true;
           $('#btnPrevClienteObrasx').prop('disabled',true);
           $("#idtableClientObra").css({"display":"none"});
@@ -339,5 +342,6 @@ function filter(__val__){
     }
     
 }
+
 
   
