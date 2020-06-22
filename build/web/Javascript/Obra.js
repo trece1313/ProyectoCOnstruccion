@@ -72,7 +72,7 @@ $('#idTableClienteObraContenido table').DataTable();
     
       $('.addClientObra').click(function(){
      
-          return false;
+          
           banderaAddObra = true;
           $('#btnPrevClienteObrasx').prop('disabled',true);
           $("#idtableClientObra").css({"display":"none"});

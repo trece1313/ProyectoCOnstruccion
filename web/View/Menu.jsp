@@ -12,6 +12,7 @@ if(session.getAttribute("us") != null){
 <script>
  
  $(function(){
+       ajaxTrabajador();
      $('.goUser').click(function(){
 
         $('#contPrincipal').load('View/Usuario.jsp');
@@ -28,8 +29,19 @@ if(session.getAttribute("us") != null){
     $('.goService').click(function(){
          goOpenView('./View/Servicio.jsp');
      });
-         $('.goShowAll').click(function(){
+    
+     $('.goShowAll').click(function(){
          goOpenView('./View/Servicio.jsp #idtableClientObra');
+     });
+     
+     $('.goWorker').click(function(){
+           
+         goOpenView('./View/Trabajador.jsp');
+     });
+     $('.showAllWorker').click(function(){
+             ajaxTrabajador();
+         goOpenView('./View/Trabajador.jsp #idtableClientObra');
+    
          
      });
      
@@ -46,6 +58,23 @@ if(session.getAttribute("us") != null){
 
      
  });
+ 
+ 
+ function ajaxTrabajador()
+{
+    
+                 $.ajax({
+                    type: 'post',
+                    url: 'DataTrabajador',
+                    data: {"action":"loadWorker"},
+                    cache: false,
+                    processData: false,
+                    success: function (res) {
+       
+                    }
+                });
+                
+}
  
  
    function goOpenView(nameView)
@@ -106,14 +135,14 @@ if(session.getAttribute("us") != null){
                 </div>
             </li>
             <% }  %>
-<% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(3)) {  %>              
+<% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(12)) {  %>              
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Proveedor
+                    Trabajador
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">add</a>
-                    <a class="dropdown-item" href="#">Show</a>
+                    <a class="dropdown-item goWorker" href="#">add</a>
+                    <a class="dropdown-item showAllWorker" href="#">Show</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>

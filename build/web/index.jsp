@@ -84,7 +84,20 @@ function sendUpdateService(e)
 
 }
 
-      
+
+function searchWorkers()
+{
+    
+                $.ajax({
+                type: 'post',
+                url: 'DataTrabajador',             
+                data: {"action": "showOneWorker","filter":$('#searchCardd').val()},
+                success: function() {
+                  $('#contPrincipal').load('View/Trabajador.jsp #idtableClientObra');
+                }
+            });
+    
+}
 
     </script>
     
