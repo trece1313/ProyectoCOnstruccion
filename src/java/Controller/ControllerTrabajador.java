@@ -68,17 +68,25 @@ public class ControllerTrabajador implements TrabajadorDAO
     @Override
     public ArrayList showDataCliente(String f) {
                 ArrayList<Trabajador>saveWorkers = new ArrayList<>();
-                            String sqlWorkers = "SELECT p.id_Persona,p.nombre_Persona,\n" +
-                                "p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
-                                "t.id_Trabajador \n" +
-                                "FROM Trabajador t INNER JOIN Persona p\n" +
-                                "ON p.id_Persona=t.id_PersonaTabajador";
+                            String sqlWorkers = "SELECT p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
+"p.fechaNacimiento_Persona ,p.sexo_Persona ,p.telefono_Persona ,p.correo_Persona,\n" +
+"d.id_Direccion,d.pais_Direccion ,d.estado_Direccion ,d.municipio_Direccion,d.calle_Direccion ,\n" +
+"d.colonia_Direccion,d.codigoPostal_Direccion ,d.numeroExterior_Direccion ,d.numeroInterior_Direccion ,\n" +
+"t.id_Trabajador,t.Especialidad,t.diasTrabajoSemanaTrabajador, t.horasPorDiaTrabajadas,t.precioPorDiaTrabajado \n" +
+"FROM Trabajador t INNER JOIN Persona p\n" +
+"ON p.id_Persona=t.id_PersonaTabajador\n" +
+"INNER JOIN Direccion d\n" +
+"ON d.id_Direccion = p.id_DireccionPersonaFK";
 
-                            String sqlOneWorker = "SELECT p.id_Persona,p.nombre_Persona,\n" +
-                                "p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
-                                "t.id_Trabajador \n" +
-                                "FROM Trabajador t INNER JOIN Persona p\n" +
-                                "ON p.id_Persona=t.id_PersonaTabajador WHERE p.nombre_Persona LIKE ?";
+                            String sqlOneWorker = "SELECT p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
+"p.fechaNacimiento_Persona ,p.sexo_Persona ,p.telefono_Persona ,p.correo_Persona,\n" +
+"d.id_Direccion,d.pais_Direccion ,d.estado_Direccion ,d.municipio_Direccion,d.calle_Direccion ,\n" +
+"d.colonia_Direccion,d.codigoPostal_Direccion ,d.numeroExterior_Direccion ,d.numeroInterior_Direccion ,\n" +
+"t.id_Trabajador,t.Especialidad,t.diasTrabajoSemanaTrabajador, t.horasPorDiaTrabajadas,t.precioPorDiaTrabajado \n" +
+"FROM Trabajador t INNER JOIN Persona p\n" +
+"ON p.id_Persona=t.id_PersonaTabajador\n" +
+"INNER JOIN Direccion d\n" +
+"ON d.id_Direccion = p.id_DireccionPersonaFK LIKE ?";
         try {
             conDB = new ConectaDB();
             con = conDB.conexionDB();
@@ -96,11 +104,34 @@ public class ControllerTrabajador implements TrabajadorDAO
             while(rs!=null && rs.next())
             {
                 tra=new Trabajador();
-                tra.getPerTrabajador().setId_Primary(rs.getInt(1));
-                tra.getPerTrabajador().setNombre_Persona(rs.getString(2));
-                tra.getPerTrabajador().setPaterno_Persona(rs.getString(3));
-                tra.getPerTrabajador().setMaterno_Persona(rs.getString(4));
-                tra.setId_Trabajador(rs.getInt(5));
+                tra.getPerTrabajador().setId_Primary(rs.getInt("id_Persona"));
+                tra.getPerTrabajador().setNombre_Persona(rs.getString("nombre_Persona"));
+                tra.getPerTrabajador().setPaterno_Persona(rs.getString("apellidoPeterno_Persona"));
+                tra.getPerTrabajador().setMaterno_Persona(rs.getString("apellidoMaterno_Persona"));
+                tra.getPerTrabajador().setFechaNacimiento_Persona(rs.getString("fechaNacimiento_Persona"));
+                tra.getPerTrabajador().setSexo_Persona(rs.getString("sexo_Persona"));
+                tra.getPerTrabajador().setTelefono_Persona(rs.getString("telefono_Persona"));
+                tra.getPerTrabajador().setCorreo_Persona(rs.getString("correo_Persona"));
+                
+                tra.getPerTrabajador().getDireccionPersona().setid_Direccion(rs.getInt("id_Direccion"));
+                tra.getPerTrabajador().getDireccionPersona().setPais_Direccion(rs.getString("pais_Direccion"));
+                tra.getPerTrabajador().getDireccionPersona().setEstado_Direccion(rs.getString("estado_Direccion"));
+                tra.getPerTrabajador().getDireccionPersona().setMunicipio_Direccion(rs.getString("municipio_Direccion"));
+                tra.getPerTrabajador().getDireccionPersona().setCalle_Direccion(rs.getString("calle_Direccion"));
+                tra.getPerTrabajador().getDireccionPersona().setColonia_Direccion(rs.getString("colonia_Direccion"));
+                tra.getPerTrabajador().getDireccionPersona().setCodigoPostal_Direccion(rs.getString("codigoPostal_Direccion"));
+                tra.getPerTrabajador().getDireccionPersona().setNumeroExterior_Direccion(rs.getString("numeroExterior_Direccion"));
+                tra.getPerTrabajador().getDireccionPersona().setNumeroInterior_Direccion(rs.getString("numeroInterior_Direccion"));
+                           
+                
+                tra.setId_Trabajador(rs.getInt("id_Trabajador"));
+                tra.setEspecialidad_Trabajador(rs.getString("Especialidad"));
+                tra.setDiasTrabajoSemanaTrabajador(rs.getInt("diasTrabajoSemanaTrabajador"));
+                tra.setHorasPorDiaTrabajadas(rs.getInt("horasPorDiaTrabajadas"));
+                tra.setPrecioPorDiaTrabajado(rs.getDouble("precioPorDiaTrabajado"));
+                
+
+                
                 saveWorkers.add(tra);
             }
             

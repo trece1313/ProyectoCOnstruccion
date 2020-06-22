@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Trabajador
-    Created on : Jun 21, 2020, 1:55:55 PM
+    Document   : EditarTrabajador
+    Created on : Jun 21, 2020, 11:44:55 PM
     Author     : trece
 --%>
 
@@ -10,30 +10,70 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%    
 if(request.getSession().getAttribute("us") == null){
- response.sendRedirect("Login.jsp");   
+ response.sendRedirect("../../View/Login.jsp");   
 }
 
 if(request.getSession().getAttribute("us") != null && 
 ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(12))
 { 
 
-ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != null ? 
-(ArrayList<Trabajador>) session.getAttribute("ListWorkers") : new ArrayList();
-
+        
+        int indice = Integer.parseInt(request.getParameter("idWorkerUpdate"));
+        
+        Trabajador traEdit = ((ArrayList<Trabajador>) session.getAttribute("ListWorkers")).get(indice);
+        session.setAttribute("UpdateWorker", traEdit);
 
 %>
 
 <style>
-    #idtableClientObra{
-        display : none;
-    }
     
-</style>
-<link href="./Estilos/cssServic.css" rel="stylesheet" type="text/css"/>
+    .loaders{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    background: url('Imagenes/cargandoImagen.gif') 50% 30% no-repeat rgb(249,249,249);
+    opacity: .8;
+    }
+            .mensajeUsuario{
+        width: 100%; 
+        height: 100%;
+        position: fixed; 
+        z-index: 9999;
+        opacity: .8;
+        left: 0; 
+        top: 0px;
+        display: none;
+        
+        background: #BE93C5;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-<div class="services">
-
-    <div class="loaders" id="loadImg"></div>
+    }    
+    .mensajeUsuario div{
+        color: black;
+        font-family: 'Anton', sans-serif;
+        text-align: center;
+        position: absolute; 
+        top: 25%; 
+        left: 25%;
+        width: 50%; 
+        height: 50%;
+    }
+    .mensajeUsuario div button{
+        color: black;
+    }
+        .mensajeUsuario div button:hover{
+        
+            background-color: black;
+            color: white;
+        
+    }
+    </style>
+ <div class="loaders" id="loadImg"></div>
     <div class="">
 
         <div class="card mx-auto" style="width: 50rem;">
@@ -44,7 +84,7 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
                 <h5 class="card-title">Agregando Trabajador</h5>
 
                 <form id="formAddWorker">
-                    <input type="hidden" name="action" value="addTrabajador">
+                    <input type="hidden" name="action" value="updateTrabajador">
 
                     <fieldset>
                         <legend>Datos Personales</legend>
@@ -56,19 +96,19 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
 
                                 <div class="col-sm-4"> <%-- Start col Person --%>
                                     <div class="form-group"> <%-- Start group Person --%>
-                                        <input type="text" required="" value="Abel" minlength="5" class="form-control col-sm-12 BoxText" id="nombre" name="Nombre" placeholder="Ingrese su Nombre"/>
+                                        <input type="text" required="" value="<%=(traEdit.getPerTrabajador().getNombre_Persona())%>" minlength="5" class="form-control col-sm-12 BoxText" id="nombre" name="Nombre" placeholder="Ingrese su Nombre" />
                                     </div> <%-- end group Person --%>
                                 </div> <%-- end col Person --%>
 
                                 <div class="col-sm-4"> <%-- Start col Person --%>
                                     <div class="form-group"> <%-- Start group Person --%>
-                                        <input type="text" required="" value="Tiburcio" minlength="5" class="form-control col-sm-12 BoxText" id="paterno" name="Paterno" placeholder="Ingrese su Paterno"/>
+                                        <input type="text" required="" value="<%=(traEdit.getPerTrabajador().getPaterno_Persona())%>" minlength="5" class="form-control col-sm-12 BoxText" id="paterno" name="Paterno" placeholder="Ingrese su Paterno"/>
                                     </div> <%-- end group Person --%>
                                 </div> <%-- end col Person --%>
 
                                 <div class="col-sm-4"> <%-- Start col Person --%>
                                     <div class="form-group"> <%-- Start group Person --%>
-                                        <input type="text" required="" value="Felipe" minlength="5" class="form-control col-sm-12 BoxText" id="materno" name="Materno" placeholder="Ingrese su Materno"/>
+                                        <input type="text" required="" value="<%=(traEdit.getPerTrabajador().getMaterno_Persona())%>" minlength="5" class="form-control col-sm-12 BoxText" id="materno" name="Materno" placeholder="Ingrese su Materno"/>
                                     </div> <%-- end group Person --%>
                                 </div> <%-- end col Person --%>
 
@@ -98,13 +138,13 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
 
                                 <div class="col-4"> <%-- Start col Person --%>
                                     <div class="form-group"> <%-- Start group Person --%>
-                                        <input type="text" minlength="10" value="7221111793" maxlength="10" class="form-control col-sm-12 BoxText" id="telefono" name="Telefono" placeholder="Ingrese su telefono"/>
+                                        <input type="text" minlength="10" value="<%=(traEdit.getPerTrabajador().getTelefono_Persona())%>" maxlength="10" class="form-control col-sm-12 BoxText" id="telefono" name="Telefono" placeholder="Ingrese su telefono"/>
                                     </div> <%-- end group Person --%>
                                 </div> <%-- end col Person --%>
 
                                 <div class="col-4"> <%-- Start col Person --%>
                                     <div class="form-group"> <%-- Start group Person --%>
-                                        <input type="date" value="13-05-1994" required="" class="form-control col-sm-12 BoxText" id="fechaNacimiento" name="FechaNacimiento"/>
+                                        <input type="date" value="<%=(traEdit.getPerTrabajador().getFechaNacimiento_Persona())%>" required="" class="form-control col-sm-12 BoxText" id="fechaNacimiento" name="FechaNacimiento"/>
                                     </div> <%-- end group Person --%>
                                 </div> <%-- end col Person --%>
 
@@ -116,7 +156,7 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
 
                                 <div class="col-4"> <%-- Start col Person --%>
                                     <div class="form-group"> <%-- Start group Person --%>
-                                        <input type="email" minlength="10" value="abel@gmail.com" class="form-control col-sm-12 BoxText" id="correo" name="Correo" placeholder="Ingrese su Correo Electronico"/>
+                                        <input type="email" minlength="10" value="<%=(traEdit.getPerTrabajador().getCorreo_Persona())%>" class="form-control col-sm-12 BoxText" id="correo" name="Correo" placeholder="Ingrese su Correo Electronico"/>
                                     </div> <%-- end group Person --%>
                                 </div> <%-- end col Person --%>
 
@@ -138,7 +178,7 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
                                 <div class="form-group"> <%-- Start group Direction --%>
                                     <select class="form-control col-md-12 mx-auto BoxText" id="pais" name="Pais" >
                                         <option value="default">Seleccione Pais</option>
-                                        <option selected>Mexico</option>
+                                        <option value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getPais_Direccion())%>" selected>Mexico</option>
                                     </select>
                                 </div> <%-- end group Direction --%>
                             </div> <%-- end col Direction --%>
@@ -165,7 +205,7 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
 
                             <div class="col-sm-4"> <%-- Start col Direction --%>
                                 <div class="form-group"> <%-- Start group Direction --%>
-                                    <input type="text" required="" value="LLuvianos" class="form-control col-sm-12 BoxText" id="municipio" name="Municipio" placeholder="Ingrese su Municipio"/>
+                                    <input type="text" required="" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getMunicipio_Direccion())%>" class="form-control col-sm-12 BoxText" id="municipio" name="Municipio" placeholder="Ingrese su Municipio"/>
                                 </div> <%-- end group Direction --%>
                             </div> <%-- end col Direction --%>
 
@@ -178,19 +218,19 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
 
                             <div class="col-4"> <%-- Start col Direction --%>
                                 <div class="form-group"> <%-- Start group Direction --%>
-                                    <input type="text" value="Colonia" class="form-control col-sm-12 BoxText" id="calle" name="Calle" placeholder="Ingrese su Calle"/>
+                                    <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getCalle_Direccion())%>" class="form-control col-sm-12 BoxText" id="calle" name="Calle" placeholder="Ingrese su Calle"/>
                                 </div> <%-- end group Direction --%>
                             </div> <%-- end col Direction --%>
 
                             <div class="col-4"> <%-- Start col Direction --%>
                                 <div class="form-group"> <%-- Start group Direction --%>
-                                    <input type="text" value="Colonia" class="form-control col-sm-12 BoxText" id="colonia" name="Colonia" placeholder="Ingrese su Colonia"/>
+                                    <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getColonia_Direccion())%>" class="form-control col-sm-12 BoxText" id="colonia" name="Colonia" placeholder="Ingrese su Colonia"/>
                                 </div> <%-- end group Direction --%>
                             </div> <%-- end col Direction --%>
 
                             <div class="col-4"> <%-- Start col Direction --%>
                                 <div class="form-group"> <%-- Start group Direction --%>
-                                    <input type="text" value="51440" class="form-control col-sm-12 BoxText" id="postal" name="CodigoPostal" placeholder="Ingrese su Codigo Postal"/>
+                                    <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getCodigoPostal_Direccion())%>" class="form-control col-sm-12 BoxText" id="postal" name="CodigoPostal" placeholder="Ingrese su Codigo Postal"/>
                                 </div> <%-- end group Direction --%>
                             </div> <%-- end col Direction --%>
 
@@ -202,13 +242,13 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
 
                             <div class="col-4"> <%-- Start col Direction --%>
                                 <div class="form-group"> <%-- Start group Direction --%>
-                                    <input type="text" value="512" class="form-control col-sm-12 BoxText" id="exterior" name="NumeroExterior" placeholder="Ingrese su Numero Exterior"/>
+                                    <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getNumeroExterior_Direccion())%>" class="form-control col-sm-12 BoxText" id="exterior" name="NumeroExterior" placeholder="Ingrese su Numero Exterior"/>
                                 </div> <%-- end group Direction --%>
                             </div> <%-- end col Direction --%>
 
                             <div class="col-4"> <%-- Start col Direction --%>
                                 <div class="form-group"> <%-- Start group Direction --%>
-                                    <input type="text" value="513" class="form-control col-sm-12 BoxText" id="interior" name="NumeroInterior" placeholder="Ingrese su Numero Interior"/>
+                                    <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getNumeroInterior_Direccion())%>" class="form-control col-sm-12 BoxText" id="interior" name="NumeroInterior" placeholder="Ingrese su Numero Interior"/>
                                 </div> <%-- end group Direction --%>
                             </div> <%-- end col Direction --%>
 
@@ -225,14 +265,14 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="nameEspecialidad">Ingrese su Especialidad
-                                        <input type="text" required="" class="form-control" name="NameEspecialidad" id="nameEspecialidad" placeholder="Ingrese su Especialidad" />
+                                        <input type="text" required="" value="<%=(traEdit.getEspecialidad_Trabajador())%>" class="form-control" name="NameEspecialidad" id="nameEspecialidad" placeholder="Ingrese su Especialidad" />
                                     </label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="diasTrabajados">Ingrese dias que trabaja
-                                        <input type="number" class="form-control" name="diasTrabajados" id="diasTrabajados" placeholder="Ingrese dias que trabaja" />
+                                        <input type="number" value="<%=(traEdit.getDiasTrabajoSemanaTrabajador())%>" class="form-control" name="diasTrabajados" id="diasTrabajados" placeholder="Ingrese dias que trabaja" />
                                     </label>
                                 </div>
                             </div>
@@ -242,14 +282,14 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="nameEspecialidad">Ingrese horas Trabajadas
-                                        <input type="text" class="form-control" name="HrasTrabajadas" id="HrasTrabajadas" placeholder="Ingrese horas Trabajadas" />
+                                        <input type="text" value="<%=(traEdit.getHorasPorDiaTrabajadas())%>" class="form-control" name="HrasTrabajadas" id="HrasTrabajadas" placeholder="Ingrese horas Trabajadas" />
                                     </label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="precioDia">Precio por dia Trabajado
-                                        <input type="text" class="form-control" name="precioDia" id="precioDia" placeholder="Precio por dia Trabajado" onkeypress="return filterFloat(event,this);" />
+                                        <input type="text" value="<%=(traEdit.getPrecioPorDiaTrabajado())%>" class="form-control" name="precioDia" id="precioDia" placeholder="Precio por dia Trabajado" onkeypress="return filterFloat(event,this);" />
                                     </label>
                                 </div>
                             </div>
@@ -259,7 +299,7 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="">Add Worker</button>
+                                <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="" >Update Worker</button>
                             </div>
                         </div>
                     </div>
@@ -271,7 +311,8 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
         </div>
 
     </div>
-                          <div class="mensajeUsuario" id="addMensaje">
+                    
+                                             <div class="mensajeUsuario" id="addMensaje">
 
                                             <div>
 
@@ -291,77 +332,9 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
                                                 <button class="btn btn-info btnCloseMesage" > cerrar</button>
                                             </div>
                                         </div>
-                                                
-                                                
-
-                           <div class="tableClientObra" id="idtableClientObra">
-                               <div class="divTableClienteObraContenido" id="idTableClienteObraContenido">
-                                   <div class="row">
-                                       <div class="col-6">
-                                           <div class="form-group">
-                                               <label for="searchCard">Search of Service
-                                                   <input type="text" class="form-control" name="SearchCard" id="searchCardd" placeholder="Search of Service"/>
-                                               </label>
-                                               <button class="btn btn-info" id="btnSearch" onclick="searchWorkers();">Buscar</button>
-                                           </div>
-                                       </div>
-                                       <div class="col-6">
-                                           <div class="form-group">
-                                               <label for="searchCard">
-                                                   <a href="#" id="cerrarS" class="btn btn-warning" onclick="hidiDivServices();">Cerrar</a>
-                                               </label>
-                                           </div>
-                                       </div>
-                                   </div>
-
-
-                                <div class="row">
-                                    <%
-                                        for (int i = 0; i < listaTrabajador.size(); i++) {
-                                            Trabajador trabajador = listaTrabajador.get(i);
-
-                                    %>
-
-                                    <div class="col-4">
-                                        <div class="card text-white bg-dark mb-3" style="display: inline-grid; width: 20rem; ">
-                                            <div class="card-header"><header>Nombre Trabajador <%= (trabajador.getPerTrabajador().getNombre_Persona())%></header></div>
-                                            <div class="card-body">
-
-                                                <p class="card-text">Especialidad <br/><%= (trabajador.getEspecialidad_Trabajador())%></p>
-                                                <p class="card-text">Pais <%= (trabajador.getPerTrabajador().getDireccionPersona().getPais_Direccion())%></p>
-                                                <button href="#" class="btn btn-info btnUpdateService" onclick="sendUpdateWorker(this);" value="<%=i%>">Edit Worker</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <%
-                                        }
-                                    %>
-                                </div>
-                            </div>
-                        </div>
-
-                                           
-
-
-
-
-</div>
-
-
-<script src="Javascript/jquery.validate.js" type="text/javascript"></script>
-<script src="Javascript/jQueryValidator.js" type="text/javascript"></script>
-
-<script src="./Javascript/Trabajador13.js" type="text/javascript"></script>
-
+    
+    
 <%
     }
 %>
-
-
-<script>
     
-
-    
-</script>

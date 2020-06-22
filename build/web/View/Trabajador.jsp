@@ -19,6 +19,8 @@ if(request.getSession().getAttribute("us") != null &&
 
 ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != null ? 
 (ArrayList<Trabajador>) session.getAttribute("ListWorkers") : new ArrayList();
+
+
 %>
 
 <style>
@@ -322,12 +324,12 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
 
                                     <div class="col-4">
                                         <div class="card text-white bg-dark mb-3" style="display: inline-grid; width: 20rem; ">
-                                            <div class="card-header"><header>Nombre TRabajador <%= (trabajador.getPerTrabajador().getNombre_Persona())%></header></div>
+                                            <div class="card-header"><header>Nombre Trabajador <%= (trabajador.getPerTrabajador().getNombre_Persona())%></header></div>
                                             <div class="card-body">
 
                                                 <p class="card-text">Especialidad <br/><%= (trabajador.getEspecialidad_Trabajador())%></p>
                                                 <p class="card-text">Pais <%= (trabajador.getPerTrabajador().getDireccionPersona().getPais_Direccion())%></p>
-                                                <button href="#" class="btn btn-info btnUpdateService" onclick="sendUpdateService(this);" value="<%=i%>">Edit Worker</button>
+                                                <button href="#" class="btn btn-info btnUpdateService" onclick="sendUpdateWorker(this);" value="<%=i%>">Edit Worker</button>
                                             </div>
 
                                         </div>

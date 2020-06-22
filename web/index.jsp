@@ -69,12 +69,24 @@ function hidiDivServices(){
 }
 function sendUpdateService(e)
 {   
-
-    
                     $.ajax({
                     type: 'post',
                     url: 'View/Update/EditarServicio.jsp',             
                     data: {"idServiceUpdate": e.value},
+     
+                    success: function(res) {
+                      $(".contenedorPagPricipal").html(res);  
+                    }
+                });
+
+
+}
+function sendUpdateWorker(e)
+{   
+                    $.ajax({
+                    type: 'post',
+                    url: 'View/Update/EditarTrabajador.jsp',             
+                    data: {"idWorkerUpdate": e.value},
      
                     success: function(res) {
                       $(".contenedorPagPricipal").html(res);  
