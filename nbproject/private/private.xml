@@ -20,12 +20,8 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/View/Servicio.jsp</file>
-            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/src/java/Controller/ControllerServicio.java</file>
-            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/src/java/Vista/ServicioServlet.java</file>
-            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/index.jsp</file>
-            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/View/Update/EditarServicio.jsp</file>
-            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/Estilos/cssIndex.css</file>
+            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/View/Update/EditarTrabajador.jsp</file>
+            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/src/java/Controller/ControllerTrabajador.java</file>
         </group>
     </open-files>
 </project-private>

@@ -90,9 +90,7 @@ Trabajador traAtt = null;
                 if (request.getParameter("action").equals("addTrabajador")) 
                 {
                     traAtt = new Trabajador();
-                    
-                    System.out.println(request.getParameter("diasTrabajados"));
-                    System.out.println(request.getParameter("horasTrabajadas"));
+
                     
                  traAtt.getPerTrabajador().setNombre_Persona(request.getParameter("Nombre"));
                 traAtt.getPerTrabajador().setPaterno_Persona(request.getParameter("Paterno"));
@@ -115,6 +113,7 @@ Trabajador traAtt = null;
                     traAtt.setDiasTrabajoSemanaTrabajador(Integer.parseInt(request.getParameter("diasTrabajados")));
                     traAtt.setHorasPorDiaTrabajadas(Integer.parseInt(request.getParameter("HrasTrabajadas")));
                     traAtt.setPrecioPorDiaTrabajado(Double.parseDouble(request.getParameter("precioDia")));
+                    
                     if(CrudMethod.add(traAtt))
                     {
                         request.getSession().setAttribute("MensajeTrabajadorAdd", "El Trabajador se Agrego corectamente");
@@ -130,16 +129,51 @@ Trabajador traAtt = null;
                     }
                     if(request.getParameter("action").equals("showOneWorker") && request.getParameter("filter") != null) 
                     {
-                        System.out.println("Entro mala");
+                        
                     ArrayList listaWorked = CrudMethod.showDataCliente(request.getParameter("filter"));
                     request.getSession().setAttribute("ListWorkers", listaWorked);
+                    
+                    }
+                    if(request.getParameter("action").equals("updateTrabajador")) 
+                    {
+                        
+                     traAtt = new Trabajador();
+                     Trabajador workerUpdate = (Trabajador)request.getSession().getAttribute("UpdateWorker");
+                     
+                workerUpdate.getPerTrabajador().setNombre_Persona(request.getParameter("Nombre"));
+                workerUpdate.getPerTrabajador().setPaterno_Persona(request.getParameter("Paterno"));
+                workerUpdate.getPerTrabajador().setMaterno_Persona(request.getParameter("Materno"));
+                workerUpdate.getPerTrabajador().setFechaNacimiento_Persona(request.getParameter("FechaNacimiento"));
+                workerUpdate.getPerTrabajador().setSexo_Persona(request.getParameter("Sexo"));
+                workerUpdate.getPerTrabajador().setTelefono_Persona(request.getParameter("Telefono"));
+                workerUpdate.getPerTrabajador().setCorreo_Persona(request.getParameter("Correo"));
+                
+                 workerUpdate.getPerTrabajador().getDireccionPersona().setPais_Direccion(request.getParameter("Pais"));
+                 workerUpdate.getPerTrabajador().getDireccionPersona().setEstado_Direccion(request.getParameter("Estado"));
+                 workerUpdate.getPerTrabajador().getDireccionPersona().setMunicipio_Direccion(request.getParameter("Municipio"));
+                 workerUpdate.getPerTrabajador().getDireccionPersona().setCalle_Direccion(request.getParameter("Calle"));
+                 workerUpdate.getPerTrabajador().getDireccionPersona().setColonia_Direccion(request.getParameter("Colonia"));
+                 workerUpdate.getPerTrabajador().getDireccionPersona().setCodigoPostal_Direccion(request.getParameter("CodigoPostal"));
+                 workerUpdate.getPerTrabajador().getDireccionPersona().setNumeroExterior_Direccion(request.getParameter("NumeroExterior"));
+                 workerUpdate.getPerTrabajador().getDireccionPersona().setNumeroInterior_Direccion(request.getParameter("NumeroInterior"));
+                    
+                    workerUpdate.setEspecialidad_Trabajador(request.getParameter("NameEspecialidad"));
+                    workerUpdate.setDiasTrabajoSemanaTrabajador(Integer.parseInt(request.getParameter("diasTrabajados")));
+                    workerUpdate.setHorasPorDiaTrabajadas(Integer.parseInt(request.getParameter("HrasTrabajadas")));
+                    workerUpdate.setPrecioPorDiaTrabajado(Double.parseDouble(request.getParameter("precioDia")));
+                    
+                    if(CrudMethod.update(workerUpdate))
+                    { 
+                        request.getSession().setAttribute("MensajeTrabajadorUps", "El Trabajador se actualizo corectamente");
+                    }
                     
                     }
                     
                 
             }else
             {
-                System.out.println("Es valido");
+                
+                System.out.println("Es valido "+ request.getParameter("action"));
             }
         }
         

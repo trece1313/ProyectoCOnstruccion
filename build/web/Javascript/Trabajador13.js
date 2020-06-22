@@ -83,6 +83,74 @@ $(function(){
         }
     }); 
     
+    // --------------------------------------------------------------------------------------------------------------------------//
+    // Form validate Update Worker //
+    
+            $('#formUpdateWorker').validate({
+        rules: {
+           Nombre:{required: true, maxlength: 20, minlength: 3}, 
+           Paterno:{required: true, maxlength: 25, minlength: 5},
+           Materno:{required: true, maxlength: 25, minlength: 1},
+           Telefono:{required: true, maxlength: 10, minlength: 0},
+           FechaNacimiento:{required: true},
+           Sexo: {selectSexo: "sex"},
+           Correo:{maxlength: 25, minlength: 5},
+
+            Pais: {valueNotEquals: "default"},
+            Estado: {selectEstado: "estado"},
+            Municipio: {required: true, maxlength: 20, minlength: 5},
+            Calle: {required: true, maxlength: 20, minlength: 5},
+            Colonia: {required: true, maxlength: 20, minlength: 5},
+            CodigoPostal: {required: true, maxlength: 20, minlength: 5},
+            NumeroExterior: {maxlength: 20, minlength: 2},
+            NumeroInterior: {required: true, maxlength: 20, minlength: 2},
+            
+            NameEspecialidad: {required: true, maxlength: 20, minlength: 4},
+            diasTrabajados: {required: true,number:true, maxlength: 1, minlength: 1},
+            HrasTrabajadas: {required: true, maxlength: 2, minlength: 1},
+            precioDia: {required: true, minlength: 1}
+        },            
+        submitHandler: function (form) {
+        
+           
+
+//   alert($(form).serialize());
+//           return false;
+           
+           
+ $('.loaders').css({'display': 'block'});
+            setTimeout(function ()
+            {
+                $.ajax({
+                    type: 'post',
+                    url: 'DataTrabajador',
+                    data: $(form).serialize(),
+                    cache: false,
+                    processData: false,
+                    success: function (res) {
+                        $('.mensajeUsuario').css({'display': 'block'});
+                         $('.loaders').css({'display': 'none'});
+                        setTimeout(function ()
+                        {
+                         
+                          $('.mensajeUsuario').css({'display': 'block'});
+                               
+                         
+                           location.reload();
+                        }, 2000);
+                        
+
+                    }
+                });
+                
+                
+
+                
+            }, 3000);
+
+        }
+    }); 
+    
 
     
 });

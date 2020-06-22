@@ -16,10 +16,7 @@ if(request.getSession().getAttribute("us") == null){
 if(request.getSession().getAttribute("us") != null && 
 ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(12))
 { 
-
-        
         int indice = Integer.parseInt(request.getParameter("idWorkerUpdate"));
-        
         Trabajador traEdit = ((ArrayList<Trabajador>) session.getAttribute("ListWorkers")).get(indice);
         session.setAttribute("UpdateWorker", traEdit);
 
@@ -38,7 +35,7 @@ if(request.getSession().getAttribute("us") != null &&
     background: url('Imagenes/cargandoImagen.gif') 50% 30% no-repeat rgb(249,249,249);
     opacity: .8;
     }
-            .mensajeUsuario{
+        .mensajeUsuario{
         width: 100%; 
         height: 100%;
         position: fixed; 
@@ -83,7 +80,7 @@ if(request.getSession().getAttribute("us") != null &&
             <div class="card-body">
                 <h5 class="card-title">Agregando Trabajador</h5>
 
-                <form id="formAddWorker">
+                <form id="formUpdateWorker">
                     <input type="hidden" name="action" value="updateTrabajador">
 
                     <fieldset>
@@ -156,7 +153,7 @@ if(request.getSession().getAttribute("us") != null &&
 
                                 <div class="col-4"> <%-- Start col Person --%>
                                     <div class="form-group"> <%-- Start group Person --%>
-                                        <input type="email" minlength="10" value="<%=(traEdit.getPerTrabajador().getCorreo_Persona())%>" class="form-control col-sm-12 BoxText" id="correo" name="Correo" placeholder="Ingrese su Correo Electronico"/>
+                                        <input type="email" minlength="10" value="<%=(traEdit.getPerTrabajador().getCorreo_Persona() == null ? "" : traEdit.getPerTrabajador().getCorreo_Persona())%>" class="form-control col-sm-12 BoxText" id="correo" name="Correo" placeholder="Ingrese su Correo Electronico"/>
                                     </div> <%-- end group Person --%>
                                 </div> <%-- end col Person --%>
 
@@ -187,7 +184,8 @@ if(request.getSession().getAttribute("us") != null &&
                                 <div class="form-group"> <%-- Start group Direction --%>
                                     <select class="form-control col-md-12 BoxText" id="estado" name="Estado">
                                         <option value="estado">Seleccione Estado</option>
-                                        <%                                        String municipios[] = {"Ciudad de México", "Aguascalientes", "Baja California", "Baja California Sur",
+                                        <%                                        
+                                            String municipios[] = {"Ciudad de México", "Aguascalientes", "Baja California", "Baja California Sur",
                                                 "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Durango", "Estado de México",
                                                 "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit",
                                                 "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí",
@@ -299,7 +297,7 @@ if(request.getSession().getAttribute("us") != null &&
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="" >Update Worker</button>
+                                <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="">Update Worker</button>
                             </div>
                         </div>
                     </div>
@@ -318,14 +316,14 @@ if(request.getSession().getAttribute("us") != null &&
 
 
                                                 <%
-                                                    if (session.getAttribute("MensajeTrabajadorAdd") != null) {
+                                                    if (session.getAttribute("MensajeTrabajadorUps") != null) {
                                                 %>
-                                                <h3><%= session.getAttribute("MensajeTrabajadorAdd").toString()%> </h3>
+                                                <h3><%= session.getAttribute("MensajeTrabajadorUps").toString()%> </h3>
                                                 <%
-                                                    session.removeAttribute("MensajeTrabajadorAdd");
-                                                } else if(session.getAttribute("MensajeTrabajadorAdd") == null){
+                                                    session.removeAttribute("MensajeTrabajadorUps");
+                                                } else if(session.getAttribute("MensajeTrabajadorUps") == null){
                                                 %> 
-                                                <h3>No se Agrego xD</h3>
+                                                <h3><%= session.getAttribute("MensajeTrabajadorUps").toString()%> </h3>
                                                 <%
                                                     }
                                                 %>
@@ -337,4 +335,16 @@ if(request.getSession().getAttribute("us") != null &&
 <%
     }
 %>
+    <script src="./Javascript/jquery.validate.js" type="text/javascript"></script>
+<script src="./Javascript/jQueryValidator.js" type="text/javascript"></script>
+<script src="./Javascript/Trabajador13.js" type="text/javascript"></script>
+
+<script>
     
+    
+    $(function(){
+       
+        
+    });
+    
+</script>

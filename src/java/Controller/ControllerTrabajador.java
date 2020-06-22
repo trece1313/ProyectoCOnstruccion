@@ -228,8 +228,84 @@ public class ControllerTrabajador implements TrabajadorDAO
     }
 
     @Override
-    public boolean update(Trabajador t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(Trabajador tra) {
+        try {
+            
+            conDB = new ConectaDB();
+            con = conDB.conexionDB();
+            String sqlUpdateDirection = "UPDATE Direccion SET pais_Direccion = ?, estado_Direccion = ?, municipio_Direccion = ?, calle_Direccion = ?,"
+                    + " colonia_Direccion = ?, codigoPostal_Direccion = ?, numeroExterior_Direccion = ?, numeroInterior_Direccion = ?  WHERE id_Direccion = ? ";
+            
+            String sqlUpdatePerson = "UPDATE Persona SET nombre_Persona = ?, apellidoPeterno_Persona = ?, apellidoMaterno_Persona = ?, fechaNacimiento_Persona = ?,"
+                    + " sexo_Persona = ?, telefono_Persona = ?, correo_Persona = ?, id_DireccionPersonaFK = ? WHERE id_Persona = ?";
+            
+            String sqlUpdateWorker = "UPDATE Trabajador SET Especialidad = ?, diasTrabajoSemanaTrabajador = ?, "
+                    + "horasPorDiaTrabajadas = ?, precioPorDiaTrabajado = ? WHERE id_Trabajador = ?";
+
+            ps = con.prepareStatement(sqlUpdateDirection);
+            ps.setString(1, tra.getPerTrabajador().getDireccionPersona().getPais_Direccion());
+            ps.setString(2, tra.getPerTrabajador().getDireccionPersona().getEstado_Direccion());
+            ps.setString(3, tra.getPerTrabajador().getDireccionPersona().getMunicipio_Direccion());
+            ps.setString(4, tra.getPerTrabajador().getDireccionPersona().getCalle_Direccion());
+            ps.setString(5, tra.getPerTrabajador().getDireccionPersona().getColonia_Direccion());
+            ps.setString(6, tra.getPerTrabajador().getDireccionPersona().getCodigoPostal_Direccion());
+            ps.setString(7, tra.getPerTrabajador().getDireccionPersona().getNumeroExterior_Direccion());
+            ps.setString(8, tra.getPerTrabajador().getDireccionPersona().getNumeroInterior_Direccion());
+            ps.setInt(9, tra.getPerTrabajador().getDireccionPersona().getid_Direccion());
+            ps.executeUpdate();
+//            esperarXsegundos();
+
+//            ps = con.prepareStatement("select last_insert_id() as ultimoDireccion");
+//            rs = ps.executeQuery();
+//            if (rs != null && rs.next()) {
+//                tra.getPerTrabajador().getDireccionPersona().setid_Direccion(Integer.parseInt(rs.getString("ultimoDireccion")));
+//            }
+
+            ps = con.prepareStatement(sqlUpdatePerson);
+            ps.setString(1, tra.getPerTrabajador().getNombre_Persona());
+            ps.setString(2, tra.getPerTrabajador().getPaterno_Persona());
+            ps.setString(3, tra.getPerTrabajador().getMaterno_Persona());
+            ps.setString(4, tra.getPerTrabajador().getFechaNacimiento_Persona());
+            ps.setString(5, tra.getPerTrabajador().getSexo_Persona());
+            ps.setString(6, tra.getPerTrabajador().getTelefono_Persona());
+            ps.setString(7, tra.getPerTrabajador().getCorreo_Persona());
+            ps.setInt(8, tra.getPerTrabajador().getDireccionPersona().getid_Direccion());
+            ps.setInt(9, tra.getPerTrabajador().getId_Primary());
+            ps.executeUpdate();
+//            esperarXsegundos();
+
+//            ps = con.prepareStatement("select last_insert_id() as ultimaPerson");
+//            rs = ps.executeQuery();
+//            if (rs != null && rs.next()) {
+//                tra.getPerTrabajador().setId_Primary(Integer.parseInt(rs.getString("ultimaPerson")));
+//            }
+
+            ps = con.prepareStatement(sqlUpdateWorker);
+           
+            ps.setString(1, tra.getEspecialidad_Trabajador());
+            ps.setInt(2, tra.getDiasTrabajoSemanaTrabajador());
+            ps.setInt(3, tra.getHorasPorDiaTrabajadas());
+            ps.setDouble(4, tra.getPrecioPorDiaTrabajado());
+             ps.setInt(5, tra.getId_Trabajador());
+            ps.executeUpdate();
+//            esperarXsegundos();
+
+            return true;
+        } catch (SQLException ex) {
+             System.out.println("Err Update Workers cerradas " + ex.getMessage());
+            Logger.getLogger(ControllerTrabajador.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            try {
+                con.close();
+                ps.close();
+                
+            } catch (SQLException ex) {
+                
+                System.out.println("Err conexiones cerradas " + ex.getMessage());
+                Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
     }
 
     @Override
