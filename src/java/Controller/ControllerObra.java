@@ -33,7 +33,87 @@ public class ControllerObra implements ObraDAO
 
     @Override
     public ArrayList<Obra> showDataCliente(String f) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+                ArrayList<Obra>saveObra = new ArrayList<>();
+        try {
+            conDB = new ConectaDB();
+            con = conDB.conexionDB();
+            
+                            String sqlShowObra = "SELECT o.id_Obra, \n"
+                                    + "pc.nombre_Persona,pc.apellidoPeterno_Persona,\n"
+                                    + "pt.nombre_Persona,pt.apellidoPeterno_Persona,\n"
+                                    + "pu.nombre_Persona,pu.apellidoPeterno_Persona\n"
+                                    + "FROM Obra o\n"
+                                    + "INNER JOIN Cliente c \n"
+                                    + "ON o.id_ClienteObraFK = c.id_Cliente \n"
+                                    + "INNER JOIN Persona pc\n"
+                                    + "ON pc.id_Persona  = c.id_PersonaClienteFK\n"
+                                    + "INNER JOIN Trabajador t \n"
+                                    + "ON t.id_Trabajador = o.id_TrabajadorObraFK\n"
+                                    + "INNER JOIN Persona pt\n"
+                                    + "ON pt.id_Persona = t.id_PersonaTabajador\n"
+                                    + "INNER JOIN Usuario u \n"
+                                    + "ON u.id_Usuario = o.id_UsuarioObra \n"
+                                    + "INNER JOIN Persona pu\n"
+                                    + "ON u.id_PersonaFK = pu.id_Persona";
+
+                            String sqlShowOneObra = "SELECT o.id_Obra, \n"
+                                    + "pc.nombre_Persona,pc.apellidoPeterno_Persona,\n"
+                                    + "pt.nombre_Persona,pt.apellidoPeterno_Persona,\n"
+                                    + "pu.nombre_Persona,pu.apellidoPeterno_Persona\n"
+                                    + "FROM Obra o\n"
+                                    + "INNER JOIN Cliente c \n"
+                                    + "ON o.id_ClienteObraFK = c.id_Cliente \n"
+                                    + "INNER JOIN Persona pc\n"
+                                    + "ON pc.id_Persona  = c.id_PersonaClienteFK\n"
+                                    + "INNER JOIN Trabajador t \n"
+                                    + "ON t.id_Trabajador = o.id_TrabajadorObraFK\n"
+                                    + "INNER JOIN Persona pt\n"
+                                    + "ON pt.id_Persona = t.id_PersonaTabajador\n"
+                                    + "INNER JOIN Usuario u \n"
+                                    + "ON u.id_Usuario = o.id_UsuarioObra \n"
+                                    + "INNER JOIN Persona pu\n"
+                                    + "ON u.id_PersonaFK = pu.id_Persona WHERE pc.nombre_Persona LIKE ?";
+            if(f.equals(""))
+            {
+                ps = con.prepareStatement(sqlShowObra);
+            }else
+            {
+                ps = con.prepareStatement(sqlShowOneObra);
+                ps.setString(1, "%"+f+"%");
+            }
+            rs = ps.executeQuery();
+            while(rs != null && rs.next())
+            {
+                Obra obr = new Obra();
+                obr.setId_Obra(rs.getInt("id_Obra"));
+                obr.getClienteObra().getPersonaCliente().setNombre_Persona(rs.getString("nombre_Persona"));
+                obr.getClienteObra().getPersonaCliente().setPaterno_Persona(rs.getString("apellidoPeterno_Persona"));
+                
+                obr.getTrabObra().getPerTrabajador().setNombre_Persona(rs.getString("nombre_Persona"));
+                obr.getTrabObra().getPerTrabajador().setPaterno_Persona(rs.getString("apellidoPeterno_Persona"));
+                
+                obr.getUsrObra().getPersonaUsuario().setNombre_Persona(rs.getString("nombre_Persona"));
+                obr.getUsrObra().getPersonaUsuario().setPaterno_Persona(rs.getString("apellidoPeterno_Persona"));
+                saveObra.add(obr);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Cual error " + ex.getMessage());
+            Logger.getLogger(ControllerPresupuesto.class.getName()).log(Level.SEVERE, null, ex);
+        }finally
+        {
+            try {
+                con.close();
+                ps.close();
+                ps.close();
+            } catch (SQLException ex) {
+                System.out.println("cerrar conexion Obra " + ex.getMessage());
+                Logger.getLogger(ControllerObra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        return saveObra;
     }
 
     @Override

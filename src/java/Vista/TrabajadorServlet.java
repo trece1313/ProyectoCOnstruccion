@@ -170,10 +170,6 @@ Trabajador traAtt = null;
                     }
                     
                 
-            }else
-            {
-                
-                System.out.println("Es valido "+ request.getParameter("action"));
             }
         }
         

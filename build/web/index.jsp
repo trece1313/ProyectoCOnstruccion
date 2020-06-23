@@ -61,8 +61,22 @@ if(session.getAttribute("us") == null)
 
     <script>
 
-        
+        $(function(){
+           ajaxPresupuesto();
+        });
+function ajaxPresupuesto()
+{
+    
+                 $.ajax({
+                    type: 'post',
+                    url: 'PresupuestoData',
+                    data: {"action":"searchBudget"},
 
+                    success: function (res) {
+
+                    }
+                });
+}
 function hidiDivServices(){
     //Function by hide the div Target Services
     document.getElementById('idtableClientObra').style.display = 'none';

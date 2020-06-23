@@ -41,10 +41,11 @@ if(session.getAttribute("us") != null){
      $('.showAllWorker').click(function(){
              ajaxTrabajador();
          goOpenView('./View/Trabajador.jsp #idtableClientObra');
-    
-         
      });
-     
+    $('.goBudget').click(function(){
+           
+         goOpenView('./View/Presupuesto.jsp');
+     });
      
     // $().click();
     // $().click();
@@ -147,17 +148,19 @@ if(session.getAttribute("us") != null){
                 </div>
             </li>
                 <% }  %>
-                
+<% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(13)) {  %>                       
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Proveedores
+                        Presupuesto
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">add</a>
+                        <a class="dropdown-item goBudget" href="#">add</a>
                         <a class="dropdown-item" href="#">Show</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
+<% }  %>                
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Proveedores
