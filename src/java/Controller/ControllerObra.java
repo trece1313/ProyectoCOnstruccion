@@ -87,14 +87,14 @@ public class ControllerObra implements ObraDAO
             {
                 Obra obr = new Obra();
                 obr.setId_Obra(rs.getInt("id_Obra"));
-                obr.getClienteObra().getPersonaCliente().setNombre_Persona(rs.getString("nombre_Persona"));
-                obr.getClienteObra().getPersonaCliente().setPaterno_Persona(rs.getString("apellidoPeterno_Persona"));
+                obr.getClienteObra().getPersonaCliente().setNombre_Persona(rs.getString(2));
+                obr.getClienteObra().getPersonaCliente().setPaterno_Persona(rs.getString(3));
                 
-                obr.getTrabObra().getPerTrabajador().setNombre_Persona(rs.getString("nombre_Persona"));
-                obr.getTrabObra().getPerTrabajador().setPaterno_Persona(rs.getString("apellidoPeterno_Persona"));
+                obr.getTrabObra().getPerTrabajador().setNombre_Persona(rs.getString(4));
+                obr.getTrabObra().getPerTrabajador().setPaterno_Persona(rs.getString(5));
                 
-                obr.getUsrObra().getPersonaUsuario().setNombre_Persona(rs.getString("nombre_Persona"));
-                obr.getUsrObra().getPersonaUsuario().setPaterno_Persona(rs.getString("apellidoPeterno_Persona"));
+                obr.getUsrObra().getPersonaUsuario().setNombre_Persona(rs.getString(6));
+                obr.getUsrObra().getPersonaUsuario().setPaterno_Persona(rs.getString(7));
                 saveObra.add(obr);
             }
             

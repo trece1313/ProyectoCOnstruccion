@@ -62,6 +62,7 @@ if(session.getAttribute("us") == null)
     <script>
 
         $(function(){
+            
            ajaxPresupuesto();
         });
 function ajaxPresupuesto()

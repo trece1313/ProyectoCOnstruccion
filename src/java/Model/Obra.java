@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author trece
@@ -20,7 +22,7 @@ public class Obra
     private String fechaCotizacionObra;
     Estatus estatObra;
     Trabajador trabObra;
-    DetalleServicioPresupuesto detSerPreObra;
+   ArrayList<DetalleServicioPresupuesto> detSerPreObra;
     Usuario usrObra;
     Cliente clienteObra;
 
@@ -35,10 +37,18 @@ public class Obra
         this.fechaCotizacionObra = "";
         this.estatObra = new Estatus();
         this.trabObra = new Trabajador();
-        this.detSerPreObra = new DetalleServicioPresupuesto();
+        this.detSerPreObra = new ArrayList<>();
         usrObra = new Usuario();
         clienteObra = new Cliente();
         
+    }
+
+    public ArrayList<DetalleServicioPresupuesto> getDetSerPreObra() {
+        return detSerPreObra;
+    }
+
+    public void setDetSerPreObra(ArrayList<DetalleServicioPresupuesto> detSerPreObra) {
+        this.detSerPreObra = detSerPreObra;
     }
 
     public String getFechaCotizacionObra() {
@@ -131,13 +141,6 @@ public class Obra
         this.trabObra = trabObra;
     }
 
-    public DetalleServicioPresupuesto getDetSerPreObra() {
-        return detSerPreObra;
-    }
-
-    public void setDetSerPreObra(DetalleServicioPresupuesto detSerPreObra) {
-        this.detSerPreObra = detSerPreObra;
-    }
     
     
     
