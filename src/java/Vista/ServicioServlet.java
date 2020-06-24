@@ -11,6 +11,7 @@ import Model.Usuario;
 import ModelDAO.CRUD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -77,41 +78,55 @@ Servicio servicioAtt = null;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- if(request.getSession().getAttribute("us") != null && 
-((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(10))
-{
-        if(request.getParameter("action") != null && !request.getParameter("action").equals("") )
-    {
-            CrudMethod = new ControllerServicio();
-        
-        if(request.getParameter("action").equals("addService"))
+        if (request.getSession().getAttribute("us") != null
+                && ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(10)) 
         {
-            servicioAtt = new Servicio();
-            servicioAtt.setNombre_Servicio(request.getParameter("nameService"));
-            servicioAtt.setDescipcion_Servicio(request.getParameter("DescriptionService"));
-            servicioAtt.setPrecioPorMetro(Double.parseDouble(request.getParameter("PrecioService")));
-            if(CrudMethod.add(servicioAtt))
+            if (request.getParameter("action") != null && !request.getParameter("action").equals("")) 
             {
-                request.getSession().setAttribute("MensajeServicio", "El servicio se agrego corectamente");
+                CrudMethod = new ControllerServicio();
+
+                if (request.getParameter("action").equals("addService")) 
+                {
+                    servicioAtt = new Servicio();
+                    servicioAtt.setNombre_Servicio(request.getParameter("nameService"));
+                    servicioAtt.setDescipcion_Servicio(request.getParameter("DescriptionService"));
+                    servicioAtt.setPrecioPorMetro(Double.parseDouble(request.getParameter("PrecioService")));
+                    if (CrudMethod.add(servicioAtt)) 
+                    {
+                        request.getSession().setAttribute("MensajeServicio", "El servicio se agrego corectamente");
+                    }
+                }
+                if (request.getParameter("action").equals("updateService")) 
+                {
+
+                    Servicio serUpdate = (Servicio) request.getSession().getAttribute("UpdateService");
+
+                    serUpdate.setNombre_Servicio(request.getParameter("nameService"));
+                    serUpdate.setDescipcion_Servicio(request.getParameter("DescriptionService"));
+                    serUpdate.setPrecioPorMetro(Double.parseDouble(request.getParameter("PrecioService")));
+                    if (CrudMethod.update(serUpdate)) {
+
+                        request.getSession().setAttribute("MensajeServicioUpdate", "El servicio se Actualizo corectamente");
+                    }
+                }
+                if (request.getParameter("action").equals("cargarServicios") && request.getParameter("filter") == null) 
+                {
+                    
+                    ArrayList listaTodosServicios = CrudMethod.showDataCliente("");
+                    request.getSession().setAttribute("listaTodosServicios", listaTodosServicios);
+                }
+                if (request.getParameter("action").equals("cargarUnServicio") && request.getParameter("BuscarUnServicio") != null) 
+                {
+                    System.out.println("Paso por aqui "+ request.getParameter("BuscarUnServicio"));
+                    ArrayList listaTodosServicios = CrudMethod.showDataCliente(request.getParameter("BuscarUnServicio"));
+                    
+                    request.getSession().setAttribute("listaTodosServicios", listaTodosServicios);
+                    
+
+                    
+                }
             }
         }
-                if(request.getParameter("action").equals("updateService"))
-        {
-            
-            Servicio serUpdate = (Servicio)request.getSession().getAttribute("UpdateService");
-            
-            
-            serUpdate.setNombre_Servicio(request.getParameter("nameService"));
-            serUpdate.setDescipcion_Servicio(request.getParameter("DescriptionService"));
-            serUpdate.setPrecioPorMetro(Double.parseDouble(request.getParameter("PrecioService")));
-            if(CrudMethod.update(serUpdate))
-            {
-                
-                request.getSession().setAttribute("MensajeServicioUpdate", "El servicio se Actualizo corectamente");
-            }
-        }
-    }
-}
    
     }
 

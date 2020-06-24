@@ -12,7 +12,7 @@ if(session.getAttribute("us") != null){
 <script>
  
  $(function(){
-       ajaxTrabajador();
+//       ajaxTrabajador();
      $('.goUser').click(function(){
 
         $('#contPrincipal').load('View/Usuario.jsp');
@@ -30,17 +30,18 @@ if(session.getAttribute("us") != null){
          goOpenView('./View/Servicio.jsp');
      });
     
-     $('.goShowAll').click(function(){
-         goOpenView('./View/Servicio.jsp #idtableClientObra');
+     $('.mostrarTodosServicios').click(function(){
+         
+         goOpenView('./View/Servicio/Servicio.jsp');
      });
      
-     $('.goWorker').click(function(){
+     $('.agregarTrabajador').click(function(){
            
-         goOpenView('./View/Trabajador.jsp');
+         goOpenView('./View/Trabajador/AgregarTrabajador.jsp');
      });
-     $('.showAllWorker').click(function(){
-             ajaxTrabajador();
-         goOpenView('./View/Trabajador.jsp #idtableClientObra');
+     $('.MostrarTrabajadores').click(function(){
+             
+         goOpenView('./View/Trabajador/Trabajador.jsp');
      });
     $('.goBudget').click(function(){
            
@@ -142,8 +143,8 @@ if(session.getAttribute("us") != null){
                     Trabajador
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item goWorker" href="#">add</a>
-                    <a class="dropdown-item showAllWorker" href="#">Show</a>
+                    <a class="dropdown-item agregarTrabajador" href="#">add</a>
+                    <a class="dropdown-item MostrarTrabajadores" href="#">Show</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
@@ -199,11 +200,11 @@ if(session.getAttribute("us") != null){
              <% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(10)) {  %> 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Service
+                    Servicios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item goService" href="#">add</a>
-                    <a class="dropdown-item goShowAll" href="#">show Service</a>
+                    <a class="dropdown-item mostrarTodosServicios" href="#">Mostrar Servicios</a>
 
                 </div>
             </li>

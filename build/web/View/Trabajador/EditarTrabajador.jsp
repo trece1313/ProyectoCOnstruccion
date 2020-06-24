@@ -2,8 +2,8 @@
     Document   : EditarTrabajador
     Created on : Jun 21, 2020, 11:44:55 PM
     Author     : trece
---%>
 
+--%>
 <%@page import="Model.Trabajador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Usuario"%>
@@ -16,9 +16,11 @@ if(request.getSession().getAttribute("us") == null){
 if(request.getSession().getAttribute("us") != null && 
 ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(12))
 { 
-        int indice = Integer.parseInt(request.getParameter("idWorkerUpdate"));
-        Trabajador traEdit = ((ArrayList<Trabajador>) session.getAttribute("ListWorkers")).get(indice);
-        session.setAttribute("UpdateWorker", traEdit);
+        int indice = Integer.parseInt(request.getParameter("indiceEditarTrabajador"));
+        
+        Trabajador traEdit = ((ArrayList<Trabajador>) session.getAttribute("listaTodosTrabajadores")).get(indice);
+        
+        session.setAttribute("actualizarTrabajador", traEdit);
 
 %>
 
@@ -80,44 +82,44 @@ if(request.getSession().getAttribute("us") != null &&
             <div class="card-body">
                 <h5 class="card-title">Agregando Trabajador</h5>
 
-                <form id="formUpdateWorker">
-                    <input type="hidden" name="action" value="updateTrabajador">
+                <form id="formActualizarTrabajador">
+                    <input type="hidden" name="action" value="actualizarTrabajador">
 
                     <fieldset>
                         <legend>Datos Personales</legend>
                         <div class="contPersona" id="containerPerson">
 
 
-                            <%-- ___________________________________________________________________________________________________ --%>        
-                            <div class="row"> <%-- Start row Person --%>
+                             
+                            <div class="row"> 
 
-                                <div class="col-sm-4"> <%-- Start col Person --%>
-                                    <div class="form-group"> <%-- Start group Person --%>
+                                <div class="col-sm-4"> 
+                                    <div class="form-group"> 
                                         <input type="text" required="" value="<%=(traEdit.getPerTrabajador().getNombre_Persona())%>" minlength="5" class="form-control col-sm-12 BoxText" id="nombre" name="Nombre" placeholder="Ingrese su Nombre" />
-                                    </div> <%-- end group Person --%>
-                                </div> <%-- end col Person --%>
+                                    </div> 
+                                </div> 
 
-                                <div class="col-sm-4"> <%-- Start col Person --%>
-                                    <div class="form-group"> <%-- Start group Person --%>
+                                <div class="col-sm-4"> 
+                                    <div class="form-group"> 
                                         <input type="text" required="" value="<%=(traEdit.getPerTrabajador().getPaterno_Persona())%>" minlength="5" class="form-control col-sm-12 BoxText" id="paterno" name="Paterno" placeholder="Ingrese su Paterno"/>
-                                    </div> <%-- end group Person --%>
-                                </div> <%-- end col Person --%>
+                                    </div>
+                                </div> 
 
-                                <div class="col-sm-4"> <%-- Start col Person --%>
-                                    <div class="form-group"> <%-- Start group Person --%>
+                                <div class="col-sm-4"> 
+                                    <div class="form-group"> 
                                         <input type="text" required="" value="<%=(traEdit.getPerTrabajador().getMaterno_Persona())%>" minlength="5" class="form-control col-sm-12 BoxText" id="materno" name="Materno" placeholder="Ingrese su Materno"/>
-                                    </div> <%-- end group Person --%>
-                                </div> <%-- end col Person --%>
+                                    </div> 
+                                </div> 
 
-                            </div> <%-- end row Person --%>
-                            <%-- ___________________________________________________________________________________________________ --%>
+                            </div> 
+                           
 
-                            <%-- ___________________________________________________________________________________________________ --%>
+                            
 
-                            <div class="row"> <%-- Start row Person --%>
+                            <div class="row"> 
 
-                                <div class="col-4"> <%-- Start col Person --%>
-                                    <div class="form-group"> <%-- Start group Person --%>
+                                <div class="col-4"> 
+                                    <div class="form-group"> 
                                         <select type="text" class="form-control col-sm-12 BoxText" required="" id="sexo" name="Sexo">
                                             <option value="sex">Seleccione Sexo</option>
                                             <%
@@ -130,58 +132,58 @@ if(request.getSession().getAttribute("us") != null &&
                                             %>
 
                                         </select>
-                                    </div> <%-- end group Person --%>
-                                </div> <%-- end col Person --%>
+                                    </div> 
+                                </div> 
 
-                                <div class="col-4"> <%-- Start col Person --%>
-                                    <div class="form-group"> <%-- Start group Person --%>
+                                <div class="col-4"> 
+                                    <div class="form-group"> 
                                         <input type="text" minlength="10" value="<%=(traEdit.getPerTrabajador().getTelefono_Persona())%>" maxlength="10" class="form-control col-sm-12 BoxText" id="telefono" name="Telefono" placeholder="Ingrese su telefono"/>
-                                    </div> <%-- end group Person --%>
-                                </div> <%-- end col Person --%>
+                                    </div> 
+                                </div> 
 
-                                <div class="col-4"> <%-- Start col Person --%>
-                                    <div class="form-group"> <%-- Start group Person --%>
+                                <div class="col-4"> 
+                                    <div class="form-group"> 
                                         <input type="date" value="<%=(traEdit.getPerTrabajador().getFechaNacimiento_Persona())%>" required="" class="form-control col-sm-12 BoxText" id="fechaNacimiento" name="FechaNacimiento"/>
-                                    </div> <%-- end group Person --%>
-                                </div> <%-- end col Person --%>
+                                    </div> 
+                                </div> 
 
-                            </div> <%-- end row Person --%>
-                            <%-- ___________________________________________________________________________________________________ --%>
+                            </div> 
+                            
 
-                            <%-- ___________________________________________________________________________________________________ --%>
-                            <div class="row"> <%-- Start row Person --%>
+                          
+                            <div class="row"> 
 
-                                <div class="col-4"> <%-- Start col Person --%>
-                                    <div class="form-group"> <%-- Start group Person --%>
+                                <div class="col-4"> 
+                                    <div class="form-group"> 
                                         <input type="email" minlength="10" value="<%=(traEdit.getPerTrabajador().getCorreo_Persona() == null ? "" : traEdit.getPerTrabajador().getCorreo_Persona())%>" class="form-control col-sm-12 BoxText" id="correo" name="Correo" placeholder="Ingrese su Correo Electronico"/>
-                                    </div> <%-- end group Person --%>
-                                </div> <%-- end col Person --%>
+                                    </div> 
+                                </div> 
 
     
 
-                            </div> <%-- end row Person --%>
-                            <%-- ___________________________________________________________________________________________________ --%>        
+                            </div> 
+                            
 
                         </div>
                     </fieldset>
 
-                    <%-- -------------------------------------------------------------------------------------------------------------- --%>
+                    
 
                     <fieldset>
                         <legend>Direccion del Trabajador</legend>
-                        <div class="row"> <%-- Start row Direction --%>
+                        <div class="row"> 
 
-                            <div class="col-sm-4"> <%-- Start col Direction --%>
-                                <div class="form-group"> <%-- Start group Direction --%>
+                            <div class="col-sm-4"> 
+                                <div class="form-group"> 
                                     <select class="form-control col-md-12 mx-auto BoxText" id="pais" name="Pais" >
                                         <option value="default">Seleccione Pais</option>
                                         <option value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getPais_Direccion())%>" selected>Mexico</option>
                                     </select>
-                                </div> <%-- end group Direction --%>
-                            </div> <%-- end col Direction --%>
+                                </div> 
+                            </div> 
 
-                            <div class="col-sm-4"> <%-- Start col Direction --%>
-                                <div class="form-group"> <%-- Start group Direction --%>
+                            <div class="col-sm-4"> 
+                                <div class="form-group"> 
                                     <select class="form-control col-md-12 BoxText" id="estado" name="Estado">
                                         <option value="estado">Seleccione Estado</option>
                                         <%                                        
@@ -198,65 +200,65 @@ if(request.getSession().getAttribute("us") != null &&
                                             }
                                         %>
                                     </select>
-                                </div> <%-- end group Direction --%>
-                            </div> <%-- end col Direction --%>
+                                </div> 
+                            </div> 
 
-                            <div class="col-sm-4"> <%-- Start col Direction --%>
-                                <div class="form-group"> <%-- Start group Direction --%>
+                            <div class="col-sm-4"> 
+                                <div class="form-group"> 
                                     <input type="text" required="" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getMunicipio_Direccion())%>" class="form-control col-sm-12 BoxText" id="municipio" name="Municipio" placeholder="Ingrese su Municipio"/>
-                                </div> <%-- end group Direction --%>
-                            </div> <%-- end col Direction --%>
+                                </div> 
+                            </div> 
 
-                        </div> <%-- end row Direction --%>
-                        <%-- ___________________________________________________________________________________________________ --%>
+                        </div> 
+                        
 
-                        <%-- ___________________________________________________________________________________________________ --%>
+                        
 
-                        <div class="row"> <%-- Start row Direction --%>
+                        <div class="row"> 
 
-                            <div class="col-4"> <%-- Start col Direction --%>
-                                <div class="form-group"> <%-- Start group Direction --%>
+                            <div class="col-4"> 
+                                <div class="form-group"> 
                                     <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getCalle_Direccion())%>" class="form-control col-sm-12 BoxText" id="calle" name="Calle" placeholder="Ingrese su Calle"/>
-                                </div> <%-- end group Direction --%>
-                            </div> <%-- end col Direction --%>
+                                </div> 
+                            </div> 
 
-                            <div class="col-4"> <%-- Start col Direction --%>
-                                <div class="form-group"> <%-- Start group Direction --%>
+                            <div class="col-4"> 
+                                <div class="form-group">
                                     <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getColonia_Direccion())%>" class="form-control col-sm-12 BoxText" id="colonia" name="Colonia" placeholder="Ingrese su Colonia"/>
-                                </div> <%-- end group Direction --%>
-                            </div> <%-- end col Direction --%>
+                                </div> 
+                            </div> 
 
-                            <div class="col-4"> <%-- Start col Direction --%>
-                                <div class="form-group"> <%-- Start group Direction --%>
+                            <div class="col-4"> 
+                                <div class="form-group"> 
                                     <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getCodigoPostal_Direccion())%>" class="form-control col-sm-12 BoxText" id="postal" name="CodigoPostal" placeholder="Ingrese su Codigo Postal"/>
-                                </div> <%-- end group Direction --%>
-                            </div> <%-- end col Direction --%>
+                                </div> 
+                            </div> 
 
-                        </div> <%-- end row Direction --%>
-                        <%-- ___________________________________________________________________________________________________ --%>
+                        </div> 
+                        
 
-                        <%-- ___________________________________________________________________________________________________ --%>
-                        <div class="row"> <%-- Start row Direction --%>
+                        
+                        <div class="row"> 
 
-                            <div class="col-4"> <%-- Start col Direction --%>
-                                <div class="form-group"> <%-- Start group Direction --%>
+                            <div class="col-4"> 
+                                <div class="form-group"> 
                                     <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getNumeroExterior_Direccion())%>" class="form-control col-sm-12 BoxText" id="exterior" name="NumeroExterior" placeholder="Ingrese su Numero Exterior"/>
-                                </div> <%-- end group Direction --%>
-                            </div> <%-- end col Direction --%>
+                                </div> 
+                            </div>
 
-                            <div class="col-4"> <%-- Start col Direction --%>
-                                <div class="form-group"> <%-- Start group Direction --%>
+                            <div class="col-4"> 
+                                <div class="form-group"> 
                                     <input type="text" value="<%=(traEdit.getPerTrabajador().getDireccionPersona().getNumeroInterior_Direccion())%>" class="form-control col-sm-12 BoxText" id="interior" name="NumeroInterior" placeholder="Ingrese su Numero Interior"/>
-                                </div> <%-- end group Direction --%>
-                            </div> <%-- end col Direction --%>
+                                </div> 
+                            </div> 
 
 
-                        </div> <%-- end row Direction --%>
-                        <%-- ___________________________________________________________________________________________________ --%>        
+                        </div> 
+                       
                     </fieldset>
 
                     <%-- --------------------------------------------------------------------------------------------------------------- --%>
-
+    
                     <fieldset>
                         <legend>Trabajador</legend>
                         <div class="row">
@@ -297,7 +299,7 @@ if(request.getSession().getAttribute("us") != null &&
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="">Update Worker</button>
+                                <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="">Editar Trabajador</button>
                             </div>
                         </div>
                     </div>
@@ -309,8 +311,7 @@ if(request.getSession().getAttribute("us") != null &&
         </div>
 
     </div>
-                    
-                                             <div class="mensajeUsuario" id="addMensaje">
+                                                    <div class="mensajeUsuario" id="addMensaje">
 
                                             <div>
 
@@ -320,31 +321,28 @@ if(request.getSession().getAttribute("us") != null &&
                                                 %>
                                                 <h3><%= session.getAttribute("MensajeTrabajadorUps").toString()%> </h3>
                                                 <%
+                                                    
                                                     session.removeAttribute("MensajeTrabajadorUps");
-                                                } else if(session.getAttribute("MensajeTrabajadorUps") == null){
+                                                } 
                                                 %> 
-                                                <h3><%= session.getAttribute("MensajeTrabajadorUps").toString()%> </h3>
-                                                <%
-                                                    }
-                                                %>
+                                               
                                                 <button class="btn btn-info btnCloseMesage" > cerrar</button>
                                             </div>
                                         </div>
+         
     
     
 <%
     }
 %>
-    <script src="./Javascript/jquery.validate.js" type="text/javascript"></script>
-<script src="./Javascript/jQueryValidator.js" type="text/javascript"></script>
-<script src="./Javascript/Trabajador13.js" type="text/javascript"></script>
 
-<script>
-    
-    
-    $(function(){
-       
-        
-    });
-    
-</script>
+
+
+
+
+
+<script src="./Javascript/Trabajador/ValidarEditarTrabajador.js" type="text/javascript"></script>
+<!--<script src="./Javascript/Trabajador13.js" type="text/javascript"></script>-->
+
+
+

@@ -2,7 +2,7 @@
     Document   : ObraEncontradaDetalle
     Created on : Jun 23, 2020, 10:26:46 AM
     Author     : trece
---%>
+
 
 <%@page import="Model.Obra"%>
 <%@page import="java.util.ArrayList"%>

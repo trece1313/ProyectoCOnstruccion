@@ -56,14 +56,17 @@ if(session.getAttribute("us") == null)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-    <script src="Javascript/jquery.validate.js" type="text/javascript"></script>
+
+    
     <script src="Javascript/Menu.js" type="text/javascript"></script>
+    <script src="./Javascript/jquery.validate.js" type="text/javascript"></script>
+    <script src="./Javascript/jQueryValidator.js" type="text/javascript"></script>
 
     <script>
 
         $(function(){
             
-           ajaxPresupuesto();
+//           ajaxPresupuesto();
         });
 function ajaxPresupuesto()
 {
@@ -78,10 +81,10 @@ function ajaxPresupuesto()
                     }
                 });
 }
-function hidiDivServices(){
-    //Function by hide the div Target Services
-    document.getElementById('idtableClientObra').style.display = 'none';
-}
+//function hidiDivServices(){
+//    //Function by hide the div Target Services
+//    document.getElementById('idtableClientObra').style.display = 'none';
+//}
 function sendUpdateService(e)
 {   
                     $.ajax({

@@ -120,25 +120,25 @@ Trabajador traAtt = null;
                     }
                     
                 }
-                    if(request.getParameter("action").equals("loadWorker") && request.getParameter("filtro") == null) 
+                    if(request.getParameter("action").equals("cargarTrabajadores") && request.getParameter("filtro") == null) 
                     {
                         
-                    ArrayList listaWorked = CrudMethod.showDataCliente("");
-                    request.getSession().setAttribute("ListWorkers", listaWorked);
+                    ArrayList listaTrabajadores = CrudMethod.showDataCliente("");
+                    request.getSession().setAttribute("listaTodosTrabajadores", listaTrabajadores);
                     
                     }
-                    if(request.getParameter("action").equals("showOneWorker") && request.getParameter("filter") != null) 
+                    if(request.getParameter("action").equals("cargarUnTrabajadores") && request.getParameter("BuscarTrabajador") != null) 
                     {
                         
-                    ArrayList listaWorked = CrudMethod.showDataCliente(request.getParameter("filter"));
-                    request.getSession().setAttribute("ListWorkers", listaWorked);
+                    ArrayList listaTrabajador = CrudMethod.showDataCliente(request.getParameter("BuscarTrabajador"));
+                    request.getSession().setAttribute("listaTodosTrabajadores", listaTrabajador);
                     
                     }
-                    if(request.getParameter("action").equals("updateTrabajador")) 
+                    if(request.getParameter("action").equals("actualizarTrabajador")) 
                     {
                         
                      traAtt = new Trabajador();
-                     Trabajador workerUpdate = (Trabajador)request.getSession().getAttribute("UpdateWorker");
+                     Trabajador workerUpdate = (Trabajador)request.getSession().getAttribute("actualizarTrabajador");
                      
                 workerUpdate.getPerTrabajador().setNombre_Persona(request.getParameter("Nombre"));
                 workerUpdate.getPerTrabajador().setPaterno_Persona(request.getParameter("Paterno"));
@@ -165,6 +165,7 @@ Trabajador traAtt = null;
                     if(CrudMethod.update(workerUpdate))
                     { 
                         request.getSession().setAttribute("MensajeTrabajadorUps", "El Trabajador se actualizo corectamente");
+                        
                     }
                     
                     }

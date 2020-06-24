@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Servicio
-    Created on : Jun 20, 2020, 10:28:39 AM
+    Document   : AgregarServicio
+    Created on : Jun 24, 2020, 12:38:36 AM
     Author     : trece
 --%>
 
@@ -9,6 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%    
 if(request.getSession().getAttribute("us") != null && 
 ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(10))
@@ -18,18 +19,7 @@ if(request.getSession().getAttribute("us") != null &&
 ArrayList<Servicio>recService = new ControllerServicio().showAll();
 session.setAttribute("ListUpdateServ", recService);
 %>
-
-<style>
-    
-    #idtableClientObra{
-        display: none;
-    }
-</style>
-
-<link href="./Estilos/cssServic.css" rel="stylesheet" type="text/css"/>
-<div class="services">
-
-     <div class="loaders" id="loadImg"></div>
+   <div class="loaders" id="loadImg"></div>
      <div class="">
 
         <div class="card mx-auto" style="width: 50rem;">
@@ -102,66 +92,7 @@ session.setAttribute("ListUpdateServ", recService);
                         </div>
                     </div>
                         
-                        <div class="tableClientObra" id="idtableClientObra">
-                            <div class="divTableClienteObraContenido" id="idTableClienteObraContenido">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                        <label for="searchCard">Search of Service
-                                            <input type="text" class="form-control" name="SearchCard" id="searchCard" placeholder="Search of Service"/>
-                                        </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                        <label for="searchCard">
-                                            <a href="#" id="cerrarS" class="btn btn-warning" onclick="hidiDivServices();">Cerrar</a>
-                                        </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                
-                                 <div class="row">
-                                        <%
-                                        for (int i = 0; i <recService.size();i++) {
-                                         Servicio servicio=recService.get(i);
-                                          
-                                        %>
-                                      
-                                        <div class="col-4">
-                                            <div class="card text-white bg-dark mb-3" style="display: inline-grid; width: 20rem; ">
-                                                <div class="card-header"><header>Nombre Servicio <%= (servicio.getNombre_Servicio())%></header></div>
-                                                <div class="card-body">
-
-                                                    <p class="card-text">Descripccion <br/><%= (servicio.getDescipcion_Servicio())%></p>
-                                                    <p class="card-text">Precio por metro <%= (servicio.getPrecioPorMetro())%></p>
-                                                    <button href="#" class="btn btn-info btnUpdateService" onclick="sendUpdateService(this);" value="<%=i%>">Edit Service</button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                  
-                                        <%
-                                          }
-                                        %>
-                                              </div>
-                            </div>
-                        </div>
-                                              
-                                              
-                                              
-                                              
-                                              
-                                              
-
-</div>
-
-<script src="Javascript/ServicesValidator.js" type="text/javascript"></script>
-<script src="Javascript/jquery.validate.js" type="text/javascript"></script>
-<script src="Javascript/jQueryValidator.js" type="text/javascript"></script>
-
-<%    }
-%>
-
-
+   
+   <%
+       }
+   %>

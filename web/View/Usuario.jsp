@@ -3,7 +3,7 @@
     Created on : Jun 6, 2020, 3:05:33 PM
     Author     : trece
 --%>
-
+<!--
 <%@page import="ModelDAO.MenuDAO"%>
 <%@page import="ModelDAO.CRUD"%>
 <%@page import="Model.Usuario"%>
@@ -362,8 +362,8 @@ ArrayList<Menu>recMenu = showMenu.showAll() ;
 
         <%
             }
-        %>    
-    <script src="Javascript/addUser.js" type="text/javascript"></script>
+        %>    -->
+<!--    <script src="Javascript/addUser.js" type="text/javascript"></script>
     <script src="Javascript/ValidaterUser.js" type="text/javascript"></script>
     
     <script>
@@ -439,4 +439,4 @@ ArrayList<Menu>recMenu = showMenu.showAll() ;
 
 
 
-
+-->

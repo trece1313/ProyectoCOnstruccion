@@ -49,11 +49,11 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
 
 
                         <% for (int i = 0; i < trabajador.size(); i++) {
-                           Trabajador tra = trabajador.get(i);
+                                Trabajador tra = trabajador.get(i);
                         %>
                         <label class="col-4 col-sm-4">
 
-                            <input class="form-check-input" type="radio" id="idRadioTrabajador" name="radioTrabajador" value="<%= i %>"/>
+                            <input class="form-check-input" type="radio" id="idRadioTrabajador" name="radioTrabajador" value="<%= i%>"/>
 
                             <%=(tra.getPerTrabajador().getNombre_Persona()) + " " + (tra.getPerTrabajador().getPaterno_Persona())%>
                         </label>
@@ -89,10 +89,10 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                                 </div>
                             </div>                    
                         </div>
-                        
+
                     </div>
-                    
-                                   <div class="divClientAlreadyExists" id="idClientAlreadyExists">
+
+                    <div class="divClientAlreadyExists" id="idClientAlreadyExists">
 
                         <div class="row">
                             <input type="hidden" class="form-control  mx-auto col-12"  disabled="" name="idClientObra" id="idClientObr">
@@ -121,7 +121,7 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                                 <div class="form-group mx-auto">
                                     <label for="" class="col-8"></label>
                                     <button type="button" class="form-control col-8 btn btn-warning s" id="btnPrevClienteObrasx">Return to Client</button>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -140,38 +140,38 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
 
                     <%-- ---------------------------------------------------- --%>
                     <div class="row">
-  
+
 
                         <div class="divShowClient col-4" id="idShowClient">
                             <div class="form-group">
-                                <input type="text" class="form-control col-12" value="<%= ((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getNombre_Persona() %>" disabled=""/>
+                                <input type="text" class="form-control col-12" value="<%= ((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getNombre_Persona()%>" disabled=""/>
                             </div>
                         </div>
                         <div class="col-4" id="">
                             <div class="form-group">
-                                <input type="text" class="form-control col-12" value="<%= ((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getPaterno_Persona() + " " +((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getMaterno_Persona() %>" disabled=""/>
+                                <input type="text" class="form-control col-12" value="<%= ((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getPaterno_Persona() + " " + ((Usuario) request.getSession().getAttribute("us")).getPersonaUsuario().getMaterno_Persona()%>" disabled=""/>
                             </div>
                         </div>
 
                     </div>
-                            <div class="row">
-                                
-                                <div class="col-6">
-                                    <div class="form-group mx-auto">
-                                        <label for="" class="col-8"></label>
-                                        <button type="button" class="form-control col-8 btn btn-warning s" id="btnNextDts">Next</button>
+                    <div class="row">
 
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group mx-auto">
-                                        <label for="" class="col-8"></label>
-                                        <button type="button" class="form-control col-8 btn btn-warning s" id="btnPrevDts">Prev</button>
+                        <div class="col-6">
+                            <div class="form-group mx-auto">
+                                <label for="" class="col-8"></label>
+                                <button type="button" class="form-control col-8 btn btn-warning s" id="btnNextDts">Next</button>
 
-                                    </div>
-                                </div>
-                                
                             </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group mx-auto">
+                                <label for="" class="col-8"></label>
+                                <button type="button" class="form-control col-8 btn btn-warning s" id="btnPrevDts">Prev</button>
+
+                            </div>
+                        </div>
+
+                    </div>
 
 
                 </fieldset>
@@ -202,7 +202,7 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                             </div>
                         </div>  
                     </div>
-                    
+
                     <div class="row">
 
                         <div class="col-6">
@@ -239,13 +239,13 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                                 <input type="text" class="form-control textBox col-6" value="0" placeholder="" name="AnticipObra" id="anticipObra" onkeypress="return filterFloat(event,this);" />
                             </div>
                         </div>
-                                <div class="col-3">
-                                    <div class="form-group mx-auto">
-                                        <label for="" class="col-6"></label>
-                                        <button type="submit" class="form-control col-6 btn btn-warning s" id="Finish">Finish</button>
+                        <div class="col-3">
+                            <div class="form-group mx-auto">
+                                <label for="" class="col-6"></label>
+                                <button type="submit" class="form-control col-6 btn btn-warning s" id="Finish">Finish</button>
 
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
                         <div class="col-3">
                             <div class="form-group mx-auto">
                                 <label for="" class="col-6"></label>
@@ -314,11 +314,11 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
                             <div class="form-group"> <%-- Start group Direction --%>
                                 <select class="form-control col-md-12 BoxText" id="estado" name="CityClientObra">
                                     <option value="estado">Seleccione Estado</option>
-                                    <%                                        String municipios[] = {"Ciudad de México", "Aguascalientes", "Baja California", "Baja California Sur",
-                                            "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Durango", "Estado de México",
-                                            "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit",
-                                            "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí",
-                                            "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"};
+                                    <%                                        String municipios[] = {"Ciudad de M�xico", "Aguascalientes", "Baja California", "Baja California Sur",
+                                            "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Durango", "Estado de M�xico",
+                                            "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoac�n", "Morelos", "Nayarit",
+                                            "Nuevo Le�n", "Oaxaca", "Puebla", "Quer�taro", "Quintana Roo", "San Luis Potos�",
+                                            "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucat�n", "Zacatecas"};
 
                                         for (String mun : municipios) {
                                     %>
@@ -524,11 +524,11 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
            
                                     
                                     
+-->
 
-
-<script src="./Javascript/Obra.js" type="text/javascript"></script>
+<!--<script src="./Javascript/Obra.js" type="text/javascript"></script>
 <script src="./Javascript/jQueryValidator.js" type="text/javascript"></script>
-<script src="./Javascript/jquery.validate.js" type="text/javascript"></script>
+<script src="./Javascript/jquery.validate.js" type="text/javascript"></script>-->
 <%
     }
 %>

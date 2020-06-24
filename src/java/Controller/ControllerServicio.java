@@ -28,7 +28,55 @@ public class ControllerServicio implements ServicioDAO{
     
     @Override
     public ArrayList<Servicio> showDataCliente(String f) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Servicio> saveService = new ArrayList<>();
+        try {
+            conDB = new ConectaDB();
+            con = conDB.conexionDB();
+            
+            String swlGuardarServicio = "SELECT id_Servicio,nombre_Servicio,descripcion_Servicio,precioPorMetro_Servicio"
+                    + " FROM Servicio";
+            
+                        String sqlGuardarUnService = "SELECT id_Servicio,nombre_Servicio,descripcion_Servicio,precioPorMetro_Servicio\n" +
+"                     FROM Servicio WHERE nombre_Servicio LIKE ?";
+            
+            if(f.equals(""))
+            {
+                ps = con.prepareStatement(swlGuardarServicio);
+            }else
+            {
+                System.out.println("Llego aqui " +f);
+                 ps = con.prepareStatement(sqlGuardarUnService);
+                 ps.setString(1, "%"+f+"%");
+            }
+
+            rs = ps.executeQuery();
+            while(rs!=null && rs.next())
+            {
+                Servicio serv = new Servicio();
+                serv.setId_Servicio(rs.getInt("id_Servicio"));
+                serv.setNombre_Servicio(rs.getString("nombre_Servicio"));
+                serv.setDescipcion_Servicio(rs.getString("descripcion_Servicio"));
+                serv.setPrecioPorMetro(rs.getDouble("precioPorMetro_Servicio"));
+                saveService.add(serv);
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Error save Service line 56 method showALl ArrayList ControllerService "+ ex.getMessage());
+            
+            Logger.getLogger(ControllerServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }finally
+        {
+            try {
+                con.close();
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                 System.out.println("Error closed connection Service line 65 method showALl ArrayList ControllerService "+ ex.getMessage());
+                Logger.getLogger(ControllerServicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return saveService;
     }
 
     @Override
@@ -38,7 +86,7 @@ public class ControllerServicio implements ServicioDAO{
             conDB = new ConectaDB();
             con = conDB.conexionDB();
             
-            String sqlSaveService = "SELECT id_Servicio,nombre_Servicio,descripcion_Servicio,precioPorMetro_Servicio "
+            String sqlSaveService = "SELECT id_Servicio,nombre_Servicio,descripcion_Servicio,precioPorMetro_Servicio"
                     + " FROM Servicio";
             ps = con.prepareStatement(sqlSaveService);
             rs = ps.executeQuery();

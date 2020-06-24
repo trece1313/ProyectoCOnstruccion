@@ -17,8 +17,6 @@ if(request.getSession().getAttribute("us") != null &&
 ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(12))
 { 
 
-ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != null ? 
-(ArrayList<Trabajador>) session.getAttribute("ListWorkers") : new ArrayList();
 
 
 %>
@@ -43,7 +41,7 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
             <div class="card-body">
                 <h5 class="card-title">Agregando Trabajador</h5>
 
-                <form id="formAddWorker">
+                <form id="formAgregarTrabajador">
                     <input type="hidden" name="action" value="addTrabajador">
 
                     <fieldset>
@@ -259,7 +257,7 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="">Add Worker</button>
+                                <button type="submit" class="btn btn-info form-control col-6" style="margin-left: 25%;" id="">Agregar Trabajador</button>
                             </div>
                         </div>
                     </div>
@@ -281,66 +279,18 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
                                                 %>
                                                 <h3><%= session.getAttribute("MensajeTrabajadorAdd").toString()%> </h3>
                                                 <%
+                                                    
                                                     session.removeAttribute("MensajeTrabajadorAdd");
-                                                } else if(session.getAttribute("MensajeTrabajadorAdd") == null){
+                                                    
+                                                } 
                                                 %> 
-                                                <h3>No se Agrego xD</h3>
-                                                <%
-                                                    }
-                                                %>
+                                             
                                                 <button class="btn btn-info btnCloseMesage" > cerrar</button>
                                             </div>
                                         </div>
                                                 
                                                 
 
-                           <div class="tableClientObra" id="idtableClientObra">
-                               <div class="divTableClienteObraContenido" id="idTableClienteObraContenido">
-                                   <div class="row">
-                                       <div class="col-6">
-                                           <div class="form-group">
-                                               <label for="searchCard">Search of Service
-                                                   <input type="text" class="form-control" name="SearchCard" id="searchCardd" placeholder="Search of Service"/>
-                                               </label>
-                                               <button class="btn btn-info" id="btnSearch" onclick="searchWorkers();">Buscar</button>
-                                           </div>
-                                       </div>
-                                       <div class="col-6">
-                                           <div class="form-group">
-                                               <label for="searchCard">
-                                                   <a href="#" id="cerrarS" class="btn btn-warning" onclick="hidiDivServices();">Cerrar</a>
-                                               </label>
-                                           </div>
-                                       </div>
-                                   </div>
-
-
-                                <div class="row">
-                                    <%
-                                        for (int i = 0; i < listaTrabajador.size(); i++) {
-                                            Trabajador trabajador = listaTrabajador.get(i);
-
-                                    %>
-
-                                    <div class="col-4">
-                                        <div class="card text-white bg-dark mb-3" style="display: inline-grid; width: 20rem; ">
-                                            <div class="card-header"><header>Nombre Trabajador <%= (trabajador.getPerTrabajador().getNombre_Persona())%></header></div>
-                                            <div class="card-body">
-
-                                                <p class="card-text">Especialidad <br/><%= (trabajador.getEspecialidad_Trabajador())%></p>
-                                                <p class="card-text">Pais <%= (trabajador.getPerTrabajador().getDireccionPersona().getPais_Direccion())%></p>
-                                                <button href="#" class="btn btn-info btnUpdateService" onclick="sendUpdateWorker(this);" value="<%=i%>">Edit Worker</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <%
-                                        }
-                                    %>
-                                </div>
-                            </div>
-                        </div>
 
                                            
 
@@ -350,10 +300,12 @@ ArrayList<Trabajador> listaTrabajador = session.getAttribute("ListWorkers") != n
 </div>
 
 
-<script src="Javascript/jquery.validate.js" type="text/javascript"></script>
-<script src="Javascript/jQueryValidator.js" type="text/javascript"></script>
+            <!--<script src="Javascript/jquery.validate.js" type="text/javascript"></script>
+            <script src="Javascript/jQueryValidator.js" type="text/javascript"></script>-->
 
-<script src="./Javascript/Trabajador13.js" type="text/javascript"></script>
+            <!--<script src="./Javascript/Trabajador13.js" type="text/javascript"></script>-->
+            
+            <script src="./Javascript/Trabajador/AgregarTrabajador.js" type="text/javascript"></script>
 
 <%
     }

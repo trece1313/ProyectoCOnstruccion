@@ -2,7 +2,7 @@
     Document   : ServicioEncontradoDetalle
     Created on : Jun 23, 2020, 10:56:25 AM
     Author     : trece
---%>
+
 
 <%@page import="Model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

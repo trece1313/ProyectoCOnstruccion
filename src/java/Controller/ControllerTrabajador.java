@@ -67,8 +67,8 @@ public class ControllerTrabajador implements TrabajadorDAO
 
     @Override
     public ArrayList showDataCliente(String f) {
-                ArrayList<Trabajador>saveWorkers = new ArrayList<>();
-                            String sqlWorkers = "SELECT p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
+                ArrayList<Trabajador>guardarTrabajadores = new ArrayList<>();
+                            String sqlTrabajadores = "SELECT p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
 "p.fechaNacimiento_Persona ,p.sexo_Persona ,p.telefono_Persona ,p.correo_Persona,\n" +
 "d.id_Direccion,d.pais_Direccion ,d.estado_Direccion ,d.municipio_Direccion,d.calle_Direccion ,\n" +
 "d.colonia_Direccion,d.codigoPostal_Direccion ,d.numeroExterior_Direccion ,d.numeroInterior_Direccion ,\n" +
@@ -78,7 +78,7 @@ public class ControllerTrabajador implements TrabajadorDAO
 "INNER JOIN Direccion d\n" +
 "ON d.id_Direccion = p.id_DireccionPersonaFK";
 
-                            String sqlOneWorker = "SELECT p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
+                            String sqlTrabajador = "SELECT p.id_Persona,p.nombre_Persona,p.apellidoPeterno_Persona,p.apellidoMaterno_Persona,\n" +
 "p.fechaNacimiento_Persona ,p.sexo_Persona ,p.telefono_Persona ,p.correo_Persona,\n" +
 "d.id_Direccion,d.pais_Direccion ,d.estado_Direccion ,d.municipio_Direccion,d.calle_Direccion ,\n" +
 "d.colonia_Direccion,d.codigoPostal_Direccion ,d.numeroExterior_Direccion ,d.numeroInterior_Direccion ,\n" +
@@ -86,16 +86,16 @@ public class ControllerTrabajador implements TrabajadorDAO
 "FROM Trabajador t INNER JOIN Persona p\n" +
 "ON p.id_Persona=t.id_PersonaTabajador\n" +
 "INNER JOIN Direccion d\n" +
-"ON d.id_Direccion = p.id_DireccionPersonaFK LIKE ?";
+"ON d.id_Direccion = p.id_DireccionPersonaFK WHERE p.nombre_Persona LIKE ?";
         try {
             conDB = new ConectaDB();
             con = conDB.conexionDB();
             if(f.equals(""))
             {
-                ps=con.prepareStatement(sqlWorkers);
+                ps=con.prepareStatement(sqlTrabajadores);
             }else
             {
-                ps = con.prepareStatement(sqlOneWorker);
+                ps = con.prepareStatement(sqlTrabajador);
                 ps.setString(1, "%"+f+"%");
             }
 
@@ -132,7 +132,7 @@ public class ControllerTrabajador implements TrabajadorDAO
                 
 
                 
-                saveWorkers.add(tra);
+                guardarTrabajadores.add(tra);
             }
             
             
@@ -140,7 +140,7 @@ public class ControllerTrabajador implements TrabajadorDAO
             System.out.println("err 44" + ex.getMessage());
             Logger.getLogger(ControllerTrabajador.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return saveWorkers;    
+    return guardarTrabajadores;    
     
     }
 
