@@ -9,13 +9,21 @@ btnAcceder.addEventListener('click',accederSistema);
 
 
 $(function(){
-    
+     
           $("#user").keypress(function () {
             $("#mensaje").empty();
         });
         $("#pass").keypress(function () {
             $("#mensaje").empty();
         }); 
+        
+        $('#pass').keypress(function(e){         
+           
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if(code==13){    
+         accederSistema();
+     }
+    });
 });
     
 
@@ -34,7 +42,7 @@ function accederSistema(){
         return false;
         
     }
-    else if($('#user').val() != "" && $('#pass').val() != "")
+    else if($('#user').val() != "" && $('#pass').val() != "" )
     {
         console.log('no Entro');
             $.ajax({
