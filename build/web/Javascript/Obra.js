@@ -8,11 +8,11 @@
  var idSelectedOptionClient = document.getElementById('idSelectedOptionClient');  
  
  var divClientExistsObra = document.getElementById('idClientAlreadyExists');      
-  var dividExistClientDB = document.getElementById('idExistClientDB');
+//  var dividExistClientDB = document.getElementById('idExistClientDB');
   
-  var divClient = document.getElementById('divClient');
+//  var divClient = document.getElementById('divClient');
   var divFooterObra = document.getElementById('divFooter');
-  var divObra = document.getElementById('divObra');
+//  var divObra = document.getElementById('divObra');
   var idClientAlreadyExists = document.getElementById('idClientAlreadyExists');
 
   
@@ -69,28 +69,28 @@ $('#idTableClienteObraContenido table').DataTable();
 
     callData();
 
-    
-      $('.addClientObra').click(function(){
-     
-          
-          banderaAddObra = true;
-          $('#btnPrevClienteObrasx').prop('disabled',true);
-          $("#idtableClientObra").css({"display":"none"});
-          hideWindowsClient.style.display = 'block';
-          
-          
-          idClientAlreadyExists.style.display = 'block';
-          
-          
-          
-        $('#idClientObr').val($(this).val());
-        $('#nameClientObra').val($(this).parents("tr").find("td").eq(0).html());
-        $('#lastNameClienteObra').val($(this).parents("tr").find("td").eq(1).html());
-        $('#PaisClienObra').val($(this).parents("tr").find("td").eq(2).html());
-        
-        
-        
-         });
+//    
+//      $('.addClientObra').click(function(){
+//     
+//          
+//          banderaAddObra = true;
+//          $('#btnPrevClienteObrasx').prop('disabled',true);
+//          $("#idtableClientObra").css({"display":"none"});
+//          hideWindowsClient.style.display = 'block';
+//          
+//          
+//          idClientAlreadyExists.style.display = 'block';
+//          
+//          
+//          
+//        $('#idClientObr').val($(this).val());
+//        $('#nameClientObra').val($(this).parents("tr").find("td").eq(0).html());
+//        $('#lastNameClienteObra').val($(this).parents("tr").find("td").eq(1).html());
+//        $('#PaisClienObra').val($(this).parents("tr").find("td").eq(2).html());
+//        
+//        
+//        
+//         });
          
          $('#btnPrevClienteObrasx').click(function(){
              
@@ -115,7 +115,7 @@ $('#idTableClienteObraContenido table').DataTable();
          
 
 
-$('input[type="radio"]').change(function(){
+$('input[type="radio').change(function(){
 
 $(this).is(":checked")?  $('#idExistCliente').show(): $('#idExistCliente').hide();
 
@@ -193,7 +193,7 @@ $('#btnPrevDtsCot').click(function(){
                     success: function(res) {
                         var par = JSON.parse(res);
                         banderaAddObra = false;
-                      console.log(par.id_Cliente);
+                      
                       
          $('#idClientObr').val(par.id_Cliente);
         $('#nameClientObra').val(par.personaCliente.nombre_Persona);
@@ -210,6 +210,7 @@ $('#btnPrevDtsCot').click(function(){
             }
     });
       
+      $('#btnCLosedWindowsClient').hide();
       // ==========================================================================
       // Form add Obra
           $('#formAddObra').validate({

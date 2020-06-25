@@ -22,12 +22,16 @@ if(session.getAttribute("us") != null){
 
      $('.btnShowHideNav').click(navConstruction);
      
-     $('.goObra').click(function(){
-         goOpenView('./View/Obra.jsp');
+     $('.agregarObra').click(function(){
+         
+         goOpenView('./View/Obra/AgregarObra.jsp');
+     });
+     $('.MostrarObras').click(function(){
+         goOpenView('./View/Obra/Obra.jsp');
      });
      
-    $('.goService').click(function(){
-         goOpenView('./View/Servicio.jsp');
+    $('.agregarServicio').click(function(){
+         goOpenView('./View/Servicio/AgregarServicio.jsp');
      });
     
      $('.mostrarTodosServicios').click(function(){
@@ -43,9 +47,9 @@ if(session.getAttribute("us") != null){
              
          goOpenView('./View/Trabajador/Trabajador.jsp');
      });
-    $('.goBudget').click(function(){
+    $('.agregarPresupuesto').click(function(){
            
-         goOpenView('./View/Presupuesto.jsp');
+         goOpenView('./View/Presupuesto/AgregarPresupuesto.jsp');
      });
      
     // $().click();
@@ -115,10 +119,10 @@ if(session.getAttribute("us") != null){
          <% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(1)) {  %> 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Employee
+                    Empleado
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item goEmployee" href="#">add</a>
+                    <a class="dropdown-item goEmployee" href="#">Agregar</a>
                     <a class="dropdown-item" href="#">show Employee</a>
 
                 </div>
@@ -131,7 +135,7 @@ if(session.getAttribute("us") != null){
                     Proveedor
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">add</a>
+                    <a class="dropdown-item" href="#">Agregar</a>
                     <a class="dropdown-item" href="#">Show</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
@@ -143,7 +147,7 @@ if(session.getAttribute("us") != null){
                     Trabajador
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item agregarTrabajador" href="#">add</a>
+                    <a class="dropdown-item agregarTrabajador" href="#">Agregar</a>
                     <a class="dropdown-item MostrarTrabajadores" href="#">Show</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
@@ -155,8 +159,8 @@ if(session.getAttribute("us") != null){
                         Presupuesto
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item goBudget" href="#">add</a>
-                        <a class="dropdown-item" href="#">Show</a>
+                        <a class="dropdown-item agregarPresupuesto" href="#">Agregar</a>
+                        <a class="dropdown-item mostrarPresupuestos" href="#">Mostrar</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
@@ -167,7 +171,7 @@ if(session.getAttribute("us") != null){
                         Proveedores
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">add</a>
+                        <a class="dropdown-item" href="#">Agregar</a>
                         <a class="dropdown-item" href="#">Show</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
@@ -175,10 +179,10 @@ if(session.getAttribute("us") != null){
             <% if (((Usuario) session.getAttribute("us")).getRolUsuario().getPermisos().contains(6)) {  %> 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    User
+                    Usuario
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item goUser" href="#">add</a>
+                    <a class="dropdown-item goUser" href="#">Agregar</a>
                     <a class="dropdown-item" href="#">show Employee</a>
 
                 </div>
@@ -191,8 +195,8 @@ if(session.getAttribute("us") != null){
                     Obra
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item goObra" href="#">add</a>
-                    <a class="dropdown-item" href="#">show Obra</a>
+                    <a class="dropdown-item agregarObra" href="#">Agregar</a>
+                    <a class="dropdown-item MostrarObras" href="#">Mostrar Obra</a>
 
                 </div>
             </li>
@@ -203,7 +207,7 @@ if(session.getAttribute("us") != null){
                     Servicios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item goService" href="#">add</a>
+                    <a class="dropdown-item agregarServicio" href="#">Agregar</a>
                     <a class="dropdown-item mostrarTodosServicios" href="#">Mostrar Servicios</a>
 
                 </div>
@@ -211,7 +215,7 @@ if(session.getAttribute("us") != null){
              <% }  %>
 
             <li class="nav-item dropdown">
-                <a class="btn-success" id="diste" onclick="signOut();" style="padding: 10px 15px; position: relative; top: 10px; left: 25px;">
+                <a class="btn-success" id="diste" onclick="signOut();" style="pAgregaring: 10px 15px; position: relative; top: 10px; left: 25px;">
                     Salir
                 </a>
 

@@ -30,7 +30,7 @@ ArrayList<Servicio> listaServicios = session.getAttribute("listaTodosServicios")
         for (int i = 0; i < listaServicios.size(); i++) {
             Servicio servicio = listaServicios.get(i);
             
-            System.out.println("IMprimio "+servicio.getNombre_Servicio());
+            
 
     %>
 
@@ -41,7 +41,7 @@ ArrayList<Servicio> listaServicios = session.getAttribute("listaTodosServicios")
 
                 <p class="card-text">Descripccion <br/><%= (servicio.getDescipcion_Servicio())%></p>
                 <p class="card-text">Precio por metro <%= (servicio.getPrecioPorMetro())%></p>
-                <button href="#" class="btn btn-info btnUpdateService" value="<%=i%>">Edit Service</button>
+                <button href="#" class="btn btn-info btnEnviarActualizar" value="<%=i%>">Editar Servicio</button>
             </div>
 
         </div>
@@ -54,3 +54,5 @@ ArrayList<Servicio> listaServicios = session.getAttribute("listaTodosServicios")
 <%
     }
 %>
+
+<script src="./Javascript/Servicios/EditarServicio.js" type="text/javascript"></script>

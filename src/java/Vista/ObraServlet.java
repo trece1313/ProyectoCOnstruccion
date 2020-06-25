@@ -84,79 +84,93 @@ Obra attObra = null;
  if(request.getSession().getAttribute("us") != null && 
     ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(9))
  {
+     
      obraAdd = new ControllerObra();
      
      
     if(request.getParameter("action") != null && !request.getParameter("action").equals("") )
     {
         
-        if(request.getParameter("action").equals("addObra"))
+        if(request.getParameter("action").equals("agregarObra"))
         {
-             Trabajador trab = ((ArrayList<Trabajador>)request.getSession().getAttribute("trabajadorAdd")).get(Integer.parseInt(request.getParameter("idTrabajadorObra")));
+            System.out.println("vveamos ahora si " + request.getParameter("idTrabajadorObra"));
+             Trabajador trab = ((ArrayList<Trabajador>)request.getSession().getAttribute("trabajadorAgregado")).get(Integer.parseInt(request.getParameter("idTrabajadorObra")));
             if(Boolean.parseBoolean(request.getParameter("bandObra")))
             {
                   
             
             Model.Cliente cle = ((ArrayList<Model.Cliente>)request.getSession().getAttribute("listClient")).get(Integer.parseInt(request.getParameter("idClienteObra")));
-            System.out.println("vveamos ahora si " + trab.getId_Trabajador());
+            
            
             
             attObra = new Obra();
             
             attObra.getTrabObra().setId_Trabajador(trab.getId_Trabajador());
-            System.out.println("Entro 2");
+            
             attObra.getClienteObra().setId_Cliente(cle.getId_Cliente());
-            System.out.println("Entro 3");
+            
             attObra.getUsrObra().setId(((Usuario)request.getSession().getAttribute("us")).getId());
-            System.out.println("Entro 4");
+            
             attObra.setFechaInicio_Obra(request.getParameter("fechaInicioObra"));
-            System.out.println("Entro 5");
+            
             attObra.setFechaFin_Obra(request.getParameter("fechaFinObra"));
-            System.out.println("Entro 6");
+            
             attObra.setTotal_Obra(0);
-           System.out.println("Entro7");
+           
             attObra.setPagoInicioObra(Double.parseDouble(request.getParameter("pagoInicioObraAnticipo")));
-            System.out.println("Entro 8");
+            
             attObra.setPagoFinalObra(Integer.parseInt(request.getParameter("pagoInicioObraAnticipo")));
-            System.out.println("Entro 9");
+            
             attObra.setFechaCotizacionObra(request.getParameter("fechaCotObra"));
             
             if(obraAdd.add(attObra))
             {
-                
+                 request.getSession().setAttribute("Mensaje", "La obra se agrego corectamente");
             }
             }else
             {
-           attObra = new Obra();
-            
-            attObra.getTrabObra().setId_Trabajador(trab.getId_Trabajador());
-            
-            attObra.getClienteObra().setId_Cliente(Integer.parseInt(request.getParameter("idClienteObra")));
-            
-            attObra.getUsrObra().setId(((Usuario)request.getSession().getAttribute("us")).getId());
-            
-            attObra.setFechaInicio_Obra(request.getParameter("fechaInicioObra"));
-            
-            attObra.setFechaFin_Obra(request.getParameter("fechaFinObra"));
-            
-            attObra.setTotal_Obra(0);
-           
-            attObra.setPagoInicioObra(Double.parseDouble(request.getParameter("pagoInicioObraAnticipo")));
-            
-            attObra.setPagoFinalObra(Integer.parseInt(request.getParameter("pagoInicioObraAnticipo")));
-            
-            attObra.setFechaCotizacionObra(request.getParameter("fechaCotObra"));
-                        if(obraAdd.add(attObra))
+                attObra = new Obra();
+
+                attObra.getTrabObra().setId_Trabajador(trab.getId_Trabajador());
+
+                attObra.getClienteObra().setId_Cliente(Integer.parseInt(request.getParameter("idClienteObra")));
+
+                attObra.getUsrObra().setId(((Usuario) request.getSession().getAttribute("us")).getId());
+
+                attObra.setFechaInicio_Obra(request.getParameter("fechaInicioObra"));
+
+                attObra.setFechaFin_Obra(request.getParameter("fechaFinObra"));
+
+                attObra.setTotal_Obra(0);
+
+                attObra.setPagoInicioObra(Double.parseDouble(request.getParameter("pagoInicioObraAnticipo")));
+
+                attObra.setPagoFinalObra(Integer.parseInt(request.getParameter("pagoInicioObraAnticipo")));
+
+                attObra.setFechaCotizacionObra(request.getParameter("fechaCotObra"));
+                if (obraAdd.add(attObra))
             {
-                
+                 request.getSession().setAttribute("Mensaje", "La obra se agrego corectamente");
             }
                
             }
-            
-         
            
-            
+        }
+    
+        if (request.getParameter("action").equals("cargarObra") && request.getParameter("filter") == null) 
+        {
+
+        
+            ArrayList listaTodosServicios = obraAdd.showDataCliente("");
+            request.getSession().setAttribute("listaTodosObras", listaTodosServicios);
+        }
+       
+        if (request.getParameter("action").equals("cargarUnObra") && request.getParameter("BuscarObras") != null) 
+        {
            
+            ArrayList listaTodosServicios = obraAdd.showDataCliente(request.getParameter("BuscarObras"));
+            request.getSession().setAttribute("listaTodosObras", listaTodosServicios);
+
         }
     }
   
@@ -164,8 +178,9 @@ Obra attObra = null;
  }
  else
  {
-  System.out.println("No tiene");
+
  }
+   
     }
 
     /**

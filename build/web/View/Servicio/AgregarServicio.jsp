@@ -11,47 +11,53 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%    
+    if(request.getSession().getAttribute("us") == null){
+ response.sendRedirect("../../View/Login.jsp");   
+}
 if(request.getSession().getAttribute("us") != null && 
 ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(10))
 { 
 %>
 <%
-ArrayList<Servicio>recService = new ControllerServicio().showAll();
-session.setAttribute("ListUpdateServ", recService);
+
 %>
+
+<style>
+ 
+</style>
    <div class="loaders" id="loadImg"></div>
      <div class="">
 
         <div class="card mx-auto" style="width: 50rem;">
             <div class="card-header">
-                Featured
+                Servicios de trabajos de construccion
             </div>
             <div class="card-body">
-                <h5 class="card-title">Descripciones Espectaculares</h5>
+                <h5 class="card-title">Realizar las mejores descripciones posibles</h5>
 
-                <form id="formAddService">
+                <form id="formAgregarService">
                     <input type="hidden" name="action" value="addService">
                     <fieldset>
                         <legend>Servicio Disponible</legend>
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="nameService">Type service name
-                                        <input type="text" required="" class="form-control" name="nameService" id="NameService" placeholder="type service name">
+                                    <label for="nameService">Ingrese nombre del Servicio
+                                        <input type="text" required="" class="form-control" name="nameService" id="NameService" placeholder="Ingrese nombre del Servicio">
                                     </label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="descriptionService">Type the service description 
-                                        <textarea cols="20" rows="3" class="form-control" name="DescriptionService" id="descriptionService" placeholder="Type the service description "></textarea>
+                                    <label for="descriptionService">Ingrese la descripcion del servicio
+                                        <textarea cols="20" rows="3" class="form-control" name="DescriptionService" id="descriptionService" placeholder="Ingrese la descripcion del servicio"></textarea>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="precioService">Type the price per meter
-                                        <input type="text" class="form-control" name="PrecioService" id="precioService" placeholder="Type the price per meter" onkeypress="return filterFloat(event,this);" >
+                                    <label for="precioService">Ingrese el precio por metro
+                                        <input type="text" class="form-control" name="PrecioService" id="precioService" placeholder="Ingrese el precio por metro" onkeypress="return filterFloat(event,this);" >
                                     </label>
                                 </div>
                             </div>
@@ -81,6 +87,7 @@ session.setAttribute("ListUpdateServ", recService);
                         %>
                         <h3><%= session.getAttribute("MensajeServicio").toString()%> </h3>
                         <%
+                            
                                 session.removeAttribute("MensajeServicio");
                             }else{
                         %> 
@@ -96,3 +103,8 @@ session.setAttribute("ListUpdateServ", recService);
    <%
        }
    %>
+   
+   
+   <link href="./Estilos/cssMensajes.css" rel="stylesheet" type="text/css"/>
+   
+   <script src="./Javascript/Servicios/AgregarServicio.js" type="text/javascript"></script>

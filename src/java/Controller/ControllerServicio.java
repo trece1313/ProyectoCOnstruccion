@@ -44,7 +44,7 @@ public class ControllerServicio implements ServicioDAO{
                 ps = con.prepareStatement(swlGuardarServicio);
             }else
             {
-                System.out.println("Llego aqui " +f);
+                
                  ps = con.prepareStatement(sqlGuardarUnService);
                  ps.setString(1, "%"+f+"%");
             }

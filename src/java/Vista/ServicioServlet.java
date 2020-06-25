@@ -117,7 +117,7 @@ Servicio servicioAtt = null;
                 }
                 if (request.getParameter("action").equals("cargarUnServicio") && request.getParameter("BuscarUnServicio") != null) 
                 {
-                    System.out.println("Paso por aqui "+ request.getParameter("BuscarUnServicio"));
+                    
                     ArrayList listaTodosServicios = CrudMethod.showDataCliente(request.getParameter("BuscarUnServicio"));
                     
                     request.getSession().setAttribute("listaTodosServicios", listaTodosServicios);

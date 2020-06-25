@@ -3,7 +3,7 @@
     Created on : Jun 20, 2020, 10:17:10 PM
     Author     : trece
 
-
+--%>
 <%@page import="Model.Servicio"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -19,9 +19,9 @@ if(request.getSession().getAttribute("us") != null &&
 { 
 
         
-        int indice = Integer.parseInt(request.getParameter("idServiceUpdate"));
+        int indice = Integer.parseInt(request.getParameter("indiceEditarServicio"));
         
-        Servicio serEdit = ((ArrayList<Servicio>) session.getAttribute("ListUpdateServ")).get(indice);
+        Servicio serEdit = ((ArrayList<Servicio>) session.getAttribute("listaTodosServicios")).get(indice);
         session.setAttribute("UpdateService", serEdit);
 
 %>
@@ -85,29 +85,29 @@ if(request.getSession().getAttribute("us") != null &&
             <div class="card-body">
                 <h5 class="card-title">Descripciones Espectaculares</h5>
 
-                <form id="formUpdateService">
+                <form id="formActualizarService">
                     <input type="hidden" name="action" value="updateService">
                     <fieldset>
                         <legend>Servicio Disponible</legend>
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="nameService">Type service name
-                                        <input type="text" required="" class="form-control" value="<%=(serEdit.getNombre_Servicio())%>" name="nameService" id="NameService" placeholder="type service name">
+                                    <label for="nameService">Ingrese nombre del servicio
+                                        <input type="text" required="" class="form-control" value="<%=(serEdit.getNombre_Servicio())%>" name="nameService" id="NameService" placeholder="Ingrese nombre del servicio">
                                     </label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="descriptionService">Type the service description 
-                                        <textarea cols="20" rows="3" class="form-control" name="DescriptionService" id="descriptionService" placeholder="Type the service description "><%=(serEdit.getDescipcion_Servicio())%></textarea>
+                                    <label for="descriptionService">Ingrese descripcion del Servicio
+                                        <textarea cols="20" rows="3" class="form-control" name="DescriptionService" id="descriptionService" placeholder="Ingrese descripcion del Servicio"><%=(serEdit.getDescipcion_Servicio())%></textarea>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="precioService">Type the price per meter
-                                        <input type="text" class="form-control" name="PrecioService" id="precioService" value="<%=(serEdit.getPrecioPorMetro())%>" placeholder="Type the price per meter" onkeypress="return filterFloat(event,this);" >
+                                    <label for="precioService">Ingresa precio por metro
+                                        <input type="text" class="form-control" name="PrecioService" id="precioService" value="<%=(serEdit.getPrecioPorMetro())%>" placeholder="Ingresa precio por metro" onkeypress="return filterFloat(event,this);" >
                                     </label>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ if(request.getSession().getAttribute("us") != null &&
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-info form-control col-6 diz" style="margin-left: 25%;" id="">Update Service</button>
+                                    <button type="submit" class="btn btn-info form-control col-6 diz" style="margin-left: 25%;" id="">Actualizar Servicio</button>
                                 </div>
                             </div>
                         </div>
@@ -139,9 +139,9 @@ if(request.getSession().getAttribute("us") != null &&
                                                 <h3><%= session.getAttribute("MensajeServicioUpdate").toString()%> </h3>
                                                 <%
                                                     session.removeAttribute("MensajeServicioUpdate");
-                                                } else if(session.getAttribute("MensajeServicioUpdate") == null){
+                                                } else {
                                                 %> 
-                                                <h3> <%= session.getAttribute("MensajeServicioUpdate").toString()%>  No entro</h3>
+                                                <h3>   No entro</h3>
                                                 <%
                                                     }
                                                 %>
@@ -153,60 +153,19 @@ if(request.getSession().getAttribute("us") != null &&
 <%
     }
 %>
-<script src="./Javascript/jquery.validate.js" type="text/javascript"></script>
-<script src="./Javascript/jQueryValidator.js" type="text/javascript"></script>
 
-<script>
+<script src="./Javascript/Servicios/EditarServicio.js" type="text/javascript"></script>
+<!--<script src="./Javascript/jquery.validate.js" type="text/javascript"></script>
+<script src="./Javascript/jQueryValidator.js" type="text/javascript"></script>-->
+
+<!--<script>
     
     $(function(){
-           $('#formUpdateService').validate({
-        rules: {
-           nameService:{required: true, maxlength: 20, minlength: 3}, 
-           DescriptionService:{required: true, maxlength: 200, minlength: 5},
-           PrecioService:{required: true, maxlength: 10, minlength: 1}
-            
-        },            
-        submitHandler: function (form) {
-           
-  
-  //alert($(form).serialize());
-    //       return false;
-  $('.loaders').css({'display': 'block'});
-            setTimeout(function ()
-            {
-                $.ajax({
-                    type: 'post',
-                    url: 'DataServicio',
-                    data: $(form).serialize(),
-                    success: function () {
-                       $('.mensajeUsuario').css({'display': 'block'});
-                         $('.loaders').css({'display': 'none'});
-                        setTimeout(function ()
-                        {
-                         
-                            $('.mensajeUsuario').css({'display': 'block'});
-                               
-                         
-                           location.reload();
-                        }, 2000);
-                        
 
-                    }
-                });
-                
-                
-
-                
-            }, 3000);
-
-        }
-    }); 
-    
     
     });
     
-</script>
+</script>-->
 
 
 
---%>

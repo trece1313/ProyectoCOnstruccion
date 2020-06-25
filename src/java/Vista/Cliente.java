@@ -136,6 +136,7 @@ Model.Cliente cli = null;
                  Gson gs = new Gson();
                  
                  o.print(gs.toJson(cl));
+                 request.getSession().setAttribute("Mensaje", "El cliente se agrego corectamente");
                  
             
         }

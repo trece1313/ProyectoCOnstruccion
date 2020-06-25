@@ -5,11 +5,11 @@
  */
 package Controller;
 
-import Model.Cliente;
+
 import Model.ConectaDB;
 import Model.Obra;
 import Model.Trabajador;
-import Model.Usuario;
+
 import ModelDAO.ObraDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,7 +39,7 @@ public class ControllerObra implements ObraDAO
             conDB = new ConectaDB();
             con = conDB.conexionDB();
             
-                            String sqlShowObra = "SELECT o.id_Obra, \n"
+                            String sqlMostrarObra = "SELECT o.id_Obra, \n"
                                     + "pc.nombre_Persona,pc.apellidoPeterno_Persona,\n"
                                     + "pt.nombre_Persona,pt.apellidoPeterno_Persona,\n"
                                     + "pu.nombre_Persona,pu.apellidoPeterno_Persona\n"
@@ -57,7 +57,7 @@ public class ControllerObra implements ObraDAO
                                     + "INNER JOIN Persona pu\n"
                                     + "ON u.id_PersonaFK = pu.id_Persona";
 
-                            String sqlShowOneObra = "SELECT o.id_Obra, \n"
+                            String sqlMostrarUnaObra = "SELECT o.id_Obra, \n"
                                     + "pc.nombre_Persona,pc.apellidoPeterno_Persona,\n"
                                     + "pt.nombre_Persona,pt.apellidoPeterno_Persona,\n"
                                     + "pu.nombre_Persona,pu.apellidoPeterno_Persona\n"
@@ -76,10 +76,11 @@ public class ControllerObra implements ObraDAO
                                     + "ON u.id_PersonaFK = pu.id_Persona WHERE pc.nombre_Persona LIKE ?";
             if(f.equals(""))
             {
-                ps = con.prepareStatement(sqlShowObra);
+                ps = con.prepareStatement(sqlMostrarObra);
+                
             }else
             {
-                ps = con.prepareStatement(sqlShowOneObra);
+                ps = con.prepareStatement(sqlMostrarUnaObra);
                 ps.setString(1, "%"+f+"%");
             }
             rs = ps.executeQuery();
