@@ -45,7 +45,7 @@ ArrayList<Obra> listaObras = session.getAttribute("listaTodosObras") != null ?
                                     <td><%= (obr.getClienteObra().getPersonaCliente().getPaterno_Persona())%></td>
                                     
                                     
-                                    <td><button class="btn btn-info agregarEditarObra" id="btnEditarObra" value="<%= i%>">Actualizar Obra</button></td>
+                                    <td><button class="btn btn-info agregarDetalleObra" id="btnDetalleObra" value="<%= i%>">Agregar Obra</button></td>
                                 </tr>
                                 <%
                                   }
@@ -59,5 +59,32 @@ ArrayList<Obra> listaObras = session.getAttribute("listaTodosObras") != null ?
 <%
     }
 %>
-
-<script src="./Javascript/Obra/EditarObra.js" type="text/javascript"></script>
+<script>
+    $(function(){
+        $(".agregarDetalleObra").click(function(){
+            
+            datosDetalleObra($(this).val());
+        });
+        
+        
+        
+        function datosDetalleObra(indice)
+{
+    
+         $.ajax({
+        type: 'post',
+        url: 'View/Presupuesto/Presupuesto.jsp',
+        data: {"indiceAgregarDetalleObra": indice},
+        success: function (res) {
+            $(".tableClientObra").hide();
+            $("#shw").show();
+            $('#searchService').prop('disabled', false);
+            $('#searchService').focus();
+            $('#ObraDetalle').html(res); 
+        }
+    });
+    
+}
+        
+    });
+</script>

@@ -14,6 +14,7 @@ public class DetalleServicioPresupuesto
     private int id_DetalleServicioPresupuesto;
     private double metrosCuadradoDetalle;
     private double subtotalDetalle;
+    private double precioMetro;
     Presupuesto presupuestoDetalle;
     Servicio servicioDetalle;   
     Cliente clienteDetalle;
@@ -26,7 +27,16 @@ public class DetalleServicioPresupuesto
         this.subtotalDetalle = 0;
         this.presupuestoDetalle = new Presupuesto();
         this.servicioDetalle = new Servicio();
+        this.precioMetro = 0;
   
+    }
+
+    public double getPrecioMetro() {
+        return precioMetro;
+    }
+
+    public void setPrecioMetro(double precioMetro) {
+        this.precioMetro = precioMetro;
     }
 
     

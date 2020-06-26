@@ -3,16 +3,7 @@ $(function(){
     
 
 
-    ajaxObra();
-    
-    $('#cerrarO').click(function(){
-    $('.tableClientObra').css({'display':'none'});    
-    });
-    
-     $('#buscarObras').keyup(function(){
-         ajaxBuscarObra($(this).val());
-     });
-     
+
        $('input[name="radioTrabajador').change(function(){
 
 $(this).is(":checked")? $('#idExistCliente').css({'display':'block'}) : $('#idExistCliente').css({'display':'none'}) ;
@@ -244,34 +235,7 @@ $('.loaders').show();
     
 };
 
-function ajaxObra()
-{
-    
-     $.ajax({
-        type: 'post',
-        url: 'DataObra',
-        data: {"action":"cargarObra"},
-        success: function (res) {
-        
-            $('#mostrarObras').load('View/Obra/TodasObras.jsp'); 
-        }
-    });
-                
-}
-function ajaxBuscarObra(busqueda)
-{
-    
-     $.ajax({
-        type: 'post',
-        url: 'DataObra',
-        data: {"action":"cargarUnObra","BuscarObras": busqueda},
-        success: function (res) {
-            
-            $('#mostrarObras').load('View/Obra/TodasObras.jsp'); 
-        }
-    });
-                
-}
+
 
 var btnRegistrarCliente = document.getElementById('pararRegistrarCliente');
 var btnExisteCliente = document.getElementById('seguir');
@@ -287,7 +251,7 @@ var dividExistClientDB = document.getElementById('idExistClientDB');
   {
       dividExistClientDB.style.display = 'none';    
        $("#idtableClientObra").css({"display":"block"});
-       bandera = true;btnSigDatosCot
+       bandera = true;
   }
   
   function mostrarVentanaPreguntar()

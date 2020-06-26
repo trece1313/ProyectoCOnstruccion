@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#idtableClientObra{
+    display: none;
+}
+
+    .divObra{
+        width: 95%;
+        height: auto;
+        margin: auto;
+        display: block;
+    }
+    .divCliente{
+        width: 100%; 
+        height: 100%;
+        position: fixed; 
+        z-index: 9999;
+        opacity: .8;
+        left: 0; 
+        top: 0px;
+        display: none;
+        
+        background: #BE93C5;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
+    .divContenido{
+        color: black;
+        font-family: 'Anton', sans-serif;
+        
+        text-align: center;
+        position: absolute; 
+        top: 15%; 
+        left: 10%;
+        width: 80%; 
+background: #0F2027;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+border-radius: 7px;
+  box-shadow: 3px -1px 8px 4px #3B5A73;
+        
+    }
+    #idExistClientDB{
+    display: none;
+}

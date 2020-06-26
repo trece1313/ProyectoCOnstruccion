@@ -39,41 +39,61 @@ public class ControllerObra implements ObraDAO
             conDB = new ConectaDB();
             con = conDB.conexionDB();
             
-                            String sqlMostrarObra = "SELECT o.id_Obra, \n"
-                                    + "pc.nombre_Persona,pc.apellidoPeterno_Persona,\n"
-                                    + "pt.nombre_Persona,pt.apellidoPeterno_Persona,\n"
-                                    + "pu.nombre_Persona,pu.apellidoPeterno_Persona\n"
-                                    + "FROM Obra o\n"
-                                    + "INNER JOIN Cliente c \n"
-                                    + "ON o.id_ClienteObraFK = c.id_Cliente \n"
-                                    + "INNER JOIN Persona pc\n"
-                                    + "ON pc.id_Persona  = c.id_PersonaClienteFK\n"
-                                    + "INNER JOIN Trabajador t \n"
-                                    + "ON t.id_Trabajador = o.id_TrabajadorObraFK\n"
-                                    + "INNER JOIN Persona pt\n"
-                                    + "ON pt.id_Persona = t.id_PersonaTabajador\n"
-                                    + "INNER JOIN Usuario u \n"
-                                    + "ON u.id_Usuario = o.id_UsuarioObra \n"
-                                    + "INNER JOIN Persona pu\n"
-                                    + "ON u.id_PersonaFK = pu.id_Persona";
+                            String sqlMostrarObra = "SELECT o.id_Obra,\n" +
+                            "pc.nombre_Persona,pc.apellidoPeterno_Persona,dirPerCliente.pais_Direccion,dirPerCliente.estado_Direccion,\n" +
+                            "\n" +
+                            "pt.nombre_Persona,pt.apellidoPeterno_Persona,dirPerTrabajador.pais_Direccion,dirPerTrabajador.estado_Direccion,\n" +
+                            "pu.nombre_Persona,pu.apellidoPeterno_Persona,dirPerUsuario.pais_Direccion,dirPerUsuario.estado_Direccion\n" +
+                            "FROM Obra o\n" +
+                            "\n" +
+                            "INNER JOIN Cliente c \n" +
+                            "ON o.id_ClienteObraFK = c.id_Cliente \n" +
+                            "INNER JOIN Persona pc\n" +
+                            "ON pc.id_Persona  = c.id_PersonaClienteFK\n" +
+                            "INNER JOIN Direccion dirPerCliente\n" +
+                            "ON dirPerCliente.id_Direccion = pc.id_DireccionPersonaFK \n" +
+                            "\n" +
+                            "INNER JOIN Trabajador t \n" +
+                            "ON t.id_Trabajador = o.id_TrabajadorObraFK\n" +
+                            "INNER JOIN Persona pt\n" +
+                            "ON pt.id_Persona = t.id_PersonaTabajador\n" +
+                            "INNER JOIN Direccion dirPerTrabajador\n" +
+                            "ON dirPerTrabajador.id_Direccion = pt.id_DireccionPersonaFK \n" +
+                            "\n" +
+                            "INNER JOIN Usuario u \n" +
+                            "ON u.id_Usuario = o.id_UsuarioObra \n" +
+                            "INNER JOIN Persona pu\n" +
+                            "ON u.id_PersonaFK = pu.id_Persona\n" +
+                            "INNER JOIN Direccion dirPerUsuario\n" +
+                            "ON dirPerUsuario.id_Direccion = pu.id_DireccionPersonaFK ";
 
-                            String sqlMostrarUnaObra = "SELECT o.id_Obra, \n"
-                                    + "pc.nombre_Persona,pc.apellidoPeterno_Persona,\n"
-                                    + "pt.nombre_Persona,pt.apellidoPeterno_Persona,\n"
-                                    + "pu.nombre_Persona,pu.apellidoPeterno_Persona\n"
-                                    + "FROM Obra o\n"
-                                    + "INNER JOIN Cliente c \n"
-                                    + "ON o.id_ClienteObraFK = c.id_Cliente \n"
-                                    + "INNER JOIN Persona pc\n"
-                                    + "ON pc.id_Persona  = c.id_PersonaClienteFK\n"
-                                    + "INNER JOIN Trabajador t \n"
-                                    + "ON t.id_Trabajador = o.id_TrabajadorObraFK\n"
-                                    + "INNER JOIN Persona pt\n"
-                                    + "ON pt.id_Persona = t.id_PersonaTabajador\n"
-                                    + "INNER JOIN Usuario u \n"
-                                    + "ON u.id_Usuario = o.id_UsuarioObra \n"
-                                    + "INNER JOIN Persona pu\n"
-                                    + "ON u.id_PersonaFK = pu.id_Persona WHERE pc.nombre_Persona LIKE ?";
+                            String sqlMostrarUnaObra = "SELECT o.id_Obra,\n" +
+                            "pc.nombre_Persona,pc.apellidoPeterno_Persona,dirPerCliente.pais_Direccion,dirPerCliente.estado_Direccion,\n" +
+                            "\n" +
+                            "pt.nombre_Persona,pt.apellidoPeterno_Persona,dirPerTrabajador.pais_Direccion,dirPerTrabajador.estado_Direccion,\n" +
+                            "pu.nombre_Persona,pu.apellidoPeterno_Persona,dirPerUsuario.pais_Direccion,dirPerUsuario.estado_Direccion\n" +
+                            "FROM Obra o\n" +
+                            "\n" +
+                            "INNER JOIN Cliente c \n" +
+                            "ON o.id_ClienteObraFK = c.id_Cliente \n" +
+                            "INNER JOIN Persona pc\n" +
+                            "ON pc.id_Persona  = c.id_PersonaClienteFK\n" +
+                            "INNER JOIN Direccion dirPerCliente\n" +
+                            "ON dirPerCliente.id_Direccion = pc.id_DireccionPersonaFK \n" +
+                            "\n" +
+                            "INNER JOIN Trabajador t \n" +
+                            "ON t.id_Trabajador = o.id_TrabajadorObraFK\n" +
+                            "INNER JOIN Persona pt\n" +
+                            "ON pt.id_Persona = t.id_PersonaTabajador\n" +
+                            "INNER JOIN Direccion dirPerTrabajador\n" +
+                            "ON dirPerTrabajador.id_Direccion = pt.id_DireccionPersonaFK \n" +
+                            "\n" +
+                            "INNER JOIN Usuario u \n" +
+                            "ON u.id_Usuario = o.id_UsuarioObra \n" +
+                            "INNER JOIN Persona pu\n" +
+                            "ON u.id_PersonaFK = pu.id_Persona\n" +
+                            "INNER JOIN Direccion dirPerUsuario\n" +
+                            "ON dirPerUsuario.id_Direccion = pu.id_DireccionPersonaFK  WHERE pc.nombre_Persona LIKE ?";
             if(f.equals(""))
             {
                 ps = con.prepareStatement(sqlMostrarObra);
@@ -90,12 +110,18 @@ public class ControllerObra implements ObraDAO
                 obr.setId_Obra(rs.getInt("id_Obra"));
                 obr.getClienteObra().getPersonaCliente().setNombre_Persona(rs.getString(2));
                 obr.getClienteObra().getPersonaCliente().setPaterno_Persona(rs.getString(3));
+                obr.getClienteObra().getPersonaCliente().getDireccionPersona().setPais_Direccion(rs.getString(4));
+                obr.getClienteObra().getPersonaCliente().getDireccionPersona().setEstado_Direccion(rs.getString(5));
                 
-                obr.getTrabObra().getPerTrabajador().setNombre_Persona(rs.getString(4));
-                obr.getTrabObra().getPerTrabajador().setPaterno_Persona(rs.getString(5));
+                obr.getTrabObra().getPerTrabajador().setNombre_Persona(rs.getString(6));
+                obr.getTrabObra().getPerTrabajador().setPaterno_Persona(rs.getString(7));
+                obr.getClienteObra().getPersonaCliente().getDireccionPersona().setPais_Direccion(rs.getString(8));
+                obr.getClienteObra().getPersonaCliente().getDireccionPersona().setEstado_Direccion(rs.getString(9));
                 
-                obr.getUsrObra().getPersonaUsuario().setNombre_Persona(rs.getString(6));
-                obr.getUsrObra().getPersonaUsuario().setPaterno_Persona(rs.getString(7));
+                obr.getUsrObra().getPersonaUsuario().setNombre_Persona(rs.getString(10));
+                obr.getUsrObra().getPersonaUsuario().setPaterno_Persona(rs.getString(11));
+                obr.getClienteObra().getPersonaCliente().getDireccionPersona().setPais_Direccion(rs.getString(12));
+                obr.getClienteObra().getPersonaCliente().getDireccionPersona().setEstado_Direccion(rs.getString(13));
                 saveObra.add(obr);
             }
             

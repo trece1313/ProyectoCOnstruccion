@@ -55,7 +55,8 @@ ArrayList<Cliente> clientObra = session.getAttribute("listClient") != null ?
 
 
 <link href="./Estilos/cssObra.css" rel="stylesheet" type="text/css"/>
-<script src="./Javascript/Obra/Obra.js" type="text/javascript"></script>
+<script src="./Javascript/Obra/TodasObras.js" type="text/javascript"></script>
+
                                     
 
 <!--<script src="./Javascript/Obra.js" type="text/javascript"></script>

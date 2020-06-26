@@ -45,7 +45,7 @@ ArrayList<Obra> listaObras = session.getAttribute("listaTodosObras") != null ?
                                     <td><%= (obr.getClienteObra().getPersonaCliente().getPaterno_Persona())%></td>
                                     
                                     
-                                    <td><button class="btn btn-info addObraEditar" id="btn-addClient" value="<%= i%>">Editar Obra</button></td>
+                                    <td><button class="btn btn-info agregarEditarObra" id="btnEditarObra" value="<%= i%>">Actualizar Obra</button></td>
                                 </tr>
                                 <%
                                   }
@@ -59,3 +59,5 @@ ArrayList<Obra> listaObras = session.getAttribute("listaTodosObras") != null ?
 <%
     }
 %>
+
+<script src="./Javascript/Obra/EditarObra.js" type="text/javascript"></script>

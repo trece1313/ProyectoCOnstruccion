@@ -26,7 +26,8 @@ public interface CRUD <T>
     public boolean delete(T t);
     
     public T adds(T t);
-      
+    
+    
       
     
 }

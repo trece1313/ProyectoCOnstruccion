@@ -50,7 +50,7 @@ function accederSistema(){
         url: '../UsuariosDatos',
         data: {action:"accederUser",user:$('#user').val() , pass:$('#pass').val() },
         success: function (rec) {
-            console.log(rec);
+            
             if(rec != 1){
                 
                 $(location).attr('href','../index.jsp');

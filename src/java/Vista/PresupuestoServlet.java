@@ -98,6 +98,16 @@ CRUD CrudMethod = null;
                request.getSession().setAttribute("presObra", prespuppuestoObra);
                
         }
+        if(request.getParameter("action").equals("buscarServicio") && 
+          request.getParameter("codServicio") != null)
+        {
+            System.out.println("entro");
+            String codServicio = request.getParameter("codServicio");
+            String altura = request.getParameter("altura");
+            String largo = request.getParameter("largo");
+            System.out.println(codServicio + " "+ altura + " "+ largo);
+               
+        }        
   
         
     }

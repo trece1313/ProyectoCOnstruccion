@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author trece
@@ -16,6 +18,7 @@ public class Presupuesto
     private double precioPorMetro_Presupuesto;
     private String fecha_Presupuesto;
     Usuario usuPresupuesto;
+    ArrayList<DetalleServicioPresupuesto>detalleServicio;
 
     public Presupuesto() 
     {
@@ -24,6 +27,7 @@ public class Presupuesto
         this.precioPorMetro_Presupuesto = 0;
         this.fecha_Presupuesto = "";
         this.usuPresupuesto =  new Usuario();
+        this.detalleServicio = new ArrayList<>();
         
     }
     
