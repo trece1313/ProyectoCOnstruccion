@@ -5,13 +5,15 @@
  */
 package ModelDAO;
 
-import Model.Presupuesto;
+import Model.DetalleServicioPresupuesto;
+import Model.Obra;
+
 
 /**
  *
  * @author trece
  */
-public interface PresupuestoDAO extends CRUD<Presupuesto>
+public interface PresupuestoDAO extends CRUD<Obra>
 {
-    
+    public Obra agregarPresupuesto(Obra obra, DetalleServicioPresupuesto dt);
 }

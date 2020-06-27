@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Enumeration;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
@@ -210,10 +210,10 @@ EncryptionPassword encryption =null;
                 
      
             }
-            else
-            {
-                System.out.println("no entro");
-            }
+//            else
+//            {
+//                System.out.println("no entro");
+//            }
             
         }
         

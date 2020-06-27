@@ -33,9 +33,10 @@ public class ControllerDetalleSerPres implements DetalleServPresDAO{
         try {
             conDB = new ConectaDB();
             con = conDB.conexionDB();
-            String sqlBuscarServicio = "SELECT id_Servicio,nombre_Servicio,descripcion_Servicio,"
-                    + "precioPorMetro_Servicio WHERE nombre_Servicio = ?";
+            String sqlBuscarServicio = "SELECT id_Servicio,nombre_Servicio,descripcion_Servicio,\n" +
+"precioPorMetro_Servicio FROM Servicio WHERE claveServicio = ?";
             ps = con.prepareStatement(sqlBuscarServicio);
+            ps.setString(1, buscar);
             rs = ps.executeQuery();
             if(rs !=null && rs.next())
             {

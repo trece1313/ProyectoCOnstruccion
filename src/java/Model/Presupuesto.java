@@ -30,6 +30,14 @@ public class Presupuesto
         this.detalleServicio = new ArrayList<>();
         
     }
+
+    public ArrayList<DetalleServicioPresupuesto> getDetalleServicio() {
+        return detalleServicio;
+    }
+
+    public void setDetalleServicio(ArrayList<DetalleServicioPresupuesto> detalleServicio) {
+        this.detalleServicio = detalleServicio;
+    }
     
     
     

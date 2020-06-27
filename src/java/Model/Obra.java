@@ -22,7 +22,7 @@ public class Obra
     private String fechaCotizacionObra;
     Estatus estatObra;
     Trabajador trabObra;
-   ArrayList<DetalleServicioPresupuesto> detSerPreObra;
+    ArrayList<DetalleServicioPresupuesto> detSerPreObra;
     Usuario usrObra;
     Cliente clienteObra;
 

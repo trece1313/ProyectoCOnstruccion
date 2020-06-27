@@ -20,8 +20,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/Javascript/Acceder.js</file>
-            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/View/Login.jsp</file>
+            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/src/java/Controller/ControllerDetalleSerPres.java</file>
+            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/View/Presupuesto/AgregarPresupuesto.jsp</file>
+            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/web/Javascript/Presupuesto/Prespuesto.js</file>
+            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/src/java/ModelDAO/DetalleDAO.java</file>
+            <file>file:/home/trece/NetBeansProjects/13ProyectoConstruccion/src/java/Vista/PresupuestoServlet.java</file>
         </group>
     </open-files>
 </project-private>

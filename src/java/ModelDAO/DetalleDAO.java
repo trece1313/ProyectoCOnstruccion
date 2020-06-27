@@ -13,4 +13,5 @@ package ModelDAO;
 public interface DetalleDAO <D>
 {
     public D consulta(String buscar);
+    
 }

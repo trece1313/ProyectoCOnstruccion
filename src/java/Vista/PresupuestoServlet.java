@@ -5,12 +5,19 @@
  */
 package Vista;
 
+import Controller.ControllerDetalleSerPres;
 import Controller.ControllerObra;
 import Controller.ControllerPresupuesto;
 import Controller.ControllerServicio;
+import Model.DetalleServicioPresupuesto;
+import Model.DetalleServicioPresupuesto;
 import Model.Obra;
+import Model.Presupuesto;
+import Model.Servicio;
 import Model.Usuario;
 import ModelDAO.CRUD;
+import ModelDAO.DetalleDAO;
+import ModelDAO.PresupuestoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -27,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "PresupuestoServlet", urlPatterns = {"/PresupuestoData"})
 public class PresupuestoServlet extends HttpServlet {
 CRUD CrudMethod = null;
+DetalleDAO detSerPre = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -101,13 +109,48 @@ CRUD CrudMethod = null;
         if(request.getParameter("action").equals("buscarServicio") && 
           request.getParameter("codServicio") != null)
         {
-            System.out.println("entro");
-            String codServicio = request.getParameter("codServicio");
+            
+          ControllerServicio enc = new ControllerServicio();
+          String codServicio = request.getParameter("codServicio");
+          
+            Servicio det =  (Servicio) enc.encontrarServicio(codServicio);
+         
+            request.getSession().setAttribute("servicioEncontrado", det);
+            
+            
+          
+               
+        }  
+        if(request.getParameter("action").equals("agregarAltLar") && 
+          request.getParameter("altura") != null && request.getParameter("largo") != null )
+        {
             String altura = request.getParameter("altura");
             String largo = request.getParameter("largo");
-            System.out.println(codServicio + " "+ altura + " "+ largo);
-               
-        }        
+            
+//            Servicio servicioEncontrado =  (Servicio)request.getSession().getAttribute("datsCrear");
+            Servicio servicioEncontrado2 =  (Servicio)request.getSession().getAttribute("servicioEncontrado");
+
+            
+            DetalleServicioPresupuesto d= new DetalleServicioPresupuesto();
+            
+            d.setServicioDetalle(servicioEncontrado2);
+            d.setAltura(Double.parseDouble(altura));
+            d.setLargo(Double.parseDouble(largo));
+            d.setPrecioMetro(servicioEncontrado2.getPrecioPorMetro());
+            d.setSubtotalDetalle((servicioEncontrado2.getPrecioPorMetro())*(d.getAltura()*d.getLargo()));
+            d.setMetrosCuadradoDetalle(Double.parseDouble(altura)*Double.parseDouble(largo));
+
+  
+            
+            if(d.getServicioDetalle().getId_Servicio() != 0) {
+                Obra obr = (Obra) request.getSession().getAttribute("obra");
+                if (obr.getId_Obra() == 0) {
+                    PresupuestoDAO ob = new ControllerPresupuesto();
+
+                    ob.agregarPresupuesto(obr, d);
+                }
+            }
+        }
   
         
     }

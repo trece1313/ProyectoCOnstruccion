@@ -16,7 +16,9 @@ public class DetalleServicioPresupuesto
     private double subtotalDetalle;
     private double precioMetro;
     Presupuesto presupuestoDetalle;
-    Servicio servicioDetalle;   
+    Servicio servicioDetalle;
+    private double altura;
+    private double largo;
     Cliente clienteDetalle;
     Estatus estatusDetalle;
 
@@ -28,7 +30,25 @@ public class DetalleServicioPresupuesto
         this.presupuestoDetalle = new Presupuesto();
         this.servicioDetalle = new Servicio();
         this.precioMetro = 0;
+        this.altura = 0;
+        this.largo = 0;
   
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public double getLargo() {
+        return largo;
+    }
+
+    public void setLargo(double largo) {
+        this.largo = largo;
     }
 
     public double getPrecioMetro() {

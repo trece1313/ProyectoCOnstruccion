@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.ConectaDB;
+import Model.DetalleServicioPresupuesto;
 import Model.Obra;
 import Model.Presupuesto;
 
@@ -28,34 +29,67 @@ public class ControllerPresupuesto implements PresupuestoDAO{
     ConectaDB conDB = null;
     Connection con = null;
     
+
+
     @Override
-    public ArrayList<Presupuesto> showDataCliente(String f) {
-throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Obra agregarPresupuesto(Obra obra, DetalleServicioPresupuesto nuevo) {
+              int existe=0;
+              
+              System.out.println("uno "+nuevo.getAltura());
+              System.out.println("uno "+nuevo.getLargo());
+              System.out.println("uno "+nuevo.getSubtotalDetalle());
+              
+        for(int i=0;i<obra.getDetSerPreObra().size();i++)
+        {
+            DetalleServicioPresupuesto det=obra.getDetSerPreObra().get(i);
+            if(nuevo.getServicioDetalle().getId_Servicio()==det.getServicioDetalle().getId_Servicio())
+            {
+                det.setMetrosCuadradoDetalle(det.getMetrosCuadradoDetalle()+(nuevo.getAltura()*nuevo.getLargo()));
+                det.setSubtotalDetalle(det.getSubtotalDetalle()+(det.getPrecioMetro()*nuevo.getAltura()*nuevo.getLargo()));
+                i=obra.getDetSerPreObra().size();
+                existe=1;
+            }
+        }
+        if(existe==0)
+        {
+            
+            obra.getDetSerPreObra().add(nuevo);
+        }
+        
+        obra.setTotal_Obra((obra.getTotal_Obra()+nuevo.getSubtotalDetalle()));
+        return obra;
     }
 
     @Override
-    public ArrayList<Presupuesto> showAll() {
+    public ArrayList<Obra> showDataCliente(String f) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean add(Presupuesto t) {
+    public ArrayList<Obra> showAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean update(Presupuesto t) {
+    public boolean add(Obra t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean delete(Presupuesto t) {
+    public boolean update(Obra t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Presupuesto adds(Presupuesto t) {
+    public boolean delete(Obra t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Obra adds(Obra t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
     
 }

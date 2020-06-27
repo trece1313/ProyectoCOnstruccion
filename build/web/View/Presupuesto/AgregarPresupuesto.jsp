@@ -4,6 +4,8 @@
     Author     : trece
 --%>
 
+<%@page import="Model.Servicio"%>
+<%@page import="Model.DetalleServicioPresupuesto"%>
 <%@page import="Model.Presupuesto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Obra"%>
@@ -14,10 +16,16 @@
 if(request.getSession().getAttribute("us") != null && 
 ((Usuario) request.getSession().getAttribute("us")).getRolUsuario().getPermisos().contains(13))
 { 
-    if (session.getAttribute("presupuesto") == null) {
-        session.setAttribute("presupuesto", new Presupuesto());
+    if (session.getAttribute("obra") == null) {
+        session.setAttribute("obra", new Obra());
     }
-
+//    Servicio detReg = ((Servicio)session.getAttribute("servicioEncontrado")) !=null ?
+//    (Servicio)session.getAttribute("servicioEncontrado") : new Servicio();
+//    
+//            System.out.println(detReg.getId_Servicio() + "Pasa");
+//            System.out.println(detReg.getNombre_Servicio() + "Pasa 1");
+//    session.setAttribute("datsCrear", detReg);
+//    
 %>
 <%--  Aqui va mi vent --%>
 <style>

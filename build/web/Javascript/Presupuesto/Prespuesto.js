@@ -29,11 +29,10 @@ $(function(){
         
     if($(this).val().length >=3)
     { 
+   
+      buscarServicio($(this).val());
+      //Aquoi ahi error
       
-     $('.divMetrosDetalle').css({'display':'block'});
-     $('#shw').css({'display':'none'});
-     $('#claveServicio').val($(this).val());
-     $("#mtsAltura").focus(); 
         }
     });
     
@@ -43,20 +42,50 @@ $(function(){
     });
     $('#mtsLargo').keypress(function(e){          
         var code = (e.keyCode ? e.keyCode : e.which);
-        (code==13 && $(this).val() != "") ? ajaxBuscarProducto($("#claveServicio").val(),$("#mtsAltura").val(),$("#mtsLargo").val()): $(this).focus();    
+        (code==13 && $(this).val() != "") ? ajaxBuscarProducto($("#mtsAltura").val(),$("#mtsLargo").val()): $(this).focus();    
     });
+    
+    
+    
     // aqui Termina jQuery
     
 });
 
-function ajaxBuscarProducto(clvSer,alt,lar)
+function ajaxBuscarProducto(alt,lar)
 {
          $.ajax({
         type: 'post',
         url: 'PresupuestoData',
-        data: {"action":"buscarServicio","codServicio":clvSer,"altura":alt,"largo":lar},
+        data: {"action":"agregarAltLar","altura":alt,"largo":lar},
         success: function (res) {
+           $('.divMetrosDetalle').css({'display':'none'});
+             $('#shw').css({'display':'block'});
         
+            $("#searchService").val("");
+            $("#ServDetalle").load("./View/Presupuesto/TodosServicios.jsp");
+            $("#mtsAltura").val("");
+            $("#mtsLargo").val("");
+        }
+    });
+          
+}
+function buscarServicio(clvSer)
+{
+    
+         $.ajax({
+        type: 'post',
+        url: 'PresupuestoData',
+        data: {"action":"buscarServicio","codServicio":clvSer},
+        success: function (res) {
+    
+        
+            
+   $('.divMetrosDetalle').css({'display':'block'});
+   
+   $('#shw').css({'display':'none'});
+   
+    $("#mtsAltura").focus(); 
+            
         }
     });
           
@@ -79,6 +108,7 @@ function ajaxObra()
 }
 function ajaxBuscarObra(busqueda)
 {
+
     
      $.ajax({
         type: 'post',

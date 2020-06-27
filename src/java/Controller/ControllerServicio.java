@@ -191,5 +191,40 @@ public class ControllerServicio implements ServicioDAO{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Servicio encontrarServicio(String buscar) {
+        Servicio ser = new Servicio();
+        try {
+            conDB = new ConectaDB();
+            con = conDB.conexionDB();
+            String sqlBuscarServicio = "SELECT id_Servicio,nombre_Servicio,descripcion_Servicio,\n"
+                    + "precioPorMetro_Servicio FROM Servicio WHERE claveServicio = ?";
+            ps = con.prepareStatement(sqlBuscarServicio);
+            ps.setString(1, buscar);
+            rs = ps.executeQuery();
+            if (rs != null && rs.next()) {
+
+                ser.setId_Servicio(rs.getInt(1));
+                ser.setNombre_Servicio(rs.getString(2));
+                ser.setDescipcion_Servicio(rs.getString(3));
+                ser.setPrecioPorMetro(rs.getDouble(4));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error setalle " + ex.getMessage());
+            Logger.getLogger(ControllerDetalleSerPres.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                con.close();
+                rs.close();
+                ps.close();
+            } catch (SQLException ex) {
+                System.out.println("Error setalle 2 " + ex.getMessage());
+                Logger.getLogger(ControllerDetalleSerPres.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return ser;
+    }
      
-}
+     }
+

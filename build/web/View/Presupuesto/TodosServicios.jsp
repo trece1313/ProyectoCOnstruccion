@@ -4,6 +4,8 @@
     Author     : trece
 --%>
 
+<%@page import="Model.Obra"%>
+<%@page import="Model.DetalleServicioPresupuesto"%>
 <%@page import="Model.Presupuesto"%>
 <%@page import="Controller.ControllerServicio"%>
 <%@page import="Model.Servicio"%>
@@ -21,35 +23,65 @@ if(request.getSession().getAttribute("us") != null &&
 { 
 %>
 <%
-        Presupuesto pres = (Presupuesto) session.getAttribute("presupuesto");    
+        Obra or = (Obra) session.getAttribute("obra");    
 
 
 %>
+<style>
+    #tabServicios{
+        font-family: 'Anton', sans-serif;
+        text-align: center;
+   
+        background: #0F2027 !important;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027)!important;  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        border-radius: 7px;
+       box-shadow: 3px -1px 8px 4px #3B5A73;
+                 overflow: scroll;
+                 overflow-x: hidden;
+                 border-radius: 7px;
+                     
+        
+    }
+</style>
 <%-- Aqui va mi detalle  --%>
-<table border="1" class="table table-dark">
+<table border="1" id="tabServicios" class="table table-dark">
     <thead>
         <tr>
             <th>Nombre Servicio</th>
             <th>Descripción del servicio</th>
             <th>Metros</th>
-            <th>Cantidad</th>
+            <th>Precio por Metro</th>
             <th>Subtotal</th>
         </tr>
     </thead>
     <tbody>
+        
+                    <%
+            for (int i = 0; i < or.getDetSerPreObra().size(); i++) {
+                DetalleServicioPresupuesto d = or.getDetSerPreObra().get(i);
+                
+
+            %>
+        
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+                
+            <td><%=(d.getServicioDetalle().getNombre_Servicio())%></td>
+            <td><%=(d.getServicioDetalle().getDescipcion_Servicio())%></td>
+            <td><%=(d.getMetrosCuadradoDetalle())%> m²</td>
+            <td>$ <%=(d.getServicioDetalle().getPrecioPorMetro())%></td>
+            <td>$ <%=(d.getSubtotalDetalle())%></td>
         </tr>
-        <tr>
+
+          <%
+              }
+            %>
+                    <tr>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td>Total</td>
+            <td>Total $ <%=(or.getTotal_Obra())%></td>
         </tr>
     </tbody>
 </table>
